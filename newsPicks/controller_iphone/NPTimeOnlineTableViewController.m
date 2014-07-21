@@ -33,16 +33,24 @@
     list=[[NSMutableArray alloc]init];
     [super viewDidLoad];
      self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     refreshHeadView = [MJRefreshHeaderView header];
     refreshHeadView.scrollView = self.tableView;
     refreshHeadView.delegate = self;
-    
+    [refreshHeadView beginRefreshing];
     
 }
 -(void)reloadDataForFirst
 {
-    [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-
+    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            [list removeAllObjects];
+            [list addObjectsFromArray:result];
+            [self.tableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+    }] ;
+    
 }
 -(void)reloadMoreData
 {
@@ -65,21 +73,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return list.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return 0;
+    return list.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,12 +87,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID=@"timeOnLineCell";
-    NPTimeOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    NPTimeOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell=[[NPTimeOnlineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.backgroundView=[[UIView alloc]init];
+        cell.backgroundView.backgroundColor=[UIColor lightGrayColor];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
-//     Configure the cell...
-    
+//    cell
+    NPListModel *model=[list objectAtIndex:indexPath.row];
+    [cell restCell:model];
     return cell;
 }
 

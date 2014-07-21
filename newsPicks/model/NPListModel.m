@@ -16,6 +16,10 @@
 @synthesize replyContent=_replyContent;
 @synthesize replyID=_replyID;
 @synthesize praiseNum=_praiseNum;
+@synthesize subContent=_subContent;
+@synthesize time=_time;
+@synthesize type=_type;
+@synthesize replyCount=_replyCount;
 - (NSDictionary*)attributeMapDictionary
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -26,6 +30,10 @@
             ,@"replyContent",@"replyContent"
             ,@"replyID",@"replyID"
             ,@"praiseNum",@"praiseNum"
+            ,@"subContent",@"subContent"
+            ,@"time",@"time"
+            ,@"type",@"type"
+            ,@"replyCount",@"replyCount"
             ,nil];
 }
 -(void)dealloc
@@ -37,6 +45,9 @@
     RELEASE_SAFELY(_replyContent);
     RELEASE_SAFELY(_replyID);
     RELEASE_SAFELY(_praiseNum);
+    RELEASE_SAFELY(_subContent);
+    RELEASE_SAFELY(_time);
+    RELEASE_SAFELY(_replyCount);
     [super dealloc];
 }
 @end

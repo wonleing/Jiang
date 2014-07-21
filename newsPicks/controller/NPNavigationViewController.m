@@ -24,9 +24,10 @@
             //            self.navigationBar.barStyle = UIBarStyleBlack;
             self.edgesForExtendedLayout = UIRectEdgeNone;
             self.extendedLayoutIncludesOpaqueBars = NO;
-            self.modalPresentationCapturesStatusBarAppearance = NO;
+            self.modalPresentationCapturesStatusBarAppearance = YES;
             self.automaticallyAdjustsScrollViewInsets = YES;
             self.navigationBar.translucent = NO;
+    
             //self.wantsFullScreenLayout=YES;
             
 #endif
@@ -36,6 +37,7 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }

@@ -14,5 +14,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "NPHTTPRequest.h"
+    #import "NPDefaultSetting.h"
+    #import "UIImageView+WebCache.h"
 #endif
 #define MainStingUrl @"http:www.baidu.com"

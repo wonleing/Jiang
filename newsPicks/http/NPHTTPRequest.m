@@ -60,6 +60,30 @@
 }
 + (void)getTimeOnLineData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
 {
+    
+    //测试数据
+    NSMutableArray *list=[NSMutableArray array];
+    for (int i=0;i<20;i++) {
+        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+         model.subContent=@"subContent";
+        model.replyCount=@"250";
+        model.time=@"2014/00/00";
+        model.type=1;
+        model.contentImage=@"";
+        if (i%2==0) {
+            model.contentImage=@"imag.imag";
+        }
+        
+        if (i%3) {
+            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc", nil];
+            model.replyContent=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        
+        [list addObject:model];
+    }
+    successBlock(YES,list);
+
     NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         
@@ -82,5 +106,51 @@
     }];
 
     
+}
++ (void)getTopData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
+{
+    //测试数据
+    NSMutableArray *list=[NSMutableArray array];
+    for (int i=0;i<20;i++) {
+        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+        model.subContent=@"subContent";
+        model.replyCount=@"250";
+        model.time=@"2014/00/00";
+        model.type=1;
+        model.contentImage=@"";
+        if (i%2==0) {
+            model.contentImage=@"imag.imag";
+        }
+        
+        if (i%3) {
+            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc", nil];
+            model.replyContent=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        
+        [list addObject:model];
+    }
+    successBlock(YES,list);
+    
+    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            NSMutableArray *list=[NSMutableArray array];
+            for (NSDictionary *dic in resultDictionary[@"data"]) {
+                NPListModel *model=[[NPListModel alloc]initWithDataDic:dic];
+                
+                [list addObject:model];
+            }
+            successBlock(YES,list);
+        }else{
+            successBlock(NO,nil);
+            //            [[DMCAlertCenter defaultCenter] postAlertWithMessage:resultDictionary [@"message"]];
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+        //        [[DMCAlertCenter defaultCenter] postAlertWithMessage:ConnectFailMessage];
+    }];
 }
 @end

@@ -10,4 +10,5 @@
 
 @interface NPHTTPRequest : NSObject
 + (void)getTimeOnLineData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock;
++ (void)getTopData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock;
 @end

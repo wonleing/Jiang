@@ -7,9 +7,14 @@
 //
 
 #import "NPTopTableViewController.h"
+#import "MJRefresh.h"
+#import "NPTimeOnlineCell.h"
+@interface NPTopTableViewController ()<MJRefreshBaseViewDelegate>
 
-@interface NPTopTableViewController ()
-
+{
+    MJRefreshHeaderView *refreshHeadView;
+    NSMutableArray* list;
+}
 @end
 
 @implementation NPTopTableViewController
@@ -26,14 +31,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    list=[[NSMutableArray alloc]init];
+    [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    refreshHeadView = [MJRefreshHeaderView header];
+    refreshHeadView.scrollView = self.tableView;
+    refreshHeadView.delegate = self;
+    [refreshHeadView beginRefreshing];
 }
-
+-(void)reloadDataForFirst
+{
+    [NPHTTPRequest getTopData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            [list removeAllObjects];
+            [list addObjectsFromArray:result];
+            [self.tableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+    }] ;
+    
+}
+-(void)reloadMoreData
+{
+    [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+}
+- (void)reloadEnd
+{
+    [refreshHeadView endRefreshing];
+}
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if (refreshHeadView == refreshView) { // 下拉刷新
+        [self performSelector:@selector(reloadDataForFirst) withObject:nil afterDelay:0.3];
+    }else
+    {
+        [self performSelector:@selector(reloadMoreData) withObject:nil afterDelay:0.3];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -42,78 +77,32 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return list.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [NPTimeOnlineCell cellHigth:[list objectAtIndex:indexPath.row]];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    static NSString *cellID=@"timeOnLineCell";
+    NPTimeOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell=[[NPTimeOnlineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.backgroundView=[[UIView alloc]init];
+        cell.backgroundView.backgroundColor=[UIColor lightGrayColor];
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    }
+    //    cell
+    NPListModel *model=[list objectAtIndex:indexPath.row];
+    [cell restCell:model];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

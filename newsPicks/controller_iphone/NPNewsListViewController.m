@@ -47,7 +47,8 @@
     scrollContent.showsHorizontalScrollIndicator=NO;
     scrollContent.showsVerticalScrollIndicator=NO;
     scrollContent.pagingEnabled=YES;
-    scrollContent.frame=CGRectMake(0, listTopScrollView.frame.size.height+listTopScrollView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-listTopScrollView.frame.size.height-listTopScrollView.frame.origin.y);
+    scrollContent.frame=CGRectMake(0, listTopScrollView.frame.size.height+listTopScrollView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-listTopScrollView.frame.size.height-listTopScrollView.frame.origin.y-self.navigationController.navigationBar.frame.size.height-self.navigationController.view.frame.origin.y);
+    NSLog(@"%@--%@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(self.navigationController.view.frame));
     scrollContent.delegate=self;
     [self.view addSubview:scrollContent];
     onLineController=[[NPTimeOnlineTableViewController alloc] initWithStyle:UITableViewStylePlain];
