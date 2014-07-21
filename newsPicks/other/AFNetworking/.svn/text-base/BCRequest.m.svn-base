@@ -1,0 +1,113 @@
+//
+//  BCRequest.m
+//  Test2
+//
+//  Created by NFJ on 13-3-3.
+//  Copyright (c) 2013年 BlueCloud Limited. All rights reserved.
+//
+
+#import "BCRequest.h"
+#import "AFNetworking.h"
+#import "BCBaseObject.h"
+#import "SVProgressHUD.h"
+#import "StartPageViewController.h"
+
+//#import "UIImageView+AFNetworking.h"
+
+#define BCRequestHolderImageName @"BCPlaceholder.png"
+
+@implementation BCRequest
++(BOOL)logiOut:(id)value
+{
+    if ([value isKindOfClass:[NSDictionary class]]&&[value objectForKey:@"status"]&&[[value objectForKey:@"status"]integerValue]==-9) {
+        return YES;
+    }
+    return NO;
+}
++(void)doLoginOut:(NSString *)str
+{
+   // if ([CMAlertView showAlert:@"提示" message:@"token已失效，请重新登录" cancle:nil other:@"确定"]==0) {
+    [UIUtil missWaitingMessage];
+    [CMHTTPRequest exitLogin:NO];
+    [UIUtil showWaringMessage:str];
+}
+//获取Dictionary数据
++ (void)getDictionaryWithStringURL:(NSString *)stringURL usingSuccessBlock:(void (^)(NSDictionary *resultDictionary))successBlock andFailureBlock:(void (^)(NSError *resultError))failureBlock
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    __weak AFHTTPRequestOperation*weakOperation = operation;
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //if ([NSJSONSerialization isValidJSONObject:weakOperation.responseString]) {
+        if (weakOperation.responseData) {
+
+           NSDictionary *value=[NSJSONSerialization JSONObjectWithData:weakOperation.responseData options:NSJSONReadingMutableContainers error:nil];
+        
+            if ([BCRequest logiOut:value]) {
+                [BCRequest doLoginOut:ChuMianDoLoginOutWaring];
+               }else{
+                successBlock(value);
+            }
+        }else
+        {
+            failureBlock(nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock(error);
+    }];
+    [operation start];
+}
+
+
+//ImageView加载网络图片
++ (void)addImageWithStringURL:(NSString *)stringURL andImageView:(UIImageView *)imageView
+{
+    [imageView setImageWithURL:[NSURL URLWithString:stringURL] placeholderImage:[UIImage imageNamed:BCRequestHolderImageName]];
+}
+
+//imageview加载等比例缩小的图片
++ (void)loadImageInImageview:(UIImageView*)imageview fromStringUrl:(NSString*)stringUrl scaleImageViewSizeOfX:(CGFloat)x
+{
+    UIImageView * iv = [[UIImageView alloc] init];
+    [iv setImageWithURL:[NSURL URLWithString:stringUrl] placeholderImage:[UIImage imageNamed:BCRequestHolderImageName]];
+   
+}
+
+
+//Post上传图片
++ (void)postImageWithImage:(UIImage *)image andTitle:(NSString *)title intro:(NSString *)intro isShowPublic:(BOOL)isShowPublic workTypeID:(NSInteger)workTypeID workID:(NSInteger)workID
+{
+    NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"ChangQuUser"] [@"userName"];
+     NSString *sign = [[BCBaseObject MD5Hash:[NSString stringWithFormat:@"%@ichang_qu",userName]] lowercaseString];
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.ichangqu.com/work/appadd"];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.01);
+    NSMutableURLRequest *request = [httpClient multipartFormRequestWithMethod:@"POST" path:nil parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData>formData)  {
+        [formData appendPartWithFormData:[userName dataUsingEncoding:NSUTF8StringEncoding] name:@"appusername"];
+        [formData appendPartWithFormData:[sign dataUsingEncoding:NSUTF8StringEncoding] name:@"sign"];
+        [formData appendPartWithFileData:imageData name:@"image" fileName:@"test.png" mimeType:@"image/png"];
+        [formData appendPartWithFormData:[title dataUsingEncoding:NSUTF8StringEncoding] name:@"work_title"];
+        [formData appendPartWithFormData:[intro dataUsingEncoding:NSUTF8StringEncoding] name:@"work_intro"];
+        if (YES == isShowPublic) {
+            [formData appendPartWithFormData:[@"1" dataUsingEncoding:NSUTF8StringEncoding] name:@"work_show"];
+        }else{
+            [formData appendPartWithFormData:[@"0" dataUsingEncoding:NSUTF8StringEncoding] name:@"work_show"];
+        }
+        
+        [formData appendPartWithFormData:[[NSString stringWithFormat:@"%d",workTypeID] dataUsingEncoding:NSUTF8StringEncoding] name:@"work_type"];
+        [formData appendPartWithFormData:[[NSString stringWithFormat:@"%d",workID] dataUsingEncoding:NSUTF8StringEncoding] name:@"work_id"];
+    }];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+        [SVProgressHUD showProgress:totalBytesWritten/totalBytesExpectedToWrite status:@"上传中"];
+    }];
+    [httpClient enqueueHTTPRequestOperation:operation];
+}
+
+
+
+@end
