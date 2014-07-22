@@ -9,11 +9,15 @@
 #import "NPTopTableViewController.h"
 #import "MJRefresh.h"
 #import "NPTimeOnlineCell.h"
-@interface NPTopTableViewController ()<MJRefreshBaseViewDelegate>
+#import "NPKeyBoardView.h"
+#import "NPlistPopularUsers.h"
+@interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate>
 
 {
     MJRefreshHeaderView *refreshHeadView;
     NSMutableArray* list;
+    NPlistPopularUsers *popularUsers;
+    NPKeyBoardView *keyBoard;
 }
 @end
 
@@ -42,15 +46,16 @@
 }
 -(void)reloadDataForFirst
 {
-    [NPHTTPRequest getTopData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getTopData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result, NPlistPopularUsers *popularUser) {
         if (isSuccess) {
+            popularUsers=popularUser;
             [list removeAllObjects];
             [list addObjectsFromArray:result];
             [self.tableView reloadData];
         }
         [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-    }] ;
-    
+
+    }];
 }
 -(void)reloadMoreData
 {
@@ -79,10 +84,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return list.count;
+    return list.count+(popularUsers?1:0);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==list.count) {
+        return NPTimeOnlineCell_topPlace*2+NPTimeOnlineCell_PopularUser_Higth;
+    }
     return [NPTimeOnlineCell cellHigth:[list objectAtIndex:indexPath.row]];
 }
 
@@ -97,8 +105,14 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }
     //    cell
+    
+    if (indexPath.row==list.count) {
+        [cell restPopularUsers:popularUsers];
+    }else
+    {
     NPListModel *model=[list objectAtIndex:indexPath.row];
     [cell restCell:model];
+    }
     return cell;
 }
 

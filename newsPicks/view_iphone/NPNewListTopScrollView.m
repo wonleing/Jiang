@@ -50,6 +50,7 @@
     for (NSString *str in _nameList) {
         NPNewListTopButton *btn=[NPNewListTopButton buttonWithType:UIButtonTypeCustom];
         btn.frame=CGRectMake(x, 0,  NPTopSubView_width, self.frame.size.height);
+        btn.autoresizingMask= UIViewAutoresizingFlexibleWidth;
         [btn setTitle:str forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btn.backgroundColor=self.defaultColor;

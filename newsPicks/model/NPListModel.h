@@ -7,16 +7,21 @@
 //
 
 #import "ITTBaseModelObject.h"
-
+#import "NPlistReplyModel.h"
+typedef  enum
+{
+    NPListType_online,
+    NPListType_top,
+    NPListType_premium
+}NPListType;
 @interface NPListModel : ITTBaseModelObject
 @property(nonatomic,retain)NSString *listID;
 @property(nonatomic,retain)NSString *content;
+@property(nonatomic,retain)NSString *title;
 @property(nonatomic,retain)NSString *contentImage;
 @property(nonatomic,retain)NSArray *userImageList;
-@property(nonatomic,retain)NSString *replyContent;
 @property(nonatomic,retain)NSString *replyCount;
-@property(nonatomic,retain)NSString *replyID;
-@property(nonatomic,retain)NSString *praiseNum;
+@property(nonatomic,retain)NPlistReplyModel *replyModel;
 @property(nonatomic,retain)NSString *time;
 @property(nonatomic,retain)NSString *subContent;
 @property(nonatomic,assign)NSInteger type;

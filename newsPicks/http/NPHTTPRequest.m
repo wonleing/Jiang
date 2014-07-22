@@ -9,6 +9,8 @@
 #import "NPHTTPRequest.h"
 #import "AFNetworking.h"
 #import "NPListModel.h"
+#import "NPlistPopularUsers.h"
+#import "NPlistReplyModel.h"
 @implementation NPHTTPRequest
 //post上传
 +(void)postValue:(NSString *)strUrl dic:(NSDictionary *)dic fileDic:(NSDictionary *)fileDic usingSuccessBlock:(void (^)(NSDictionary *resultDictionary))successBlock andFailureBlock:(void (^)(NSError *resultError))failureBlock
@@ -65,7 +67,14 @@
     NSMutableArray *list=[NSMutableArray array];
     for (int i=0;i<20;i++) {
         NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+        replyModel.praiseNum=@"100";
+        replyModel.name=@"额城市";
+        replyModel.time=@"2014/00/00";
+        replyModel.position=@"大学教授";
+        model.type=NPListType_online;
         model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+         model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
          model.subContent=@"subContent";
         model.replyCount=@"250";
         model.time=@"2014/00/00";
@@ -77,9 +86,9 @@
         
         if (i%3) {
             model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc", nil];
-            model.replyContent=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
         }
-        
+        model.replyModel=replyModel;
         [list addObject:model];
     }
     successBlock(YES,list);
@@ -107,13 +116,20 @@
 
     
 }
-+ (void)getTopData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
++ (void)getTopData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result,NPlistPopularUsers *popularUser))successBlock;
 {
     //测试数据
     NSMutableArray *list=[NSMutableArray array];
     for (int i=0;i<20;i++) {
         NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+        replyModel.praiseNum=@"100";
+        replyModel.name=@"额城市";
+        replyModel.time=@"2014/00/00";
+        replyModel.position=@"大学教授";
+        model.type=NPListType_top;
         model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+        model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
         model.subContent=@"subContent";
         model.replyCount=@"250";
         model.time=@"2014/00/00";
@@ -125,12 +141,22 @@
         
         if (i%3) {
             model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc", nil];
-            model.replyContent=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
         }
         
         [list addObject:model];
     }
-    successBlock(YES,list);
+    NPlistPopularUsers *popularUser=[[NPlistPopularUsers alloc] init];
+    popularUser.time=@"2014/07/22";
+    NSMutableArray *users=[NSMutableArray array];
+    for (int i=0; i<3; i++) {
+        NPlistPopularUser *popuser=[[NPlistPopularUser alloc]init];
+        popuser.headImageUrl=@"1111";
+        popuser.leve=[NSString stringWithFormat:@"%d",i+1];
+        [users addObject:popuser];
+    }
+    popularUser.popularUsers=users;
+    successBlock(YES,list,popularUser);
     
     NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
@@ -142,14 +168,14 @@
                 
                 [list addObject:model];
             }
-            successBlock(YES,list);
+            successBlock(YES,list,nil);
         }else{
-            successBlock(NO,nil);
+            successBlock(NO,nil,nil);
             //            [[DMCAlertCenter defaultCenter] postAlertWithMessage:resultDictionary [@"message"]];
         }
         
     } andFailureBlock:^(NSError *resultError) {
-        successBlock(NO,nil);
+        successBlock(NO,nil,nil);
         //        [[DMCAlertCenter defaultCenter] postAlertWithMessage:ConnectFailMessage];
     }];
 }

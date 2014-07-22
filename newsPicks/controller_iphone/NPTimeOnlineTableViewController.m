@@ -10,10 +10,15 @@
 #import "MJRefresh.h"
 #import "NPListModel.h"
 #import "NPTimeOnlineCell.h"
-@interface NPTimeOnlineTableViewController ()<MJRefreshBaseViewDelegate>
+#import "NPCellDelegate.h"
+#import "NPKeyBoardView.h"
+#import "NPNewListDetailViewController.h"
+@interface NPTimeOnlineTableViewController ()<MJRefreshBaseViewDelegate,NPTimeOnlineCellDelegate,NPKeyBoardViewDelegate>
 {
     MJRefreshHeaderView* refreshHeadView;
+    MJRefreshFooterView *refreshFootView;
     NSMutableArray *list;
+  
 }
 @end
 
@@ -39,6 +44,11 @@
     refreshHeadView.delegate = self;
     [refreshHeadView beginRefreshing];
     
+    refreshFootView=[MJRefreshFooterView footer];
+    refreshFootView.scrollView=self.tableView;
+    refreshFootView.delegate=self;
+
+   
 }
 -(void)reloadDataForFirst
 {
@@ -54,11 +64,18 @@
 }
 -(void)reloadMoreData
 {
-    [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            [list addObjectsFromArray:result];
+            [self.tableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
+    }] ;
 }
 - (void)reloadEnd
 {
     [refreshHeadView endRefreshing];
+    [refreshFootView endRefreshing];
 }
 - (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
 {
@@ -66,10 +83,18 @@
         [self performSelector:@selector(reloadDataForFirst) withObject:nil afterDelay:0.3];
     }else
     {
-        [self performSelector:@selector(reloadMoreData) withObject:nil afterDelay:0.3];
+         [self performSelector:@selector(reloadMoreData) withObject:nil afterDelay:0.3];
     }
 }
-
+-(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell
+{
+    [NPKeyBoardView share].delegate =self;
+    [[NPKeyBoardView share].textView becomeFirstResponder];
+}
+-(void)NPloadMoreViewRefresh
+{
+    [self performSelector:@selector(reloadMoreData) withObject:nil afterDelay:0.3];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -93,11 +118,18 @@
         cell.backgroundView=[[UIView alloc]init];
         cell.backgroundView.backgroundColor=[UIColor lightGrayColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.delegate=self;
     }
 //    cell
     NPListModel *model=[list objectAtIndex:indexPath.row];
     [cell restCell:model];
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NPNewListDetailViewController *listDetail=[[NPNewListDetailViewController alloc] init];
+    listDetail.listModel=[list objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:listDetail animated:YES];
 }
 
 

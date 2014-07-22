@@ -11,7 +11,8 @@
 #import "NPTimeOnlineTableViewController.h"
 #import "NPTopTableViewController.h"
 #import "NPPremiumTableViewController.h"
-@interface NPNewsListViewController ()<NPNewListTopScrollViewDelegate,UIScrollViewDelegate>
+#import "NPKeyBoardView.h"
+@interface NPNewsListViewController ()<NPNewListTopScrollViewDelegate,UIScrollViewDelegate,NPKeyBoardViewDelegate>
 {
     NPNewListTopScrollView *listTopScrollView;
     NPTimeOnlineTableViewController *onLineController;
@@ -40,15 +41,16 @@
     listTopScrollView.backgroundColor=[UIColor clearColor];
     listTopScrollView.nameList=[NSArray arrayWithObjects:@"TimeLine",@"Top20",@"Premium", nil];
     listTopScrollView.delegateListTop=self;
+    listTopScrollView.autoresizingMask=UIViewAutoresizingFlexibleLeftMargin  |UIViewAutoresizingFlexibleRightMargin;
     [self.view addSubview:listTopScrollView];
     
     scrollContent=[[UIScrollView alloc] init];
     scrollContent.backgroundColor=[UIColor clearColor];
     scrollContent.showsHorizontalScrollIndicator=NO;
     scrollContent.showsVerticalScrollIndicator=NO;
+    scrollContent.autoresizingMask=UIViewAutoresizingFlexibleLeftMargin  |UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin;
     scrollContent.pagingEnabled=YES;
-    scrollContent.frame=CGRectMake(0, listTopScrollView.frame.size.height+listTopScrollView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-listTopScrollView.frame.size.height-listTopScrollView.frame.origin.y-self.navigationController.navigationBar.frame.size.height-self.navigationController.view.frame.origin.y);
-    NSLog(@"%@--%@",NSStringFromCGRect(self.view.frame),NSStringFromCGRect(self.navigationController.view.frame));
+    scrollContent.frame=CGRectMake(0, listTopScrollView.frame.size.height+listTopScrollView.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height-listTopScrollView.frame.size.height-listTopScrollView.frame.origin.y-44);
     scrollContent.delegate=self;
     [self.view addSubview:scrollContent];
     onLineController=[[NPTimeOnlineTableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -68,13 +70,18 @@
     
     scrollContent.contentSize=CGSizeMake(premiumController.view.frame.size.width+premiumController.view.frame.origin.x, scrollContent.frame.size.height);
     
+    
+//    [NPKeyBoardView share];
 //    onLineController.view.backgroundColor=[UIColor orangeColor];
 //    topController.view.backgroundColor=[UIColor lightGrayColor];
 //    premiumController.view.backgroundColor=[UIColor blackColor];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+-(void)viewDidAppear:(BOOL)animated
+{
 
+}
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;

@@ -7,3 +7,4 @@
 //
 
 #define NP_IMG_TIME_ONLINE_DEFAULT @"NP_IMG_default.jpg"
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
