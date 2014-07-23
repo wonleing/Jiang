@@ -16,5 +16,8 @@
     #import "NPHTTPRequest.h"
     #import "NPDefaultSetting.h"
     #import "UIImageView+WebCache.h"
+    #import "UIButton+WebCache.h"
+    #import "NSMutableAttributedString+NPMutableAttributedString.h"
+    #import "NPCustomMethod.h"
 #endif
 #define MainStingUrl @"http:www.baidu.com"

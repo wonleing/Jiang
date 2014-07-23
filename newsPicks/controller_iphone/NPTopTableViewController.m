@@ -11,6 +11,7 @@
 #import "NPTimeOnlineCell.h"
 #import "NPKeyBoardView.h"
 #import "NPlistPopularUsers.h"
+#import "NPNewListDetailViewController.h"
 @interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate>
 
 {
@@ -116,7 +117,14 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (list.count>indexPath.row) {
+    NPNewListDetailViewController *detailController=[[NPNewListDetailViewController alloc]init];
+    detailController.listModel=[list objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:detailController animated:YES];
+    }
+}
 
 
 @end

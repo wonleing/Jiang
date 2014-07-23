@@ -10,7 +10,7 @@
 #import "NPlistReplyModel.h"
 typedef  enum
 {
-    NPListType_online,
+    NPListType_online=0,
     NPListType_top,
     NPListType_premium
 }NPListType;

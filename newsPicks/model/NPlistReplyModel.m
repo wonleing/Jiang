@@ -16,6 +16,7 @@
 @synthesize time=_time;
 @synthesize praiseNum=_praiseNum;
 @synthesize content=_content;
+@synthesize uid=_uid;
 - (NSDictionary*)attributeMapDictionary
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -27,6 +28,19 @@
             ,@"replyID",@"replyID"
             ,@"praiseNum",@"praiseNum"
             ,@"content",@"content"
+            ,@"uid",@"uid"
             ,nil];
+}
+-(void)dealloc
+{
+    RELEASE_SAFELY(_headImageUrl);
+    RELEASE_SAFELY(_name);
+    RELEASE_SAFELY(_replyID);
+    RELEASE_SAFELY(_position);
+    RELEASE_SAFELY(_time);
+    RELEASE_SAFELY(_praiseNum);
+    RELEASE_SAFELY(_content);
+    RELEASE_SAFELY(_uid);
+    [super dealloc];
 }
 @end

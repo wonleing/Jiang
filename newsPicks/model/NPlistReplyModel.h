@@ -9,6 +9,7 @@
 #import "ITTBaseModelObject.h"
 
 @interface NPlistReplyModel : ITTBaseModelObject
+@property(nonatomic,retain)NSString *uid;
 @property(nonatomic,retain)NSString *headImageUrl;
 @property(nonatomic,retain)NSString *name;
 @property(nonatomic,retain)NSString *replyID;

@@ -1077,6 +1077,9 @@ afterInheritingLabelAttributesAndConfiguringWithBlock:(NSMutableAttributedString
             [self.delegate attributedLabel:self didSelectLinkWithTextCheckingResult:result];
         }
     } else {
+        if (self.delegate&&[self.delegate respondsToSelector:@selector(attributedLabelSelectBlankSpace:)]) {
+            [self.delegate attributedLabelSelectBlankSpace:self];
+        }
         [super touchesEnded:touches withEvent:event];
     }
 }

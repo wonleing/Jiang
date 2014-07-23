@@ -391,4 +391,5 @@ didSelectLinkWithTransitInformation:(NSDictionary *)components;
 - (void)attributedLabel:(TTTAttributedLabel *)label
 didSelectLinkWithTextCheckingResult:(NSTextCheckingResult *)result;
 
+- (void)attributedLabelSelectBlankSpace:(TTTAttributedLabel *)label;
 @end

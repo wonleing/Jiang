@@ -120,7 +120,6 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.delegate=self;
     }
-//    cell
     NPListModel *model=[list objectAtIndex:indexPath.row];
     [cell restCell:model];
     return cell;
