@@ -166,7 +166,7 @@
     
     UIView *view=[[UIView alloc] init];
     view.frame=CGRectMake(0, 0, self.view.frame.size.width, 25);
-    view.backgroundColor=[UIColor lightGrayColor];
+    view.backgroundColor=NP_MAIN_BACKGROUND_COLOR;
     UIView *line=[[UIView alloc] init];
     line.frame=CGRectMake(0, 0, view.frame.size.width, 1);
     line.backgroundColor=[UIColor grayColor];

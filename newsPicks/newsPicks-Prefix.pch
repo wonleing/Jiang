@@ -19,5 +19,6 @@
     #import "UIButton+WebCache.h"
     #import "NSMutableAttributedString+NPMutableAttributedString.h"
     #import "NPCustomMethod.h"
+#import <QuartzCore/QuartzCore.h>
 #endif
 #define MainStingUrl @"http:www.baidu.com"

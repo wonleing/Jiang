@@ -11,6 +11,7 @@
 #import "NPListModel.h"
 #import "NPlistPopularUsers.h"
 #import "NPlistReplyModel.h"
+#import "NPUserDetaiInfolModel.h"
 @implementation NPHTTPRequest
 //post上传
 +(void)postValue:(NSString *)strUrl dic:(NSDictionary *)dic fileDic:(NSDictionary *)fileDic usingSuccessBlock:(void (^)(NSDictionary *resultDictionary))successBlock andFailureBlock:(void (^)(NSError *resultError))failureBlock
@@ -285,5 +286,37 @@
     } andFailureBlock:^(NSError *resultError) {
         successBlock(NO,nil,nil,nil,nil);
     }];
+}
++ (void)getUserInfo:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NPUserDetaiInfolModel *result))successBlock
+{
+    NPUserDetaiInfolModel *infoModel=[[NPUserDetaiInfolModel alloc]init];
+    infoModel.name=@"测试姓名";
+    infoModel.typeName=@"人民教室";
+    infoModel.likeNum=@"2048";
+    infoModel.description=@"描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,";
+    infoModel.followers_num=@"10900";
+    infoModel.following_num=@"102";
+    infoModel.is_following=@"0";
+    infoModel.isPremium=@"0";
+    successBlock(YES,infoModel);
+    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            NSMutableArray *list=[NSMutableArray array];
+            for (NSDictionary *dic in resultDictionary[@"data"]) {
+                NPListModel *model=[[NPListModel alloc]initWithDataDic:dic];
+                
+                [list addObject:model];
+            }
+            successBlock(YES,nil);
+        }else{
+            successBlock(YES,nil);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(YES,nil);
+    }];
+
 }
 @end

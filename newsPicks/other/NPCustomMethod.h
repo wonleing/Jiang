@@ -15,4 +15,6 @@
 +(NSArray *)matchesInString:(NSString *)reges string:(NSString *)content;
 +(void)matchesInStringUrl:(TTTAttributedLabel *)label;
 +(NSArray*)sortNewsListKey:(NSDictionary*)dic;
++(UIImage *) createImageWithColor: (UIColor *) color;
++(UIImage *) createImageWithColor: (UIColor *) color size:(CGSize)size;
 @end

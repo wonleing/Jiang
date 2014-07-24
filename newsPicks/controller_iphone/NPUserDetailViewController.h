@@ -7,7 +7,6 @@
 //
 
 #import "NPBaseViewController.h"
-
 @interface NPUserDetailViewController : NPBaseViewController
 @property(nonatomic,strong)NSString *uid;
 @end

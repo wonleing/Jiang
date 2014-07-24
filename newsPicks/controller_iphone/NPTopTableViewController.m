@@ -12,7 +12,7 @@
 #import "NPKeyBoardView.h"
 #import "NPlistPopularUsers.h"
 #import "NPNewListDetailViewController.h"
-@interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate>
+@interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate,NPTimeOnlineCellDelegate>
 
 {
     MJRefreshHeaderView *refreshHeadView;
@@ -38,8 +38,8 @@
     [super viewDidLoad];
     list=[[NSMutableArray alloc]init];
     [super viewDidLoad];
+    self.tableView.backgroundColor=[UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     refreshHeadView = [MJRefreshHeaderView header];
     refreshHeadView.scrollView = self.tableView;
     refreshHeadView.delegate = self;
@@ -101,9 +101,9 @@
     NPTimeOnlineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell=[[NPTimeOnlineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.backgroundView=[[UIView alloc]init];
-        cell.backgroundView.backgroundColor=[UIColor lightGrayColor];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.backgroundColor=NP_MAIN_BACKGROUND_COLOR;
+        cell.delegate=self;
     }
     //    cell
     
