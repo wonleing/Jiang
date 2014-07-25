@@ -40,6 +40,8 @@
     [super viewDidLoad];
     self.tableView.backgroundColor=[UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundView=[[UIView alloc]init];
+    self.tableView.backgroundView.backgroundColor=NP_MAIN_BACKGROUND_COLOR;
     refreshHeadView = [MJRefreshHeaderView header];
     refreshHeadView.scrollView = self.tableView;
     refreshHeadView.delegate = self;

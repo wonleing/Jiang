@@ -319,4 +319,43 @@
     }];
 
 }
++ (void)getUserInfoFollowing:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
+{
+    NSMutableArray *list=[[NSMutableArray alloc]init];
+    for (int i=0; i<20; i++) {
+        NPUserDetaiInfolModel *infoModel=[[NPUserDetaiInfolModel alloc]init];
+        infoModel.name=@"测试姓名";
+        infoModel.typeName=@"人民教室";
+        infoModel.likeNum=@"28";
+        infoModel.description=@"描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,";
+        infoModel.followers_num=@"100";
+        infoModel.following_num=@"12";
+        infoModel.is_following=@"0";
+        infoModel.isPremium=@"0";
+        if (i%3==0) {
+            infoModel.is_following=@"1";
+        }
+        [list addObject:infoModel];
+    }
+    successBlock(YES,list);
+    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            NSMutableArray *list=[NSMutableArray array];
+            for (NSDictionary *dic in resultDictionary[@"data"]) {
+                NPListModel *model=[[NPListModel alloc]initWithDataDic:dic];
+                
+                [list addObject:model];
+            }
+            successBlock(YES,nil);
+        }else{
+            successBlock(YES,nil);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(YES,nil);
+    }];
+
+}
 @end

@@ -13,6 +13,7 @@
 #import "NPNewListDetailFootLoadView.h"
 #import "NPNewListDetailFootReplysView.h"
 #import "NPUserDetailViewController.h"
+#import "SVWebViewController.h"
 @interface NPNewListDetailViewController ()<UITableViewDataSource,UITableViewDelegate,NPNewListDetailCellDelegate,NPNewListDetailFootReplysViewDelegate,UIActionSheetDelegate>
 {
     UITableView *mTableView;
@@ -30,7 +31,13 @@
     }
     return self;
 }
-
+-(void)clickHeadView:(UITapGestureRecognizer *)ges
+{
+    SVWebViewController *webController=[[SVWebViewController alloc]initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    webController.availableActions=0;
+    [self.navigationController pushViewController:webController animated:YES];
+    
+}
 - (void)viewDidLoad
 {
     mDicData=[[NSMutableDictionary alloc]initWithCapacity:0];
@@ -45,6 +52,7 @@
     [self.view addSubview:mTableView];
     
     NPNewListDetailHeadView *headView=[[NPNewListDetailHeadView alloc] init];
+    [headView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickHeadView:)]];
     [headView restSubView:self.listModel];
     mTableView.tableHeaderView=headView ;
     mTableView.tableHeaderView.frame=CGRectMake(0, 0, headView.frame.size.width, headView.frame.size.height);

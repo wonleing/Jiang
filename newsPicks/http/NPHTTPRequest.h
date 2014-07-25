@@ -17,4 +17,5 @@
 + (void)getTopDetail:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *TrendingComment,NSArray *followings,NSArray *others,NSArray *replyHeadImageList))successBlock;
 
 + (void)getUserInfo:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NPUserDetaiInfolModel *result))successBlock;
++ (void)getUserInfoFollowing:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock;
 @end

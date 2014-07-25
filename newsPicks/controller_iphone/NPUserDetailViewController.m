@@ -12,6 +12,8 @@
 #import "NPTimeOnlineCell.h"
 #import  "NPUserDetaiInfolModel.h"
 #import "NPAlertView.h"
+#import "NPNewListDetailViewController.h"
+#import "NPCheckFollowingAndFollowersController.h"
 @interface NPUserDetailViewController ()<UITableViewDataSource,UITableViewDelegate,MJRefreshBaseViewDelegate,NPUserInfoDetailHeadViewDelegate>
 {
     MJRefreshHeaderView* refreshHeadView;
@@ -129,13 +131,23 @@
     [cell restCell:[list objectAtIndex:indexPath.row]];
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NPNewListDetailViewController *listDetail=[[NPNewListDetailViewController alloc] init];
+    listDetail.listModel=[list objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:listDetail animated:YES];
+}
 -(void)NPUserInfoDetailHeadViewCheckFollowing
 {
-    
+    NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
+    check.type=NPCheckFollow_following;
+    [self.navigationController pushViewController:check animated:YES];
 }
 -(void)NPUserInfoDetailHeadViewCheckFollowers
 {
-    
+    NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
+    check.type=NPCheckFollow_followers;
+    [self.navigationController pushViewController:check animated:YES];
 }
 -(void)change
 {
