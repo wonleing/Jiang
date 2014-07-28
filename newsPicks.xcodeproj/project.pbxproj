@@ -12,6 +12,10 @@
 		2613BBED197FF80100628079 /* NPNewListDetailFootReplysView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613BBEC197FF80100628079 /* NPNewListDetailFootReplysView.m */; };
 		2613BBF01980109F00628079 /* NPUserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613BBEF1980109F00628079 /* NPUserDetailViewController.m */; };
 		262F33EB197D44D200060112 /* NPTimeOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 262F33EA197D44D200060112 /* NPTimeOnlineCell.m */; };
+		26449FF019867A4500EAD5DF /* NPMainleftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FEF19867A4500EAD5DF /* NPMainleftView.m */; };
+		26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */; };
+		26449FF61986826A00EAD5DF /* NPContentUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */; };
+		26449FFA198684A500EAD5DF /* NPNewsListViewController_ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */; };
 		2649D9D8197EAE4200377012 /* NPlistPopularUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9D7197EAE4200377012 /* NPlistPopularUser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2649D9DB197EAFBA00377012 /* NPlistPopularUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9DA197EAFBA00377012 /* NPlistPopularUsers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2649D9DE197EB3FC00377012 /* NPPopularUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9DD197EB3FC00377012 /* NPPopularUserView.m */; };
@@ -173,6 +177,14 @@
 		2613BBEF1980109F00628079 /* NPUserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPUserDetailViewController.m; sourceTree = "<group>"; };
 		262F33E9197D44D200060112 /* NPTimeOnlineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTimeOnlineCell.h; sourceTree = "<group>"; };
 		262F33EA197D44D200060112 /* NPTimeOnlineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTimeOnlineCell.m; sourceTree = "<group>"; };
+		26449FEE19867A4500EAD5DF /* NPMainleftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPMainleftView.h; sourceTree = "<group>"; };
+		26449FEF19867A4500EAD5DF /* NPMainleftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPMainleftView.m; sourceTree = "<group>"; };
+		26449FF119867FB400EAD5DF /* NPFollowersRobotsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPFollowersRobotsController.h; sourceTree = "<group>"; };
+		26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPFollowersRobotsController.m; sourceTree = "<group>"; };
+		26449FF41986826A00EAD5DF /* NPContentUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPContentUrlViewController.h; sourceTree = "<group>"; };
+		26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPContentUrlViewController.m; sourceTree = "<group>"; };
+		26449FF8198684A500EAD5DF /* NPNewsListViewController_ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPNewsListViewController_ipad.h; sourceTree = "<group>"; };
+		26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPNewsListViewController_ipad.m; sourceTree = "<group>"; };
 		2649D9D6197EAE4200377012 /* NPlistPopularUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPlistPopularUser.h; sourceTree = "<group>"; };
 		2649D9D7197EAE4200377012 /* NPlistPopularUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPlistPopularUser.m; sourceTree = "<group>"; };
 		2649D9D9197EAFBA00377012 /* NPlistPopularUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPlistPopularUsers.h; sourceTree = "<group>"; };
@@ -413,6 +425,15 @@
 			path = Method;
 			sourceTree = "<group>";
 		};
+		26449FF71986848600EAD5DF /* controller_ipad */ = {
+			isa = PBXGroup;
+			children = (
+				26449FF8198684A500EAD5DF /* NPNewsListViewController_ipad.h */,
+				26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */,
+			);
+			path = controller_ipad;
+			sourceTree = "<group>";
+		};
 		26542C6D197CFE62000E0317 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +471,8 @@
 				268B16BD198120F700BF0487 /* NPUserFollowingButton.m */,
 				26C4A09819815318000CF8D3 /* NPAlertView.h */,
 				26C4A09919815318000CF8D3 /* NPAlertView.m */,
+				26449FEE19867A4500EAD5DF /* NPMainleftView.h */,
+				26449FEF19867A4500EAD5DF /* NPMainleftView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -471,6 +494,10 @@
 				2613BBEF1980109F00628079 /* NPUserDetailViewController.m */,
 				2666CF03198277B700D4B106 /* NPCheckFollowingAndFollowersController.h */,
 				2666CF04198277B700D4B106 /* NPCheckFollowingAndFollowersController.m */,
+				26449FF119867FB400EAD5DF /* NPFollowersRobotsController.h */,
+				26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */,
+				26449FF41986826A00EAD5DF /* NPContentUrlViewController.h */,
+				26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */,
 			);
 			path = controller_iphone;
 			sourceTree = "<group>";
@@ -685,6 +712,7 @@
 		2694227C197BFE9E00515F9E /* newsPicks */ = {
 			isa = PBXGroup;
 			children = (
+				26449FF71986848600EAD5DF /* controller_ipad */,
 				260B4997197D4A7700BEFF53 /* temImg */,
 				26FE1474197D446B00ED0499 /* cell */,
 				26542D2B197D2C8B000E0317 /* http */,
@@ -977,6 +1005,7 @@
 				26E8C79B197D5DF10039EFB4 /* SDWebImageDownloader.m in Sources */,
 				26542CD2197D2719000E0317 /* ITTBaseModelObject.m in Sources */,
 				26E8C7A7197D5DF10039EFB4 /* UIImage+GIF.m in Sources */,
+				26449FF019867A4500EAD5DF /* NPMainleftView.m in Sources */,
 				26542D2E197D2CAF000E0317 /* NPHTTPRequest.m in Sources */,
 				26542CC3197D25AA000E0317 /* MJRefreshFooterView.m in Sources */,
 				26542CC1197D25AA000E0317 /* MJRefreshBaseView.m in Sources */,
@@ -985,6 +1014,7 @@
 				26E8C799197D5DF10039EFB4 /* SDWebImageDecoder.m in Sources */,
 				26E8C7A5197D5DF10039EFB4 /* UIButton+WebCache.m in Sources */,
 				26BE2301198100EE007CDBBB /* NPUserInfoDetailHeadView.m in Sources */,
+				26449FF61986826A00EAD5DF /* NPContentUrlViewController.m in Sources */,
 				26BE22FE1980F508007CDBBB /* NPUserDetailView.m in Sources */,
 				26542CA1197D24AE000E0317 /* NPTimeOnlineTableViewController.m in Sources */,
 				26E8C7AB197D5DF10039EFB4 /* UIImage+WebP.m in Sources */,
@@ -1001,6 +1031,7 @@
 				2649D9E4197EC08000377012 /* NPNewListDetailViewController.m in Sources */,
 				2649D9E7197EC29700377012 /* NPNewListDetailHeadView.m in Sources */,
 				26542D1B197D2C08000E0317 /* AFXMLRequestOperation.m in Sources */,
+				26449FFA198684A500EAD5DF /* NPNewsListViewController_ipad.m in Sources */,
 				26A43849197E3549009F225D /* NPKeyBoardView.m in Sources */,
 				26542D19197D2C08000E0317 /* AFURLConnectionOperation.m in Sources */,
 				26542C91197D241A000E0317 /* NPNavigationViewController.m in Sources */,
@@ -1015,6 +1046,7 @@
 				26791FC6197F6B70003DAC20 /* NPNewListDetailFootLoadView.m in Sources */,
 				2613BBF01980109F00628079 /* NPUserDetailViewController.m in Sources */,
 				26542C8D197D241A000E0317 /* NPBaseViewController.m in Sources */,
+				26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */,
 				26542CD6197D27D0000E0317 /* NPListModel.m in Sources */,
 				268B16BE198120F700BF0487 /* NPUserFollowingButton.m in Sources */,
 				26BE22F41980E25F007CDBBB /* UIFont+CoreTextExtensions.m in Sources */,

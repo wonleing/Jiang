@@ -35,6 +35,7 @@
 
 - (void)viewDidLoad
 {
+    
     self.title=@"NewsPicks";
     listTopScrollView=[[NPNewListTopScrollView alloc]init];
     listTopScrollView.frame=CGRectMake(0, 0, self.view.frame.size.width, 30);
@@ -80,7 +81,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-
+       [super viewDidAppear:animated];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

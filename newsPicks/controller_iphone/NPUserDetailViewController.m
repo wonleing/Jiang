@@ -127,6 +127,7 @@
     if (!cell) {
         cell=[[NPTimeOnlineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.backgroundColor=NP_MAIN_BACKGROUND_COLOR;
     }
     [cell restCell:[list objectAtIndex:indexPath.row]];
     return cell;

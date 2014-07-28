@@ -196,6 +196,7 @@
         cell=[[NPNewListDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
         cell.delegate=self;
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
+         
     }
     NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];;
     NSString *key = [allKeys objectAtIndex:indexPath.section];

@@ -18,8 +18,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    NPNewsListViewController *mainController=[[NPNewsListViewController alloc] init];
-    self.window.rootViewController=[[NPNavigationViewController alloc ]initWithRootViewController:mainController];
+    NPMainViewController *mainController=[[NPMainViewController alloc] init];
+    NPNavigationViewController *nav=[[NPNavigationViewController alloc ]initWithRootViewController:mainController];
+    nav.navigationBar.hidden=YES;
+    self.window.rootViewController=nav;
     
     [self.window makeKeyAndVisible];
     return YES;
