@@ -14,6 +14,7 @@
 #import "NPFollowersRobotsController.h"
 #import "NPContentUrlViewController.h"
 #import "NPNewsListViewController_ipad.h"
+#import "NPSettingViewController.h"
 static void     *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate>
 {
@@ -120,7 +121,9 @@ static void     *flabbyContext = &flabbyContext;
 }
 -(void)NPMainleftViewClickThree
 {
-    
+    NPSettingViewController *setingController=[[NPSettingViewController alloc]init];
+    self.navigationController.navigationBar.hidden=NO;
+    [self.navigationController pushViewController:setingController animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

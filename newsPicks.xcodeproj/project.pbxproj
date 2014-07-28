@@ -16,6 +16,11 @@
 		26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */; };
 		26449FF61986826A00EAD5DF /* NPContentUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */; };
 		26449FFA198684A500EAD5DF /* NPNewsListViewController_ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */; };
+		26449FFD1986893200EAD5DF /* NPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FFC1986893200EAD5DF /* NPSettingViewController.m */; };
+		2644A00019868F2700EAD5DF /* NPSetingProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FFF19868F2700EAD5DF /* NPSetingProfileController.m */; };
+		2644A00319868F8600EAD5DF /* NPSettingEmailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2644A00219868F8600EAD5DF /* NPSettingEmailController.m */; };
+		2644A00619868FDF00EAD5DF /* NPSettingPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2644A00519868FDF00EAD5DF /* NPSettingPasswordController.m */; };
+		2644A0091986904D00EAD5DF /* NPSettingInterestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2644A0081986904D00EAD5DF /* NPSettingInterestController.m */; };
 		2649D9D8197EAE4200377012 /* NPlistPopularUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9D7197EAE4200377012 /* NPlistPopularUser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2649D9DB197EAFBA00377012 /* NPlistPopularUsers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9DA197EAFBA00377012 /* NPlistPopularUsers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2649D9DE197EB3FC00377012 /* NPPopularUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2649D9DD197EB3FC00377012 /* NPPopularUserView.m */; };
@@ -185,6 +190,16 @@
 		26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPContentUrlViewController.m; sourceTree = "<group>"; };
 		26449FF8198684A500EAD5DF /* NPNewsListViewController_ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPNewsListViewController_ipad.h; sourceTree = "<group>"; };
 		26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPNewsListViewController_ipad.m; sourceTree = "<group>"; };
+		26449FFB1986893200EAD5DF /* NPSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSettingViewController.h; sourceTree = "<group>"; };
+		26449FFC1986893200EAD5DF /* NPSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPSettingViewController.m; sourceTree = "<group>"; };
+		26449FFE19868F2700EAD5DF /* NPSetingProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSetingProfileController.h; sourceTree = "<group>"; };
+		26449FFF19868F2700EAD5DF /* NPSetingProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPSetingProfileController.m; sourceTree = "<group>"; };
+		2644A00119868F8600EAD5DF /* NPSettingEmailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSettingEmailController.h; sourceTree = "<group>"; };
+		2644A00219868F8600EAD5DF /* NPSettingEmailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPSettingEmailController.m; sourceTree = "<group>"; };
+		2644A00419868FDF00EAD5DF /* NPSettingPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSettingPasswordController.h; sourceTree = "<group>"; };
+		2644A00519868FDF00EAD5DF /* NPSettingPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPSettingPasswordController.m; sourceTree = "<group>"; };
+		2644A0071986904D00EAD5DF /* NPSettingInterestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSettingInterestController.h; sourceTree = "<group>"; };
+		2644A0081986904D00EAD5DF /* NPSettingInterestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPSettingInterestController.m; sourceTree = "<group>"; };
 		2649D9D6197EAE4200377012 /* NPlistPopularUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPlistPopularUser.h; sourceTree = "<group>"; };
 		2649D9D7197EAE4200377012 /* NPlistPopularUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPlistPopularUser.m; sourceTree = "<group>"; };
 		2649D9D9197EAFBA00377012 /* NPlistPopularUsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPlistPopularUsers.h; sourceTree = "<group>"; };
@@ -498,6 +513,16 @@
 				26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */,
 				26449FF41986826A00EAD5DF /* NPContentUrlViewController.h */,
 				26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */,
+				26449FFB1986893200EAD5DF /* NPSettingViewController.h */,
+				26449FFC1986893200EAD5DF /* NPSettingViewController.m */,
+				26449FFE19868F2700EAD5DF /* NPSetingProfileController.h */,
+				26449FFF19868F2700EAD5DF /* NPSetingProfileController.m */,
+				2644A00119868F8600EAD5DF /* NPSettingEmailController.h */,
+				2644A00219868F8600EAD5DF /* NPSettingEmailController.m */,
+				2644A00419868FDF00EAD5DF /* NPSettingPasswordController.h */,
+				2644A00519868FDF00EAD5DF /* NPSettingPasswordController.m */,
+				2644A0071986904D00EAD5DF /* NPSettingInterestController.h */,
+				2644A0081986904D00EAD5DF /* NPSettingInterestController.m */,
 			);
 			path = controller_iphone;
 			sourceTree = "<group>";
@@ -999,15 +1024,18 @@
 				26E8C797197D5DF10039EFB4 /* SDWebImageCompat.m in Sources */,
 				26542CA3197D24AE000E0317 /* NPTopTableViewController.m in Sources */,
 				2649D9D8197EAE4200377012 /* NPlistPopularUser.m in Sources */,
+				2644A00319868F8600EAD5DF /* NPSettingEmailController.m in Sources */,
 				26E8C79D197D5DF10039EFB4 /* SDWebImageDownloaderOperation.m in Sources */,
 				26542CC5197D25AA000E0317 /* MJRefreshHeaderView.m in Sources */,
 				26791FC9197FB13D003DAC20 /* NSMutableAttributedString+NPMutableAttributedString.m in Sources */,
+				2644A0091986904D00EAD5DF /* NPSettingInterestController.m in Sources */,
 				26E8C79B197D5DF10039EFB4 /* SDWebImageDownloader.m in Sources */,
 				26542CD2197D2719000E0317 /* ITTBaseModelObject.m in Sources */,
 				26E8C7A7197D5DF10039EFB4 /* UIImage+GIF.m in Sources */,
 				26449FF019867A4500EAD5DF /* NPMainleftView.m in Sources */,
 				26542D2E197D2CAF000E0317 /* NPHTTPRequest.m in Sources */,
 				26542CC3197D25AA000E0317 /* MJRefreshFooterView.m in Sources */,
+				26449FFD1986893200EAD5DF /* NPSettingViewController.m in Sources */,
 				26542CC1197D25AA000E0317 /* MJRefreshBaseView.m in Sources */,
 				26C4A09A19815318000CF8D3 /* NPAlertView.m in Sources */,
 				26E8C7AF197D5DF10039EFB4 /* UIImageView+WebCache.m in Sources */,
@@ -1048,8 +1076,10 @@
 				26542C8D197D241A000E0317 /* NPBaseViewController.m in Sources */,
 				26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */,
 				26542CD6197D27D0000E0317 /* NPListModel.m in Sources */,
+				2644A00019868F2700EAD5DF /* NPSetingProfileController.m in Sources */,
 				268B16BE198120F700BF0487 /* NPUserFollowingButton.m in Sources */,
 				26BE22F41980E25F007CDBBB /* UIFont+CoreTextExtensions.m in Sources */,
+				2644A00619868FDF00EAD5DF /* NPSettingPasswordController.m in Sources */,
 				26542C63197CC10F000E0317 /* NPContentlayout.m in Sources */,
 				26791FC3197F5A90003DAC20 /* NPNewListDetailCell.m in Sources */,
 				2666CF1119828F3C00D4B106 /* SVWebViewController.m in Sources */,
