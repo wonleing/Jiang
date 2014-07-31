@@ -21,4 +21,6 @@
     #import "NPCustomMethod.h"
 #import <QuartzCore/QuartzCore.h>
 #endif
+#define BaseUrl @"http://203.195.175.230:8080/newspicks/"
+#define LoginStingUrl @"loginUser"
 #define MainStingUrl @"http:www.baidu.com"

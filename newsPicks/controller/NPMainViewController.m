@@ -15,6 +15,8 @@
 #import "NPContentUrlViewController.h"
 #import "NPNewsListViewController_ipad.h"
 #import "NPSettingViewController.h"
+
+#import "LoginViewController.h"
 static void     *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate>
 {
@@ -23,7 +25,11 @@ static void     *flabbyContext = &flabbyContext;
     NPMainleftView *leftView;
 //    UIView *topView;
 //    UIView *buttomView;
+    
+    
 }
+
+@property(copy,nonatomic)NSNumber *uid;
 @end
 
 @implementation NPMainViewController
@@ -57,7 +63,6 @@ static void     *flabbyContext = &flabbyContext;
 {
     
     
-    
     mScrollview=[[UIScrollView alloc]init];
     mScrollview.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height-250);
     mScrollview.showsHorizontalScrollIndicator=NO;
@@ -83,6 +88,7 @@ static void     *flabbyContext = &flabbyContext;
     
     // Do any additional setup after loading the view.
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
     ((UIViewController *)[navControllerl.viewControllers objectAtIndex:0]).navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Tap" style:UIBarButtonItemStyleBordered target:self action:@selector(clickTap)];
@@ -105,6 +111,20 @@ static void     *flabbyContext = &flabbyContext;
 -(void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden=YES;
+    
+    self.uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
+    if (self.uid.intValue==0) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            LoginViewController *viewController = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+            [nav setNavigationBarHidden:YES];
+            nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nav animated:NO completion:nil];
+        }else{
+#warning iPad登录
+        }
+    }
+    
     [super viewWillAppear:animated];
 }
 -(void)NPMainleftViewClickOne

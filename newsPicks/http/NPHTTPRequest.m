@@ -48,9 +48,13 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         //if ([NSJSONSerialization isValidJSONObject:weakOperation.responseString]) {
         if (weakOperation.responseData) {
-            
-            NSDictionary *value=[NSJSONSerialization JSONObjectWithData:weakOperation.responseData options:NSJSONReadingMutableContainers error:nil];
-            successBlock(value);
+            NSError *error;
+            NSDictionary *value=[NSJSONSerialization JSONObjectWithData:weakOperation.responseData options:NSJSONReadingMutableContainers error:&error];
+            if (error) {
+                failureBlock(error);
+
+            }else
+                successBlock(value);
         }else
         {
             failureBlock(nil);
@@ -289,6 +293,7 @@
 }
 + (void)getUserInfo:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NPUserDetaiInfolModel *result))successBlock
 {
+    
     NPUserDetaiInfolModel *infoModel=[[NPUserDetaiInfolModel alloc]init];
     infoModel.name=@"测试姓名";
     infoModel.typeName=@"人民教室";
@@ -357,5 +362,22 @@
         successBlock(YES,nil);
     }];
 
+}
+
+
++(void)getLoginUser:(NSString *)uname type:(NSString *)type usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,LoginStingUrl,uname,type];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
 }
 @end

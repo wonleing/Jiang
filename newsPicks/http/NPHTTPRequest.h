@@ -18,4 +18,5 @@
 
 + (void)getUserInfo:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NPUserDetaiInfolModel *result))successBlock;
 + (void)getUserInfoFollowing:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock;
++ (void)getLoginUser:(NSString *)uname type:(NSString *)type usingSuccessBlock:(void (^)(BOOL isSuccess,NSDictionary *result))successBlock;
 @end

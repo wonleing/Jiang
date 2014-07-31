@@ -160,6 +160,10 @@
 		26E8C7B5197D781A0039EFB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B4197D781A0039EFB4 /* MapKit.framework */; };
 		26E8C7B7197D78420039EFB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B6197D78420039EFB4 /* QuartzCore.framework */; };
 		26E8C7B9197D78620039EFB4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B8197D78620039EFB4 /* ImageIO.framework */; };
+		373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373E8914198A2CC00080FBEF /* LoginViewController.m */; };
+		373E8917198A2CC00080FBEF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373E8915198A2CC00080FBEF /* LoginViewController.xib */; };
+		37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37B016C6198A6B950069298D /* SVProgressHUD.bundle */; };
+		37B016CA198A6B950069298D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B016C8198A6B950069298D /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,6 +394,13 @@
 		26E8C7B4197D781A0039EFB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B6197D78420039EFB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B8197D78620039EFB4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		373E8913198A2CC00080FBEF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		373E8914198A2CC00080FBEF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		373E8915198A2CC00080FBEF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		37B016C5198A6B950069298D /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		37B016C6198A6B950069298D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		37B016C7198A6B950069298D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		37B016C8198A6B950069298D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,6 +534,9 @@
 				2644A00519868FDF00EAD5DF /* NPSettingPasswordController.m */,
 				2644A0071986904D00EAD5DF /* NPSettingInterestController.h */,
 				2644A0081986904D00EAD5DF /* NPSettingInterestController.m */,
+				373E8913198A2CC00080FBEF /* LoginViewController.h */,
+				373E8914198A2CC00080FBEF /* LoginViewController.m */,
+				373E8915198A2CC00080FBEF /* LoginViewController.xib */,
 			);
 			path = controller_iphone;
 			sourceTree = "<group>";
@@ -575,6 +589,7 @@
 		26542CD8197D2BF1000E0317 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				37B016C4198A6B950069298D /* SVProgressHUD */,
 				26BE22EB1980E251007CDBBB /* MultiPageText */,
 				26E8C76F197D5DF10039EFB4 /* SDWebImage */,
 				260B499A197D4AB600BEFF53 /* Method */,
@@ -892,6 +907,17 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		37B016C4198A6B950069298D /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				37B016C5198A6B950069298D /* SVProgressHUD-Prefix.pch */,
+				37B016C6198A6B950069298D /* SVProgressHUD.bundle */,
+				37B016C7198A6B950069298D /* SVProgressHUD.h */,
+				37B016C8198A6B950069298D /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -976,6 +1002,8 @@
 				26A43841197E053C009F225D /* Localizable.strings in Resources */,
 				26542D23197D2C08000E0317 /* zbar-back.png in Resources */,
 				260B4999197D4A7D00BEFF53 /* registerPhoto_1.png in Resources */,
+				37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */,
+				373E8917198A2CC00080FBEF /* LoginViewController.xib in Resources */,
 				26942289197BFE9E00515F9E /* Images.xcassets in Resources */,
 				26542CBF197D25AA000E0317 /* MJRefresh.bundle in Resources */,
 				2666CF1019828F3C00D4B106 /* SVWebViewController.bundle in Resources */,
@@ -1004,6 +1032,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26BE22F31980E25F007CDBBB /* NSString+BundleExtensions.m in Sources */,
+				37B016CA198A6B950069298D /* SVProgressHUD.m in Sources */,
 				26542C9D197D24AE000E0317 /* NPNewsListViewController.m in Sources */,
 				268B16BB19811CA700BF0487 /* NPUserFollowNumButton.m in Sources */,
 				26BE23041981036A007CDBBB /* NPUserDetaiInfolModel.m in Sources */,
@@ -1063,6 +1092,7 @@
 				26A43849197E3549009F225D /* NPKeyBoardView.m in Sources */,
 				26542D19197D2C08000E0317 /* AFURLConnectionOperation.m in Sources */,
 				26542C91197D241A000E0317 /* NPNavigationViewController.m in Sources */,
+				373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */,
 				26791FCC197FB796003DAC20 /* NPCustomMethod.m in Sources */,
 				26542D11197D2C08000E0317 /* AFImageRequestOperation.m in Sources */,
 				2666CF05198277B700D4B106 /* NPCheckFollowingAndFollowersController.m in Sources */,
