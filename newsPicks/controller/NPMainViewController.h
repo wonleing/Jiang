@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NPMainViewController : UIViewController
+@interface NPMainViewController : UIViewController<UIGestureRecognizerDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @end

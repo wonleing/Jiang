@@ -15,6 +15,9 @@
 #import "NPContentUrlViewController.h"
 #import "NPNewsListViewController_ipad.h"
 #import "NPSettingViewController.h"
+#import "gtxCellView.h"
+#import "gtxCollectionLayout.h"
+
 static void     *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate>
 {
@@ -24,6 +27,8 @@ static void     *flabbyContext = &flabbyContext;
 //    UIView *topView;
 //    UIView *buttomView;
 }
+@property (nonatomic, assign) NSInteger cellCount;
+@property (nonatomic,strong)UICollectionView *uperCollectionView;
 @end
 
 @implementation NPMainViewController
@@ -56,8 +61,19 @@ static void     *flabbyContext = &flabbyContext;
 - (void)viewDidLoad
 {
     
-    
-    
+    self.cellCount = 20;
+    //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    //    [self.collectionView addGestureRecognizer:tapRecognizer];
+    gtxCollectionLayout *layout = [[gtxCollectionLayout alloc] init];
+    self.uperCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 320, 400) collectionViewLayout:layout];
+    [self.uperCollectionView setFrame:CGRectMake(0, 0, 320, 400)];
+    [self.uperCollectionView setDelegate:self];
+    [self.uperCollectionView setDataSource:self];
+    [self.uperCollectionView registerClass:[gtxCellView class] forCellWithReuseIdentifier:@"MY_CELL"];
+    [self.uperCollectionView reloadData];
+    self.uperCollectionView.backgroundColor = [UIColor whiteColor];
+    self.uperCollectionView.showsVerticalScrollIndicator = false;
+    self.uperCollectionView.contentOffset = CGPointMake(0, 600);
     mScrollview=[[UIScrollView alloc]init];
     mScrollview.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height-250);
     mScrollview.showsHorizontalScrollIndicator=NO;
@@ -67,7 +83,9 @@ static void     *flabbyContext = &flabbyContext;
     [self.view addSubview:mScrollview];
     
     leftView=[NPMainleftView mainLeftView];
+    [self.view addSubview:self.uperCollectionView];
     [self.view addSubview:leftView];
+
     leftView.delegate=self;
     NPBaseViewController *base=UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone?[[NPNewsListViewController alloc]init]:[[NPNewsListViewController_ipad alloc]init];
     navControllerl=[[NPNavigationViewController alloc]initWithRootViewController:base];
@@ -92,11 +110,11 @@ static void     *flabbyContext = &flabbyContext;
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.35];
-    if (navControllerl.view.frame.origin.y==20) {
+    if (navControllerl.view.frame.origin.y==0) {
         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, mScrollview.frame.origin.y+mScrollview.frame.size.height, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
     }else
     {
-         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, 20, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,0, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
         [self.view bringSubviewToFront:navControllerl.view];
     }
     [UIView commitAnimations];
@@ -133,10 +151,19 @@ static void     *flabbyContext = &flabbyContext;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (collectionView == self.uperCollectionView) {
+        return 20;
+    }else{
     return 10;
+    }
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (collectionView == self.uperCollectionView) {
+        gtxCellView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+      
+        return cell;
+    }else{
       UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     for (UIView*view in cell.contentView.subviews) {
         if (view) {
@@ -150,6 +177,7 @@ static void     *flabbyContext = &flabbyContext;
     label.backgroundColor=[UIColor orangeColor];
     [cell.contentView addSubview:label];
     return cell;
+    }
 }
 //-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 //    return CGSizeMake(self.view.frame.size.width,130);
