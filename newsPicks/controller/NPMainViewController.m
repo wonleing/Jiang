@@ -16,6 +16,7 @@
 #import "LoginViewController.h"
 #import "gtxCellView.h"
 #import "gtxCollectionLayout.h"
+#import "NPUserDetailViewController.h"
 static void *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate>
 {
@@ -27,7 +28,7 @@ static void *flabbyContext = &flabbyContext;
     
     
 }
-
+@property (nonatomic,strong) NSIndexPath *currentIndexPath;
 @property(copy,nonatomic)NSNumber *uid;
 @property (nonatomic, assign) NSInteger cellCount;
 @property (nonatomic,strong)UICollectionView *uperCollectionView;
@@ -139,8 +140,42 @@ static void *flabbyContext = &flabbyContext;
 #warning iPad登录
         }
     }
-    
+    [self.uperCollectionView deselectItemAtIndexPath:self.currentIndexPath animated:YES];
     [super viewWillAppear:animated];
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Deselected item = %d",indexPath.item);
+    UICollectionViewLayoutAttributes * attribute = [collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:indexPath];
+    CGRect framess = attribute.frame;
+    gtxCellView* cell = (gtxCellView*)[collectionView cellForItemAtIndexPath:indexPath];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect frames = cell.frame;
+        frames.origin.x = framess.origin.x;
+        cell.frame = frames;
+    }completion:nil];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentIndexPath = indexPath;
+    NSLog(@"selected item = %d",indexPath.item);
+    gtxCellView* cell = (gtxCellView*)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    //    CGRect frame = attribute.frame;
+    //    CGRect framess = cell.frame;
+    //    frame.origin.x = 0;
+    //    cell.frame = frame;
+    // TODO 对cellView做动画
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect frames = cell.frame;
+        frames.origin.x = 0;
+        cell.frame = frames;
+    }completion:^(BOOL finished) {
+//        NPUserDetailViewController *VC = [[NPUserDetailViewController alloc] init];
+//        [self.navigationController pushViewController:VC animated:YES];
+    }];
+    
 }
 -(void)NPMainleftViewClickOne
 {
