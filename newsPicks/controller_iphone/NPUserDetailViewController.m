@@ -22,6 +22,8 @@
     NPUserDetaiInfolModel *userInfoModel;
     NSMutableArray *list;
     UITableView *mTableView;
+    
+    int currentPage;
 }
 @end
 
@@ -38,6 +40,7 @@
 
 - (void)viewDidLoad
 {
+    currentPage=1;
     list=[[NSMutableArray array]init];
     mTableView=[[UITableView alloc]init];
     mTableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44);
@@ -71,33 +74,35 @@
 }
 -(void)loadInfoData
 {
-    [NPHTTPRequest getUserInfo:@"" usingSuccessBlock:^(BOOL isSuccess, NPUserDetaiInfolModel *result) {
+    [NPHTTPRequest getUserInfo:self.uid usingSuccessBlock:^(BOOL isSuccess, NPUserDetaiInfolModel *result) {
         userInfoModel=result;
         [infoDetailHeadView restValue:userInfoModel];
     }];
 }
-//-(void)reloadDataForFirst
-//{
-//    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-//        if (isSuccess) {
-//            [list removeAllObjects];
-//            [list addObjectsFromArray:result];
-//            [mTableView reloadData];
-//        }
-//        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-//    }] ;
-//    
-//}
-//-(void)reloadMoreData
-//{
-//    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-//        if (isSuccess) {
-//            [list addObjectsFromArray:result];
-//            [mTableView reloadData];
-//        }
-//        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
-//    }] ;
-//}
+-(void)reloadDataForFirst
+{
+    [NPHTTPRequest getTimeOnLineData:self.uid page:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            currentPage=1;
+            [list removeAllObjects];
+            [list addObjectsFromArray:result];
+            [mTableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+    }] ;
+    
+}
+-(void)reloadMoreData
+{
+    [NPHTTPRequest getTimeOnLineData:self.uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            currentPage++;
+            [list addObjectsFromArray:result];
+            [mTableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
+    }] ;
+}
 -(void)reloadEnd
 {
     [refreshHeadView endRefreshing];

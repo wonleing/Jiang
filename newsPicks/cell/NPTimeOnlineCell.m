@@ -83,7 +83,7 @@
     
     UIButton *contentButton=[UIButton buttonWithType:UIButtonTypeCustom];
     contentButton.frame=CGRectMake(contentView.frame.size.width-NPTimeOnlineCell_leftPlace-8-NPTimeOnlineCell_content_replyImg_higth, contentTime.frame.origin.y, NPTimeOnlineCell_content_replyImg_higth, NPTimeOnlineCell_content_replyImg_higth);
-    contentButton.backgroundColor=[UIColor blueColor];
+    [contentButton setBackgroundImage:[UIImage imageNamed:@"img_pick_navy"] forState:UIControlStateNormal];
     [contentButton addTarget:self action:@selector(OnClickRepley:) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:contentButton];
     

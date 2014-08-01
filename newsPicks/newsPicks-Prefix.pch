@@ -28,3 +28,7 @@
 #define GetRecommandThread @"getRecommandThread"
 #define GetThreadInfo @"getThreadInfo"
 #define GetFollowing @"getFollowing"
+#define GetUserProfile @"getUserProfile"
+#define GetRecommandUser @"getRecommandUser"
+
+

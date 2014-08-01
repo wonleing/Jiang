@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     _uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
-    currentPage=1;
+    currentPage=0;
     
     list=[[NSMutableArray alloc]init];
     tabBar=[[UITabBar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-49-44, self.view.frame.size.width, 49)];

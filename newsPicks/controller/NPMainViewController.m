@@ -62,7 +62,6 @@ static void *flabbyContext = &flabbyContext;
 - (void)viewDidLoad
 {
     
-    
     self.cellCount = 20;
     //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     //    [self.collectionView addGestureRecognizer:tapRecognizer];
@@ -94,6 +93,7 @@ static void *flabbyContext = &flabbyContext;
     navControllerl.view.backgroundColor=[UIColor whiteColor];
     navControllerl.navigationBar.hidden=NO;
     [navControllerl.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
     navControllerl.view.frame=CGRectMake(0, mScrollview.frame.size.height+mScrollview.frame.origin.y, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
     [self.view addSubview:navControllerl.view];
     

@@ -21,6 +21,11 @@
     NPMainViewController *mainController=[[NPMainViewController alloc] init];
     NPNavigationViewController *nav=[[NPNavigationViewController alloc ]initWithRootViewController:mainController];
     nav.navigationBar.hidden=YES;
+    if (IOS7_OR_LATER) {
+        UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 20)];
+        topView.backgroundColor=[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1];
+        [nav.view addSubview:topView];
+    }
     self.window.rootViewController=nav;
     
     [self.window makeKeyAndVisible];

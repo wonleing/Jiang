@@ -21,8 +21,8 @@
 - (NSDictionary*)attributeMapDictionary
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"uid",@"uid"
-            ,@"name",@"name"
+            @"userid",@"uid"
+            ,@"loginname",@"name"
             ,@"typeName",@"typeName"
             ,@"description",@"description"
             ,@"likeNum",@"likeNum"

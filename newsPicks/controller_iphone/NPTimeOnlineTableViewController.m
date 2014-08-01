@@ -54,10 +54,10 @@
     refreshFootView.delegate=self;
 
     currentPage=1;
-//    [self reFresh];
+    [self reFresh];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self reFresh];
+//    [self reFresh];
     [super viewDidAppear:animated];
 }
 -(void)reFresh{
@@ -105,8 +105,13 @@
 }
 -(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell
 {
+   
     [NPKeyBoardView share].delegate =self;
-    [[NPKeyBoardView share].textView becomeFirstResponder];
+    [[NPKeyBoardView share] show];
+    
+}
+-(void)keyBoardViewHide:(NPKeyBoardView *)keyBoardView textView:(UITextView *)contentView{
+    
 }
 -(void)NPloadMoreViewRefresh
 {

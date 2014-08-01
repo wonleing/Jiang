@@ -53,10 +53,14 @@
     textField.layer.borderColor=[UIColor blackColor].CGColor;
     textField.layer.borderWidth=0.7;
     textField.delegate=self;
+    [textField addTarget:self action:@selector(chan:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:textField];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+-(void)chan:(UITextField*)te{
+    
 }
 
 - (void)didReceiveMemoryWarning

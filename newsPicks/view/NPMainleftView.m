@@ -30,23 +30,24 @@
     btn1.tag=100;
     [btn1 addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn1];
-    [btn1 setBackgroundImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT] forState:UIControlStateNormal];
-    
+    [btn1 setBackgroundImage:[UIImage imageNamed:@"img_plus"] forState:UIControlStateNormal];
+    [btn1 setBackgroundColor:[UIColor grayColor]];
+
     UIButton *btn2=[UIButton buttonWithType:UIButtonTypeCustom];
     btn2.frame=CGRectMake(0, btn1.frame.size.height+btn1.frame.origin.y, 40, 40);
     btn2.tag=101;
-    btn2.highlighted=YES;
     [btn2 addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn2];
-    [btn2 setBackgroundImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT] forState:UIControlStateNormal];
-    
+    [btn2 setBackgroundImage:[UIImage imageNamed:@"img_pen"] forState:UIControlStateNormal];
+    [btn2 setBackgroundColor:[UIColor grayColor]];
+
     UIButton *btn3=[UIButton buttonWithType:UIButtonTypeCustom];
     btn3.frame=CGRectMake(0, btn2.frame.size.height+btn2.frame.origin.y, 40, 40);
     btn3.tag=102;
     [btn3 addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn3];
-    [btn3 setBackgroundImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT] forState:UIControlStateNormal];
-    
+    [btn3 setBackgroundImage:[UIImage imageNamed:@"img_gear"] forState:UIControlStateNormal];
+    [btn3 setBackgroundColor:[UIColor grayColor]];
 }
 -(void)click:(UIButton*)btn
 {

@@ -43,7 +43,6 @@
 }
 -(void)initSubView
 {
-    
     _multiPageView=[[AKOMultiPageTextView alloc] init];
     _multiPageView.frame=CGRectMake(0, 0, self.frame.size.width, NPUserInfoDetailHeadView_content_higth);
     _multiPageView.dataSource = self;
