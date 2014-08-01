@@ -1,4 +1,4 @@
-//
+
 //  NPTimeOnlineTableViewController.m
 //  newsPicks
 //
@@ -13,12 +13,17 @@
 #import "NPCellDelegate.h"
 #import "NPKeyBoardView.h"
 #import "NPNewListDetailViewController.h"
+#import "SVProgressHUD.h"
+#import "NPListModel.h"
+
 @interface NPTimeOnlineTableViewController ()<MJRefreshBaseViewDelegate,NPTimeOnlineCellDelegate,NPKeyBoardViewDelegate>
 {
     MJRefreshHeaderView* refreshHeadView;
     MJRefreshFooterView *refreshFootView;
     NSMutableArray *list;
   
+    NSString *_uid;
+    int currentPage;
 }
 @end
 
@@ -43,21 +48,31 @@
     refreshHeadView = [MJRefreshHeaderView header];
     refreshHeadView.scrollView = self.tableView;
     refreshHeadView.delegate = self;
-    [refreshHeadView beginRefreshing];
     
     refreshFootView=[MJRefreshFooterView footer];
     refreshFootView.scrollView=self.tableView;
     refreshFootView.delegate=self;
 
-   
+    currentPage=1;
+//    [self reFresh];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [self reFresh];
+    [super viewDidAppear:animated];
+}
+-(void)reFresh{
+    _uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
+    [refreshHeadView beginRefreshing];
+
 }
 -(void)reloadDataForFirst
 {
-    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getTimeOnLineData:_uid page:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
             [list removeAllObjects];
             [list addObjectsFromArray:result];
             [self.tableView reloadData];
+            currentPage=1;
         }
         [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
     }] ;
@@ -65,9 +80,10 @@
 }
 -(void)reloadMoreData
 {
-    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getTimeOnLineData:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
             [list addObjectsFromArray:result];
+            currentPage++;
             [self.tableView reloadData];
         }
         [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
@@ -128,6 +144,8 @@
 {
     NPNewListDetailViewController *listDetail=[[NPNewListDetailViewController alloc] init];
     listDetail.listModel=[list objectAtIndex:indexPath.row];
+    listDetail.type=NPListType_online;
+
     [self.navigationController pushViewController:listDetail animated:YES];
 }
 

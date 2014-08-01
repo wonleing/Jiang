@@ -15,6 +15,9 @@
     UITabBar *tabBar;
     UITableView *mTableView;
     NSMutableArray *list;
+    
+    NSString *_uid;
+    int currentPage;
 }
 @end
 
@@ -31,6 +34,9 @@
 
 - (void)viewDidLoad
 {
+    _uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
+    currentPage=1;
+    
     list=[[NSMutableArray alloc]init];
     tabBar=[[UITabBar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-49-44, self.view.frame.size.width, 49)];
     UITabBarItem *Featured=[[UITabBarItem alloc]init];
@@ -61,8 +67,9 @@
 -(void)loadMore
 {
     
-    [NPHTTPRequest getUserInfoFollowing:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getUserInfoFollowing:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
+            currentPage++;
             [list addObjectsFromArray:result];
             [mTableView reloadData];
         }

@@ -12,6 +12,7 @@
 #import "NPlistPopularUsers.h"
 #import "NPlistReplyModel.h"
 #import "NPUserDetaiInfolModel.h"
+#import "SVProgressHUD.h"
 @implementation NPHTTPRequest
 //post上传
 +(void)postValue:(NSString *)strUrl dic:(NSDictionary *)dic fileDic:(NSDictionary *)fileDic usingSuccessBlock:(void (^)(NSDictionary *resultDictionary))successBlock andFailureBlock:(void (^)(NSError *resultError))failureBlock
@@ -51,54 +52,61 @@
             NSError *error;
             NSDictionary *value=[NSJSONSerialization JSONObjectWithData:weakOperation.responseData options:NSJSONReadingMutableContainers error:&error];
             if (error) {
+                [SVProgressHUD showErrorWithStatus:@"返回数据格式有误"];
+
                 failureBlock(error);
 
             }else
+                NSLog(@"%@",value);
                 successBlock(value);
         }else
         {
+            [SVProgressHUD showErrorWithStatus:@"返回空数据"];
             failureBlock(nil);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+
         failureBlock(error);
     }];
     [operation start];
 
 }
-+ (void)getTimeOnLineData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
++ (void)getTimeOnLineData:(NSString *)cid page:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
 {
     
-    //测试数据
-    NSMutableArray *list=[NSMutableArray array];
-    for (int i=0;i<20;i++) {
-        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"100";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        model.type=NPListType_online;
-        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
-         model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
-         model.subContent=@"subContent";
-        model.replyCount=@"250";
-        model.time=@"2014/00/00";
-        model.contentImage=@"";
-        if (i%2==0) {
-            model.contentImage=@"imag.imag";
-        }
-        
-        if (i%3) {
-            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc", nil];
-            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
-        }
-        model.replyModel=replyModel;
-        [list addObject:model];
-    }
-    successBlock(YES,list);
-
-    return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+//    //测试数据
+//    NSMutableArray *list=[NSMutableArray array];
+//    for (int i=0;i<20;i++) {
+//        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"100";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        model.type=NPListType_online;
+//        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+//         model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
+//         model.subContent=@"subContent";
+//        model.replyCount=@"250";
+//        model.time=@"2014/00/00";
+//        model.contentImage=@"";
+//        if (i%2==0) {
+//            model.contentImage=@"imag.imag";
+//        }
+//        
+//        if (i%3) {
+//            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc", nil];
+//            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+//        }
+//        model.replyModel=replyModel;
+//        [list addObject:model];
+//    }
+//    successBlock(YES,list);
+//
+//    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,GetFeedStingUrl,cid,ItemNumPerPage,page];
+    NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         
         if (1 == [resultDictionary [@"status"] integerValue]) {
@@ -110,6 +118,9 @@
             }
             successBlock(YES,list);
         }else{
+            
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+            
             successBlock(NO,nil);
 //            [[DMCAlertCenter defaultCenter] postAlertWithMessage:resultDictionary [@"message"]];
         }
@@ -121,49 +132,50 @@
 
     
 }
-+ (void)getTopData:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result,NPlistPopularUsers *popularUser))successBlock;
++ (void)getTopData:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result,NPlistPopularUsers *popularUser))successBlock;
 {
-    //测试数据
-    NSMutableArray *list=[NSMutableArray array];
-    for (int i=0;i<20;i++) {
-        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"100";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        model.type=NPListType_top;
-        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
-        model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
-        model.subContent=@"subContent";
-        model.replyCount=@"250";
-        model.time=@"2014/00/00";
-        model.contentImage=@"";
-        if (i%2==0) {
-            model.contentImage=@"imag.imag";
-        }
-        
-        if (i%3) {
-            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc", nil];
-            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
-        }
-        model.replyModel=replyModel;
-        [list addObject:model];
-    }
-    NPlistPopularUsers *popularUser=[[NPlistPopularUsers alloc] init];
-    popularUser.time=@"2014/07/22";
-    NSMutableArray *users=[NSMutableArray array];
-    for (int i=0; i<3; i++) {
-        NPlistPopularUser *popuser=[[NPlistPopularUser alloc]init];
-        popuser.headImageUrl=@"1111";
-        popuser.leve=[NSString stringWithFormat:@"%d",i+1];
-        [users addObject:popuser];
-    }
-    popularUser.popularUsers=users;
-    successBlock(YES,list,popularUser);
-    
-    return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+//    //测试数据
+//    NSMutableArray *list=[NSMutableArray array];
+//    for (int i=0;i<20;i++) {
+//        NPListModel *model=[[NPListModel alloc]initWithDataDic:[NSDictionary dictionary]];
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"100";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        model.type=NPListType_top;
+//        model.content=@"测试内容测试内内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试容测试内";
+//        model.title=@"测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题测试标题";
+//        model.subContent=@"subContent";
+//        model.replyCount=@"250";
+//        model.time=@"2014/00/00";
+//        model.contentImage=@"";
+//        if (i%2==0) {
+//            model.contentImage=@"imag.imag";
+//        }
+//        
+//        if (i%3) {
+//            model.userImageList=[NSArray arrayWithObjects:@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc",@"dd",@"ddd",@"cccc", nil];
+//            replyModel.content=@"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+//        }
+//        model.replyModel=replyModel;
+//        [list addObject:model];
+//    }
+//    NPlistPopularUsers *popularUser=[[NPlistPopularUsers alloc] init];
+//    popularUser.time=@"2014/07/22";
+//    NSMutableArray *users=[NSMutableArray array];
+//    for (int i=0; i<3; i++) {
+//        NPlistPopularUser *popuser=[[NPlistPopularUser alloc]init];
+//        popuser.headImageUrl=@"1111";
+//        popuser.leve=[NSString stringWithFormat:@"%d",i+1];
+//        [users addObject:popuser];
+//    }
+//    popularUser.popularUsers=users;
+//    successBlock(YES,list,popularUser);
+//    
+//    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%d",BaseUrl,GetRecommandThread,ItemNumPerPage,page];
+    NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         
         if (1 == [resultDictionary [@"status"] integerValue]) {
@@ -175,6 +187,8 @@
             }
             successBlock(YES,list,nil);
         }else{
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+
             successBlock(NO,nil,nil);
         }
         
@@ -184,52 +198,55 @@
 }
 + (void)getTimeOnLineDetail:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *followings,NSArray *others,NSArray *replyHeadImageList))successBlock
 {
-    
-    
-    NSMutableArray *follows=[NSMutableArray array];
-    for (int i=0; i<5; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"100";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出";
-        [follows addObject:replyModel];
-    }
-    
-    NSMutableArray *others=[NSMutableArray array];
-    for (int i=0; i<5; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"10";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出";
-        [others addObject:replyModel];
-    }
-    
-    NSMutableArray *images=[NSMutableArray array];
-    for (int i=0; i<8; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc]init];
-        replyModel.headImageUrl=@"ddd";
-        replyModel.name=[NSString stringWithFormat:@"title%d",i+1];
-        [images addObject:replyModel];
-    }
-    successBlock(YES,follows,others,images);
-    
-    return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+//    
+//    
+//    NSMutableArray *follows=[NSMutableArray array];
+//    for (int i=0; i<5; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"100";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出";
+//        [follows addObject:replyModel];
+//    }
+//    
+//    NSMutableArray *others=[NSMutableArray array];
+//    for (int i=0; i<5; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"10";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出";
+//        [others addObject:replyModel];
+//    }
+//    
+//    NSMutableArray *images=[NSMutableArray array];
+//    for (int i=0; i<8; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc]init];
+//        replyModel.headImageUrl=@"ddd";
+//        replyModel.name=[NSString stringWithFormat:@"title%d",i+1];
+//        [images addObject:replyModel];
+//    }
+//    successBlock(YES,follows,others,images);
+//    
+//    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@",BaseUrl,GetThreadInfo,cid];
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         
         if (1 == [resultDictionary [@"status"] integerValue]) {
             NSMutableArray *list=[NSMutableArray array];
             for (NSDictionary *dic in resultDictionary[@"data"]) {
+                
                 NPListModel *model=[[NPListModel alloc]initWithDataDic:dic];
                 
                 [list addObject:model];
             }
             successBlock(YES,nil,nil,nil);
         }else{
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+
             successBlock(NO,nil,nil,nil);
         }
         
@@ -241,39 +258,39 @@
 + (void)getTopDetail:(NSString *)cid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *TrendingComment,NSArray *followings,NSArray *others,NSArray *replyHeadImageList))successBlock
 {
     
-    NSMutableArray *follows=[NSMutableArray array];
-    for (int i=0; i<5; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"100";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出";
-        [follows addObject:replyModel];
-    }
-    
-    NSMutableArray *others=[NSMutableArray array];
-    for (int i=0; i<5; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
-        replyModel.praiseNum=@"10";
-        replyModel.name=@"额城市";
-        replyModel.time=@"2014/00/00";
-        replyModel.position=@"大学教授";
-        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出";
-        [others addObject:replyModel];
-    }
-    
-    NSMutableArray *images=[NSMutableArray array];
-    for (int i=0; i<8; i++) {
-        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc]init];
-        replyModel.headImageUrl=@"ddd";
-        replyModel.name=[NSString stringWithFormat:@"title%d",i+1];
-        [images addObject:replyModel];
-    }
-    successBlock(YES,follows,follows,others,images);
-    
-    return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+//    NSMutableArray *follows=[NSMutableArray array];
+//    for (int i=0; i<5; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"100";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出";
+//        [follows addObject:replyModel];
+//    }
+//    
+//    NSMutableArray *others=[NSMutableArray array];
+//    for (int i=0; i<5; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc] init];
+//        replyModel.praiseNum=@"10";
+//        replyModel.name=@"额城市";
+//        replyModel.time=@"2014/00/00";
+//        replyModel.position=@"大学教授";
+//        replyModel.content=@"测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出测试数据测www.baidu.com试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出测试数据测试数据测试出试数据测试出";
+//        [others addObject:replyModel];
+//    }
+//    
+//    NSMutableArray *images=[NSMutableArray array];
+//    for (int i=0; i<8; i++) {
+//        NPlistReplyModel *replyModel=[[NPlistReplyModel alloc]init];
+//        replyModel.headImageUrl=@"ddd";
+//        replyModel.name=[NSString stringWithFormat:@"title%d",i+1];
+//        [images addObject:replyModel];
+//    }
+//    successBlock(YES,follows,follows,others,images);
+//    
+//    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@",BaseUrl,GetThreadInfo,cid];
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             NSMutableArray *list=[NSMutableArray array];
@@ -284,6 +301,8 @@
             }
             successBlock(YES,nil,nil,nil,nil);
         }else{
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+
             successBlock(NO,nil,nil,nil,nil);
         }
         
@@ -305,7 +324,7 @@
     infoModel.isPremium=@"0";
     successBlock(YES,infoModel);
     return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+    NSString *stringUrl=nil;
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             NSMutableArray *list=[NSMutableArray array];
@@ -316,7 +335,7 @@
             }
             successBlock(YES,nil);
         }else{
-            successBlock(YES,nil);
+            successBlock(NO,nil);
         }
         
     } andFailureBlock:^(NSError *resultError) {
@@ -324,27 +343,27 @@
     }];
 
 }
-+ (void)getUserInfoFollowing:(NSString *)uid usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
++ (void)getUserInfoFollowing:(NSString *)uid page:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
 {
-    NSMutableArray *list=[[NSMutableArray alloc]init];
-    for (int i=0; i<20; i++) {
-        NPUserDetaiInfolModel *infoModel=[[NPUserDetaiInfolModel alloc]init];
-        infoModel.name=@"测试姓名";
-        infoModel.typeName=@"人民教室";
-        infoModel.likeNum=@"28";
-        infoModel.description=@"描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,";
-        infoModel.followers_num=@"100";
-        infoModel.following_num=@"12";
-        infoModel.is_following=@"0";
-        infoModel.isPremium=@"0";
-        if (i%3==0) {
-            infoModel.is_following=@"1";
-        }
-        [list addObject:infoModel];
-    }
-    successBlock(YES,list);
-    return;
-    NSString *stringUrl=[NSString stringWithFormat:@"%@",MainStingUrl];
+//    NSMutableArray *list=[[NSMutableArray alloc]init];
+//    for (int i=0; i<20; i++) {
+//        NPUserDetaiInfolModel *infoModel=[[NPUserDetaiInfolModel alloc]init];
+//        infoModel.name=@"测试姓名";
+//        infoModel.typeName=@"人民教室";
+//        infoModel.likeNum=@"28";
+//        infoModel.description=@"描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,描述内容,";
+//        infoModel.followers_num=@"100";
+//        infoModel.following_num=@"12";
+//        infoModel.is_following=@"0";
+//        infoModel.isPremium=@"0";
+//        if (i%3==0) {
+//            infoModel.is_following=@"1";
+//        }
+//        [list addObject:infoModel];
+//    }
+//    successBlock(YES,list);
+//    return;
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,GetFollowing,uid,ItemNumPerPage,page];
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             NSMutableArray *list=[NSMutableArray array];
@@ -353,13 +372,16 @@
                 
                 [list addObject:model];
             }
-            successBlock(YES,nil);
+            successBlock(YES,list);
         }else{
-            successBlock(YES,nil);
+            
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+
+            successBlock(NO,nil);
         }
         
     } andFailureBlock:^(NSError *resultError) {
-        successBlock(YES,nil);
+        successBlock(NO,nil);
     }];
 
 }

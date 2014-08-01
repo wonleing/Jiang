@@ -95,14 +95,14 @@
 }
 -(void)loadMore
 {
-
-    [NPHTTPRequest getUserInfoFollowing:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-        if (isSuccess) {
-            [list addObjectsFromArray:result];
-            [mTableView reloadData];
-            [self performSelector:@selector(endLoad) withObject:nil afterDelay:0.3];
-        }
-    }];
+//
+//    [NPHTTPRequest getUserInfoFollowing:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+//        if (isSuccess) {
+//            [list addObjectsFromArray:result];
+//            [mTableView reloadData];
+//            [self performSelector:@selector(endLoad) withObject:nil afterDelay:0.3];
+//        }
+//    }];
 }
 -(void)endLoad
 {

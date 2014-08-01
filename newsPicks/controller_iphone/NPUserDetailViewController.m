@@ -76,28 +76,28 @@
         [infoDetailHeadView restValue:userInfoModel];
     }];
 }
--(void)reloadDataForFirst
-{
-    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-        if (isSuccess) {
-            [list removeAllObjects];
-            [list addObjectsFromArray:result];
-            [mTableView reloadData];
-        }
-        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-    }] ;
-    
-}
--(void)reloadMoreData
-{
-    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-        if (isSuccess) {
-            [list addObjectsFromArray:result];
-            [mTableView reloadData];
-        }
-        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
-    }] ;
-}
+//-(void)reloadDataForFirst
+//{
+//    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+//        if (isSuccess) {
+//            [list removeAllObjects];
+//            [list addObjectsFromArray:result];
+//            [mTableView reloadData];
+//        }
+//        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
+//    }] ;
+//    
+//}
+//-(void)reloadMoreData
+//{
+//    [NPHTTPRequest getTimeOnLineData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+//        if (isSuccess) {
+//            [list addObjectsFromArray:result];
+//            [mTableView reloadData];
+//        }
+//        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
+//    }] ;
+//}
 -(void)reloadEnd
 {
     [refreshHeadView endRefreshing];

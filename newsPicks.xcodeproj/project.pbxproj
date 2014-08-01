@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185CD718198AAA470076F05B /* gtxCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CD715198AAA470076F05B /* gtxCellView.m */; };
+		185CD719198AAA470076F05B /* gtxCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CD717198AAA470076F05B /* gtxCollectionLayout.m */; };
 		260B4999197D4A7D00BEFF53 /* registerPhoto_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 260B4998197D4A7D00BEFF53 /* registerPhoto_1.png */; };
 		260B4A2F197D5BC800BEFF53 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260B4A2E197D5BC800BEFF53 /* AudioToolbox.framework */; };
 		2613BBED197FF80100628079 /* NPNewListDetailFootReplysView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613BBEC197FF80100628079 /* NPNewListDetailFootReplysView.m */; };
@@ -177,6 +179,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		185CD714198AAA470076F05B /* gtxCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtxCellView.h; sourceTree = "<group>"; };
+		185CD715198AAA470076F05B /* gtxCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gtxCellView.m; sourceTree = "<group>"; };
+		185CD716198AAA470076F05B /* gtxCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtxCollectionLayout.h; sourceTree = "<group>"; };
+		185CD717198AAA470076F05B /* gtxCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gtxCollectionLayout.m; sourceTree = "<group>"; };
 		260B4998197D4A7D00BEFF53 /* registerPhoto_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerPhoto_1.png; sourceTree = "<group>"; };
 		260B499D197D4BC000BEFF53 /* NPDefaultSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPDefaultSetting.h; sourceTree = "<group>"; };
 		260B4A2E197D5BC800BEFF53 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -434,6 +440,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		185CD713198AAA470076F05B /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				185CD714198AAA470076F05B /* gtxCellView.h */,
+				185CD715198AAA470076F05B /* gtxCellView.m */,
+				185CD716198AAA470076F05B /* gtxCollectionLayout.h */,
+				185CD717198AAA470076F05B /* gtxCollectionLayout.m */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
 		260B4997197D4A7700BEFF53 /* temImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +769,7 @@
 		2694227C197BFE9E00515F9E /* newsPicks */ = {
 			isa = PBXGroup;
 			children = (
+				185CD713198AAA470076F05B /* ext */,
 				26449FF71986848600EAD5DF /* controller_ipad */,
 				260B4997197D4A7700BEFF53 /* temImg */,
 				26FE1474197D446B00ED0499 /* cell */,
@@ -1084,6 +1102,7 @@
 				26942283197BFE9E00515F9E /* main.m in Sources */,
 				26E8C791197D5DF10039EFB4 /* MKAnnotationView+WebCache.m in Sources */,
 				2649D9E1197EBCAF00377012 /* NPlistReplyModel.m in Sources */,
+				185CD718198AAA470076F05B /* gtxCellView.m in Sources */,
 				2666CF081982839A00D4B106 /* NPFollowCell.m in Sources */,
 				2649D9E4197EC08000377012 /* NPNewListDetailViewController.m in Sources */,
 				2649D9E7197EC29700377012 /* NPNewListDetailHeadView.m in Sources */,
@@ -1110,6 +1129,7 @@
 				268B16BE198120F700BF0487 /* NPUserFollowingButton.m in Sources */,
 				26BE22F41980E25F007CDBBB /* UIFont+CoreTextExtensions.m in Sources */,
 				2644A00619868FDF00EAD5DF /* NPSettingPasswordController.m in Sources */,
+				185CD719198AAA470076F05B /* gtxCollectionLayout.m in Sources */,
 				26542C63197CC10F000E0317 /* NPContentlayout.m in Sources */,
 				26791FC3197F5A90003DAC20 /* NPNewListDetailCell.m in Sources */,
 				2666CF1119828F3C00D4B106 /* SVWebViewController.m in Sources */,

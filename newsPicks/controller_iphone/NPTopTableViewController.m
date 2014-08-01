@@ -12,6 +12,8 @@
 #import "NPKeyBoardView.h"
 #import "NPlistPopularUsers.h"
 #import "NPNewListDetailViewController.h"
+#import "NPListModel.h"
+
 @interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate,NPTimeOnlineCellDelegate>
 
 {
@@ -19,6 +21,8 @@
     NSMutableArray* list;
     NPlistPopularUsers *popularUsers;
     NPKeyBoardView *keyBoard;
+    
+    int currentPage;
 }
 @end
 
@@ -36,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    currentPage=1;
     list=[[NSMutableArray alloc]init];
     [super viewDidLoad];
     self.tableView.backgroundColor=[UIColor clearColor];
@@ -46,24 +52,35 @@
     refreshHeadView.scrollView = self.tableView;
     refreshHeadView.delegate = self;
     [refreshHeadView beginRefreshing];
+    
+    
 }
 -(void)reloadDataForFirst
 {
-    [NPHTTPRequest getTopData:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result, NPlistPopularUsers *popularUser) {
+    [NPHTTPRequest getTopData:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result, NPlistPopularUsers *popularUser) {
         if (isSuccess) {
             popularUsers=popularUser;
+            currentPage=1;
             [list removeAllObjects];
             [list addObjectsFromArray:result];
             [self.tableView reloadData];
         }
         [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-
+        
     }];
 }
 -(void)reloadMoreData
 {
-    [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:2];
-}
+    [NPHTTPRequest getTopData:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result, NPlistPopularUsers *popularUser) {
+        if (isSuccess) {
+            popularUsers=popularUser;
+            
+            [list addObjectsFromArray:result];
+            currentPage++;
+            [self.tableView reloadData];
+        }
+        [self performSelector:@selector(reloadEnd) withObject:nil afterDelay:0.5];
+    }] ;}
 - (void)reloadEnd
 {
     [refreshHeadView endRefreshing];
@@ -113,8 +130,8 @@
         [cell restPopularUsers:popularUsers];
     }else
     {
-    NPListModel *model=[list objectAtIndex:indexPath.row];
-    [cell restCell:model];
+        NPListModel *model=[list objectAtIndex:indexPath.row];
+        [cell restCell:model];
     }
     return cell;
 }
@@ -122,9 +139,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (list.count>indexPath.row) {
-    NPNewListDetailViewController *detailController=[[NPNewListDetailViewController alloc]init];
-    detailController.listModel=[list objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:detailController animated:YES];
+        NPNewListDetailViewController *detailController=[[NPNewListDetailViewController alloc]init];
+        detailController.listModel=[list objectAtIndex:indexPath.row];
+        detailController.type=NPListType_top;
+        [self.navigationController pushViewController:detailController animated:YES];
     }
 }
 

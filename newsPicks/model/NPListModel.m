@@ -15,6 +15,7 @@
 @synthesize userImageList=_userImageList;
 @synthesize subContent=_subContent;
 @synthesize time=_time;
+@synthesize link=_link;
 @synthesize type=_type;
 @synthesize replyCount=_replyCount;
 @synthesize replyModel=_replyModel;
@@ -22,15 +23,16 @@
 - (NSDictionary*)attributeMapDictionary
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"listID",@"listID"
+            @"threadid",@"listID"
             ,@"content",@"content"
-            ,@"contentImage",@"contentImage"
+            ,@"threadimage",@"contentImage"
             ,@"userImageList",@"userImageList"
             ,@"subContent",@"subContent"
-            ,@"time",@"time"
+            ,@"createdate",@"time"
             ,@"type",@"type"
             ,@"replyCount",@"replyCount"
             ,@"title",@"title"
+            ,@"link",@"link"
             ,nil];
 }
 -(void)dealloc

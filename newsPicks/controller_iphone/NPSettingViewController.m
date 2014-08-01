@@ -12,7 +12,7 @@
 #import "NPSettingPasswordController.h"
 #import "NPSettingInterestController.h"
 #import "NPAlertView.h"
-@interface NPSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface NPSettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UITableView *mTableView;
 }
@@ -98,7 +98,11 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    for (UIView *view in cell.contentView.subviews) {
+//    for (UIView *view in cell.contentView.subviews) {
+//        [view removeFromSuperview];
+//    }
+    UIView *view = [cell viewWithTag:100];
+    if (view) {
         [view removeFromSuperview];
     }
     cell.textLabel.textColor=[UIColor blackColor];
@@ -106,6 +110,7 @@
         UIImageView *imageView=[[UIImageView alloc]init];
         imageView.frame=CGRectMake(9, 0, 40, 40);
         imageView.image=[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT];
+        imageView.tag=100;
         [cell.contentView addSubview:imageView];
         cell.textLabel.textAlignment=NSTextAlignmentCenter;
         cell.textLabel.text=@"Edit Profile Picture";
@@ -139,7 +144,7 @@
         cell.textLabel.textAlignment=NSTextAlignmentCenter;
         cell.textLabel.text=@"Manage Subscription";
     }
-    if (indexPath.section==0) {
+    if (indexPath.section==5) {
         cell.textLabel.textAlignment=NSTextAlignmentCenter;
         cell.textLabel.text=@"Logout";
     }
@@ -177,8 +182,15 @@
         
     }
     if (indexPath.section==5) {
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Logout" message:@"Do you want to logout？" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Logout", nil];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Logout" message:@"Do you want to logout？" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Logout", nil];
         [alert show];
+    }
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:0] forKey:@"com.zhangcheng.uid"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+        [self.navigationController popViewControllerAnimated:NO];
     }
 }
 - (void)didReceiveMemoryWarning

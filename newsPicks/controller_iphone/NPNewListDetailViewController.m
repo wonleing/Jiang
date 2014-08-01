@@ -33,7 +33,7 @@
 }
 -(void)clickHeadView:(UITapGestureRecognizer *)ges
 {
-    SVWebViewController *webController=[[SVWebViewController alloc]initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    SVWebViewController *webController=[[SVWebViewController alloc]initWithURL:[NSURL URLWithString:self.listModel.link]];
     webController.availableActions=0;
     [self.navigationController pushViewController:webController animated:YES];
     
@@ -66,11 +66,11 @@
     
     
     [super viewDidLoad];
-    if (self.listModel.type==NPListType_online&&self.listModel.replyModel) {
+    if (self.type==NPListType_online&&self.listModel.replyModel) {
         [mDicData setObject:[NSArray arrayWithObject:self.listModel.replyModel] forKey:kNPNewListTitleKey_Followings];
         [mTableView reloadData];
     }
-    if (self.listModel.type==NPListType_top&&self.listModel.replyModel) {
+    if (self.type==NPListType_top&&self.listModel.replyModel) {
         [mDicData setObject:[NSArray arrayWithObject:self.listModel.replyModel] forKey:kNPNewListTitleKey_Srending_comment];
         [mTableView reloadData];
     }
@@ -80,8 +80,8 @@
 }
 -(void)loadData
 {
-    if (self.listModel.type==NPListType_online) {
-        [NPHTTPRequest getTimeOnLineDetail:@"" usingSuccessBlock:^(BOOL isSuccess, NSArray *followings, NSArray *others, NSArray *replyHeadImageList) {
+    if (self.type==NPListType_online) {
+        [NPHTTPRequest getTimeOnLineDetail:self.listModel.listID usingSuccessBlock:^(BOOL isSuccess, NSArray *followings, NSArray *others, NSArray *replyHeadImageList) {
             [self endLoadView];
             if (isSuccess) {
                 if (followings.count) {
@@ -106,8 +106,8 @@
             
         }];
     }
-    if (self.listModel.type==NPListType_top) {
-        [NPHTTPRequest getTopDetail:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *TrendingComment, NSArray *followings, NSArray *others, NSArray *replyHeadImageList) {
+    if (self.type==NPListType_top) {
+        [NPHTTPRequest getTopDetail:self.listModel.listID usingSuccessBlock:^(BOOL isSuccess, NSArray *TrendingComment, NSArray *followings, NSArray *others, NSArray *replyHeadImageList) {
             [self endLoadView];
             if (isSuccess) {
                 if (TrendingComment.count) {

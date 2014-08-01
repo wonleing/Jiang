@@ -10,4 +10,6 @@
 @class NPListModel;
 @interface NPNewListDetailViewController : NPBaseViewController
 @property(nonatomic,strong)NPListModel *listModel;
+@property(nonatomic,assign)NSInteger type;
+
 @end

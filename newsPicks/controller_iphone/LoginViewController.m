@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "NPHTTPRequest.h"
 #import "SVProgressHUD.h"
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 @property(weak,nonatomic)IBOutlet UITextField *emailTF;
 @property(weak,nonatomic)IBOutlet UITextField *pwdTF;
 
@@ -31,6 +31,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return NO;
 }
 -(IBAction)loginAction:(id)sender{
     if ([self.emailTF.text isEqualToString:@""]) {
