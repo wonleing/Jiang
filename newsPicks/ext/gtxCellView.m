@@ -23,8 +23,11 @@
         self.label.text = @"adad";
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         self.label.textColor = [UIColor redColor];
-        if(self.label)
-            [self.contentView addSubview:self.label];
+        
+        UIView *colorVIew = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 30)];
+        colorVIew.backgroundColor = [UIColor redColor];
+        [self.contentView addSubview:colorVIew];
+        [colorVIew addSubview:self.label];
     }
     return self;
 }
