@@ -117,15 +117,15 @@ class DB:
         (select following from followship where userid=%d) limit 100" %(userid, userid))
 
     def getTopUser(self, type):
-        if type:
+        if eval(type):
             return self.query_db("select u.*, count(*) from user as u, followship as f where f.following in (select userid from user \
-            where type='%s') and u.userid=f.following group by f.following order by count(*) desc limit %d" %(type, num))
+            where type='%s') and u.userid=f.following group by f.following order by count(*) desc" %type)
         else:
             return self.query_db("select u.*, count(*) from user as u, followship as f where u.userid=f.following \
-            group by f.following order by count(*) desc limit %d" %(type, num))
+            group by f.following order by count(*) desc")
 
     def getTopThread(self, date):
-        self.query_db("select v.*, u.* from thread as v, user as u, userthread as uv where v.threadid=uv.threadid and \
+        return self.query_db("select v.*, u.* from thread as v, user as u, userthread as uv where v.threadid=uv.threadid and \
         u.userid=uv.userid and v.createdate>'%s' order by v.score desc, v.createdate desc limit 100" %date)
 
     def getCategory(self):
