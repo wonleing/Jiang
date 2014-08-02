@@ -35,8 +35,7 @@
         id value = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
          successBlock(value);
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        successBlock(nil);
-        
+        NSLog(@"%@",error.description);
         failureBlock(error);
     }];
 }
@@ -339,7 +338,7 @@
     }];
 
 }
-+ (void)getUserInfoFollowing:(NSString *)uid page:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
++ (void)getUserInfoFollowing:(BOOL)isFollowing uid:(NSString *)uid page:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
 {
 //    NSMutableArray *list=[[NSMutableArray alloc]init];
 //    for (int i=0; i<20; i++) {
@@ -362,7 +361,7 @@
     
     
     
-    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,GetFollowing,uid,ItemNumPerPage,page];
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,isFollowing?GetFollowing:GetFollower,uid,ItemNumPerPage,page];
 //    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%d",BaseUrl,GetRecommandUser,ItemNumPerPage,page];
     NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
@@ -390,6 +389,40 @@
 
 +(void)getLoginUser:(NSString *)uname type:(NSString *)type usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
     NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,LoginStingUrl,uname,type];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
+}
+
+
+
++(void)sendAddThread:(NSString *)uid title:(NSString*)title type:(NSString *)type content:(NSString*)content link:(NSString*)url usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    /*
+    NSString *stringUrl=@"http://203.195.175.230:8080/post/";
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:uid,@"userid",title,@"title",type,@"cateid",content,@"content",@"",@"threadimage",url,@"link", nil];
+    [NPHTTPRequest postValue:stringUrl dic:dic fileDic:nil usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+
+    }];
+     */
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%@/%@/%@/%@",BaseUrl,AddThread,uid,title,type,content,@"",url];
+    NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             

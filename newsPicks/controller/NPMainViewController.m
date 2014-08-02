@@ -185,7 +185,7 @@ static void *flabbyContext = &flabbyContext;
 }
 -(void)NPMainleftViewClickTwo
 {
-    NPContentUrlViewController *url=[[NPContentUrlViewController alloc]init];
+    NPContentUrlViewController *url=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
     self.navigationController.navigationBar.hidden=NO;
     [self.navigationController pushViewController:url animated:YES];
 }

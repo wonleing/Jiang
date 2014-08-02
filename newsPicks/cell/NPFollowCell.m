@@ -95,7 +95,7 @@
     [headView  setImageWithURL:[NSURL URLWithString:infoModel.avatar] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
     name.text=infoModel.name;
     typeContent.text=infoModel.typeName;
-    likeNum.text=[NSString stringWithFormat:@"Like: %@ Followers:%@",infoModel.likeNum,infoModel.followers_num];
+    likeNum.text=[NSString stringWithFormat:@"Like: %@ Followers:%@",infoModel.likeNum==nil?@"0":infoModel.likeNum,infoModel.followers_num==nil?@"0":infoModel.followers_num];
     [self changeFollowStatus:infoModel.is_following.boolValue];
 }
 - (void)awakeFromNib

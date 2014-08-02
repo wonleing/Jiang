@@ -16,7 +16,6 @@
 		262F33EB197D44D200060112 /* NPTimeOnlineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 262F33EA197D44D200060112 /* NPTimeOnlineCell.m */; };
 		26449FF019867A4500EAD5DF /* NPMainleftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FEF19867A4500EAD5DF /* NPMainleftView.m */; };
 		26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */; };
-		26449FF61986826A00EAD5DF /* NPContentUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */; };
 		26449FFA198684A500EAD5DF /* NPNewsListViewController_ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */; };
 		26449FFD1986893200EAD5DF /* NPSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FFC1986893200EAD5DF /* NPSettingViewController.m */; };
 		2644A00019868F2700EAD5DF /* NPSetingProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26449FFF19868F2700EAD5DF /* NPSetingProfileController.m */; };
@@ -162,6 +161,8 @@
 		26E8C7B5197D781A0039EFB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B4197D781A0039EFB4 /* MapKit.framework */; };
 		26E8C7B7197D78420039EFB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B6197D78420039EFB4 /* QuartzCore.framework */; };
 		26E8C7B9197D78620039EFB4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B8197D78620039EFB4 /* ImageIO.framework */; };
+		371CDB50198C754E00D3C9B8 /* NPContentUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CDB4E198C754E00D3C9B8 /* NPContentUrlViewController.m */; };
+		371CDB51198C754E00D3C9B8 /* NPContentUrlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CDB4F198C754E00D3C9B8 /* NPContentUrlViewController.xib */; };
 		373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373E8914198A2CC00080FBEF /* LoginViewController.m */; };
 		373E8917198A2CC00080FBEF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373E8915198A2CC00080FBEF /* LoginViewController.xib */; };
 		37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37B016C6198A6B950069298D /* SVProgressHUD.bundle */; };
@@ -196,8 +197,6 @@
 		26449FEF19867A4500EAD5DF /* NPMainleftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPMainleftView.m; sourceTree = "<group>"; };
 		26449FF119867FB400EAD5DF /* NPFollowersRobotsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPFollowersRobotsController.h; sourceTree = "<group>"; };
 		26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPFollowersRobotsController.m; sourceTree = "<group>"; };
-		26449FF41986826A00EAD5DF /* NPContentUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPContentUrlViewController.h; sourceTree = "<group>"; };
-		26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPContentUrlViewController.m; sourceTree = "<group>"; };
 		26449FF8198684A500EAD5DF /* NPNewsListViewController_ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPNewsListViewController_ipad.h; sourceTree = "<group>"; };
 		26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPNewsListViewController_ipad.m; sourceTree = "<group>"; };
 		26449FFB1986893200EAD5DF /* NPSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPSettingViewController.h; sourceTree = "<group>"; };
@@ -400,6 +399,9 @@
 		26E8C7B4197D781A0039EFB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B6197D78420039EFB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B8197D78620039EFB4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		371CDB4D198C754E00D3C9B8 /* NPContentUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPContentUrlViewController.h; sourceTree = "<group>"; };
+		371CDB4E198C754E00D3C9B8 /* NPContentUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPContentUrlViewController.m; sourceTree = "<group>"; };
+		371CDB4F198C754E00D3C9B8 /* NPContentUrlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPContentUrlViewController.xib; sourceTree = "<group>"; };
 		373E8913198A2CC00080FBEF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		373E8914198A2CC00080FBEF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		373E8915198A2CC00080FBEF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -539,8 +541,6 @@
 				2666CF04198277B700D4B106 /* NPCheckFollowingAndFollowersController.m */,
 				26449FF119867FB400EAD5DF /* NPFollowersRobotsController.h */,
 				26449FF219867FB400EAD5DF /* NPFollowersRobotsController.m */,
-				26449FF41986826A00EAD5DF /* NPContentUrlViewController.h */,
-				26449FF51986826A00EAD5DF /* NPContentUrlViewController.m */,
 				26449FFB1986893200EAD5DF /* NPSettingViewController.h */,
 				26449FFC1986893200EAD5DF /* NPSettingViewController.m */,
 				26449FFE19868F2700EAD5DF /* NPSetingProfileController.h */,
@@ -554,6 +554,9 @@
 				373E8913198A2CC00080FBEF /* LoginViewController.h */,
 				373E8914198A2CC00080FBEF /* LoginViewController.m */,
 				373E8915198A2CC00080FBEF /* LoginViewController.xib */,
+				371CDB4D198C754E00D3C9B8 /* NPContentUrlViewController.h */,
+				371CDB4E198C754E00D3C9B8 /* NPContentUrlViewController.m */,
+				371CDB4F198C754E00D3C9B8 /* NPContentUrlViewController.xib */,
 			);
 			path = controller_iphone;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				26542D27197D2C08000E0317 /* zbar-helpicons.png in Resources */,
 				26E8C7B2197D73020039EFB4 /* NP_IMG_default.jpg in Resources */,
 				26A43841197E053C009F225D /* Localizable.strings in Resources */,
+				371CDB51198C754E00D3C9B8 /* NPContentUrlViewController.xib in Resources */,
 				26542D23197D2C08000E0317 /* zbar-back.png in Resources */,
 				260B4999197D4A7D00BEFF53 /* registerPhoto_1.png in Resources */,
 				37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */,
@@ -1085,11 +1089,11 @@
 				26449FFD1986893200EAD5DF /* NPSettingViewController.m in Sources */,
 				26542CC1197D25AA000E0317 /* MJRefreshBaseView.m in Sources */,
 				26C4A09A19815318000CF8D3 /* NPAlertView.m in Sources */,
+				371CDB50198C754E00D3C9B8 /* NPContentUrlViewController.m in Sources */,
 				26E8C7AF197D5DF10039EFB4 /* UIImageView+WebCache.m in Sources */,
 				26E8C799197D5DF10039EFB4 /* SDWebImageDecoder.m in Sources */,
 				26E8C7A5197D5DF10039EFB4 /* UIButton+WebCache.m in Sources */,
 				26BE2301198100EE007CDBBB /* NPUserInfoDetailHeadView.m in Sources */,
-				26449FF61986826A00EAD5DF /* NPContentUrlViewController.m in Sources */,
 				26BE22FE1980F508007CDBBB /* NPUserDetailView.m in Sources */,
 				26542CA1197D24AE000E0317 /* NPTimeOnlineTableViewController.m in Sources */,
 				26E8C7AB197D5DF10039EFB4 /* UIImage+WebP.m in Sources */,

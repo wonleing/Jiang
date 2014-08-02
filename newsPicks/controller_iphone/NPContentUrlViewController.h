@@ -2,12 +2,12 @@
 //  NPContentUrlViewController.h
 //  newsPicks
 //
-//  Created by yunqi on 14-7-28.
-//  Copyright (c) 2014年 yunqi. All rights reserved.
+//  Created by ZhangCheng on 14-8-2.
+//  Copyright (c) 2014年 ZhangCheng. All rights reserved.
 //
 
-#import "NPBaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface NPContentUrlViewController : NPBaseViewController
+@interface NPContentUrlViewController : UIViewController
 
 @end
