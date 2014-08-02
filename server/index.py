@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 import cherrypy, xmlrpclib, json
 apis = ["loginUser", "addThread", "likeThread", "unlikeThread", "followUser", "followThread", "unfollowUser", "unfollowThread", "getFollowing", "getFollower", "getUserProfile", "getUserThread", "getLikeThread", "getThreadInfo", "getFeed", "getRecommandUser", "getRecommandThread", "getCategory", "getCateName", "getCateThreads", "getRelation"]
