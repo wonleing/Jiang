@@ -10,8 +10,8 @@
 #define ITEM_SIZE_WIDTH 70
 
 #define ITEM_SIZE_HEIGHT 70
-#define ITEM_X_OFFSET    600
-#define ITEM_Y_OFFSET    180
+#define ITEM_X_OFFSET    300
+#define ITEM_Y_OFFSET    10
 @interface gtxCollectionLayout()
 @property (nonatomic, strong) NSDictionary *layoutAttributes;
 // arrays to keep track of insert, delete index paths

@@ -75,7 +75,7 @@ static void *flabbyContext = &flabbyContext;
     [self.uperCollectionView reloadData];
     self.uperCollectionView.backgroundColor = [UIColor whiteColor];
     self.uperCollectionView.showsVerticalScrollIndicator = false;
-    self.uperCollectionView.contentOffset = CGPointMake(0, 600);
+    self.uperCollectionView.contentOffset = CGPointMake(0, 2000);
     mScrollview=[[UIScrollView alloc]init];
     mScrollview.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height-250);
     mScrollview.showsHorizontalScrollIndicator=NO;
@@ -95,6 +95,8 @@ static void *flabbyContext = &flabbyContext;
     navControllerl.navigationBar.hidden=NO;
     [navControllerl.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
+    float y = mScrollview.frame.origin.y;
+    float h = mScrollview.frame.size.height;
     navControllerl.view.frame=CGRectMake(0, mScrollview.frame.size.height+mScrollview.frame.origin.y, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
     [self.view addSubview:navControllerl.view];
     
@@ -197,9 +199,22 @@ static void *flabbyContext = &flabbyContext;
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
-        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+    NSIndexPath* index = [NSIndexPath indexPathForItem:(self.cellCount-1) inSection:0];
+    gtxCellView* cell = (gtxCellView*)[self.uperCollectionView cellForItemAtIndexPath:index];
+    float deltaH = self.uperCollectionView.collectionViewLayout.collectionViewContentSize.height - self.uperCollectionView.frame.size.height;
+    float deltaContenty = scrollView.contentOffset.y - deltaH;
+    CGRect frame = navControllerl.view.frame;
+
+    if(cell&&deltaContenty>0)
+    {
+        NSLog(@"cell frame = %@",NSStringFromCGRect(cell.frame));
+        frame.origin.y = cell.frame.origin.y - deltaH - deltaContenty;
+        navControllerl.view.frame = frame;
     }
+    //if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
+    
+//        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+//    }
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
