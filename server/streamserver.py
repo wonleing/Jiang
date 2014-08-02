@@ -109,6 +109,14 @@ class StreamServer:
             return ret
         return json.dumps(ret)
 
+    def getRelation(self, userid, targetid, nojson=False):
+        logger.debug("get relationship between user %s and user %s" %(userid, targetid))
+        db = lsdb.DB()
+        ret = db.getRelation(int(userid), int(targetid))
+        if nojson:
+            return ret
+        return json.dumps(ret)
+
     def getUserProfile(self, targetid, nojson=False):
         logger.debug("retrieving user %s's profile" %targetid)
         db = lsdb.DB()

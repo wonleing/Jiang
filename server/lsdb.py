@@ -109,6 +109,15 @@ class DB:
     def getFollower(self, userid):
         return self.query_db("select u.* from followship as f, user as u where f.following=%d and f.userid=u.userid" %userid)
 
+    def getRelation(self, userid, targetid):
+        self.cu.execute("select count(*) from followship where userid=%d" %targetid)
+        following = self.cu.fetchall()[0][0]
+        self.cu.execute("select count(*) from followship where following=%d" %targetid)
+        follower = self.cu.fetchall()[0][0]
+        self.cu.execute("select count(*) from followship where userid=%d and following=%d" %(userid, targetid))
+        isfollower = self.cu.fetchall()[0][0]
+        return {'following':following, 'follower':follower, 'isfollower':isfollower}
+
     def getFeed(self, userid):
         #mysql has a bug, cannot order by createdate here
         return self.query_db("select v.*, u.* from thread as v, userlike as ul, user as u, userthread as uv where ul.userid=%d and \
