@@ -161,6 +161,8 @@
 		26E8C7B5197D781A0039EFB4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B4197D781A0039EFB4 /* MapKit.framework */; };
 		26E8C7B7197D78420039EFB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B6197D78420039EFB4 /* QuartzCore.framework */; };
 		26E8C7B9197D78620039EFB4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E8C7B8197D78620039EFB4 /* ImageIO.framework */; };
+		37193CA6198F39910065752D /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37193CA4198F39910065752D /* TestViewController.m */; };
+		37193CA7198F39910065752D /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37193CA5198F39910065752D /* TestViewController.xib */; };
 		371CDB50198C754E00D3C9B8 /* NPContentUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CDB4E198C754E00D3C9B8 /* NPContentUrlViewController.m */; };
 		371CDB51198C754E00D3C9B8 /* NPContentUrlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CDB4F198C754E00D3C9B8 /* NPContentUrlViewController.xib */; };
 		373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373E8914198A2CC00080FBEF /* LoginViewController.m */; };
@@ -399,6 +401,9 @@
 		26E8C7B4197D781A0039EFB4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B6197D78420039EFB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		26E8C7B8197D78620039EFB4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		37193CA3198F39910065752D /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		37193CA4198F39910065752D /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		37193CA5198F39910065752D /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		371CDB4D198C754E00D3C9B8 /* NPContentUrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPContentUrlViewController.h; sourceTree = "<group>"; };
 		371CDB4E198C754E00D3C9B8 /* NPContentUrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPContentUrlViewController.m; sourceTree = "<group>"; };
 		371CDB4F198C754E00D3C9B8 /* NPContentUrlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPContentUrlViewController.xib; sourceTree = "<group>"; };
@@ -475,6 +480,9 @@
 			children = (
 				26449FF8198684A500EAD5DF /* NPNewsListViewController_ipad.h */,
 				26449FF9198684A500EAD5DF /* NPNewsListViewController_ipad.m */,
+				37193CA3198F39910065752D /* TestViewController.h */,
+				37193CA4198F39910065752D /* TestViewController.m */,
+				37193CA5198F39910065752D /* TestViewController.xib */,
 			);
 			path = controller_ipad;
 			sourceTree = "<group>";
@@ -1016,6 +1024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26942281197BFE9E00515F9E /* InfoPlist.strings in Resources */,
+				37193CA7198F39910065752D /* TestViewController.xib in Resources */,
 				26542D25197D2C08000E0317 /* zbar-help.html in Resources */,
 				26542D29197D2C08000E0317 /* zbar-samples.png in Resources */,
 				26542D27197D2C08000E0317 /* zbar-helpicons.png in Resources */,
@@ -1129,6 +1138,7 @@
 				26542C8D197D241A000E0317 /* NPBaseViewController.m in Sources */,
 				26449FF319867FB400EAD5DF /* NPFollowersRobotsController.m in Sources */,
 				26542CD6197D27D0000E0317 /* NPListModel.m in Sources */,
+				37193CA6198F39910065752D /* TestViewController.m in Sources */,
 				2644A00019868F2700EAD5DF /* NPSetingProfileController.m in Sources */,
 				268B16BE198120F700BF0487 /* NPUserFollowingButton.m in Sources */,
 				26BE22F41980E25F007CDBBB /* UIFont+CoreTextExtensions.m in Sources */,
