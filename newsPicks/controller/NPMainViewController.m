@@ -18,6 +18,7 @@
 #import "gtxCollectionLayout.h"
 #import "NPUserDetailViewController.h"
 #import "TestViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 static void *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate,UIPopoverControllerDelegate>
 {
@@ -29,6 +30,8 @@ static void *flabbyContext = &flabbyContext;
     
     
 }
+@property (strong,nonatomic)NPContentUrlViewController *contentUrlViewController;
+@property (strong,nonatomic)NPSettingViewController *settingViewController;
 @property (strong,nonatomic) TestViewController *testViewController;
 @property (nonatomic,strong) NSIndexPath *currentIndexPath;
 @property(copy,nonatomic)NSNumber *uid;
@@ -91,7 +94,15 @@ static void *flabbyContext = &flabbyContext;
     [self.view addSubview:leftView];
 
     leftView.delegate=self;
-    NPBaseViewController *base=UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone?[[NPNewsListViewController alloc]init]:[[NPNewsListViewController_ipad alloc]init];
+    
+    NPBaseViewController *base=nil;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        base =[[NPNewsListViewController alloc]init];
+    else{
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+        NPNewsListViewController_ipad *viewController = [main instantiateInitialViewController];
+        base = viewController;
+    }
     navControllerl=[[NPNavigationViewController alloc]initWithRootViewController:base];
     navControllerl.view.backgroundColor=[UIColor whiteColor];
     navControllerl.navigationBar.hidden=NO;
@@ -222,11 +233,13 @@ static void *flabbyContext = &flabbyContext;
 -(void)NPMainleftViewClickTwo
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        NPContentUrlViewController *url=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
+        self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
         self.navigationController.navigationBar.hidden=NO;
-        [self.navigationController pushViewController:url animated:YES];
+        [self.navigationController pushViewController:self.contentUrlViewController animated:YES];
     }else{
-        
+        self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
+        [self presentPopupViewController:self.contentUrlViewController animationType:MJPopupViewAnimationFade];
+
     }
     
 }
@@ -237,10 +250,17 @@ static void *flabbyContext = &flabbyContext;
         self.navigationController.navigationBar.hidden=NO;
         [self.navigationController pushViewController:setingController animated:YES];
     }else{
-        
+        self.settingViewController=[[NPSettingViewController alloc]init];
+        [self presentPopupViewController:self.settingViewController animationType:MJPopupViewAnimationFade];
+
     }
     
 }
+//- (void)cancelButtonClicked:(MJSecondDetailViewController *)aSecondDetailViewController
+//{
+//    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+//    self.secondDetailViewController = nil;
+//}
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     NSIndexPath* index = [NSIndexPath indexPathForItem:(self.cellCount-1) inSection:0];

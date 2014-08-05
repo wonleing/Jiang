@@ -1,12 +1,12 @@
 //
-//  NPNewsListViewController_ipad.h
-//  newsPicks
+//  ViewController.h
+//  testIPAd2
 //
-//  Created by yunqi on 14-7-28.
-//  Copyright (c) 2014年 yunqi. All rights reserved.
+//  Created by ZhangCheng on 14-8-4.
+//  Copyright (c) 2014年 ZhangCheng. All rights reserved.
 //
 
-#import "NPBaseViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface NPNewsListViewController_ipad : NPBaseViewController
 
