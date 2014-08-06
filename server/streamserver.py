@@ -163,15 +163,25 @@ class StreamServer:
             return fl
         return json.dumps(fl, cls=TimeEncoder)
 
-    def getRecommandUser(self, type="", perpage=perpage, pagenum=1, nojson=False):
+    def getRecommandUser(self, user="", type="0", perpage=perpage, pagenum=1, nojson=False):
         end = int(perpage)*int(pagenum)
         start = end - int(perpage)
-        logger.debug("return top users")
+        rulist = []
         db = lsdb.DB()
-        ru = db.getTopUser(type)[start:end]
+        raw = db.getTopUser(type)
+        if user:
+            logger.debug("return recommand users for user %s" %user)
+            for ru in raw:
+                ret = self.getRelation(user, ru['userid'], True)
+                ru['isfollower'] = ret['isfollower']
+                ru['following'] = ret['following']
+                ru['follower'] = ret['follower']
+                rulist.append(ru)
+        else:
+            rulist = raw
         if nojson:
-            return ru
-        return json.dumps(ru)
+            return rulist[start:end]
+        return json.dumps(rulist[start:end])
 
     def getRecommandThread(self, perpage=perpage, pagenum=1, nojson=False):
         end = int(perpage)*int(pagenum)
