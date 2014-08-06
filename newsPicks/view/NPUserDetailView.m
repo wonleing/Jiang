@@ -80,7 +80,10 @@
 }
 -(void)restValue:(NPUserDetaiInfolModel *)infoModel
 {
-    [imageView setImageWithURL:[NSURL URLWithString:infoModel.avatar] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
+    if (infoModel.avatar==nil || [infoModel.avatar isEqualToString:@""]) {
+        //[imageView setImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
+    }else
+        [imageView setImageWithURL:[NSURL URLWithString:infoModel.avatar] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
     if (infoModel.isPremium.boolValue) {
         loackImageView.hidden=NO;
         btnPremium.hidden=NO;

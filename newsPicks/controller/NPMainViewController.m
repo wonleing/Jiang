@@ -17,8 +17,10 @@
 #import "gtxCellView.h"
 #import "gtxCollectionLayout.h"
 #import "NPUserDetailViewController.h"
+#import "TestViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 static void *flabbyContext = &flabbyContext;
-@interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate>
+@interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate,UIPopoverControllerDelegate>
 {
     UIScrollView *mScrollview;
     NPNavigationViewController *navControllerl;
@@ -28,6 +30,9 @@ static void *flabbyContext = &flabbyContext;
     
     
 }
+@property (strong,nonatomic)NPContentUrlViewController *contentUrlViewController;
+@property (strong,nonatomic)NPSettingViewController *settingViewController;
+@property (strong,nonatomic) TestViewController *testViewController;
 @property (nonatomic,strong) NSIndexPath *currentIndexPath;
 @property(copy,nonatomic)NSNumber *uid;
 @property (nonatomic, assign) NSInteger cellCount;
@@ -62,7 +67,7 @@ static void *flabbyContext = &flabbyContext;
 }
 - (void)viewDidLoad
 {
-    
+    self.modalInPopover=YES;
     self.cellCount = 20;
     //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     //    [self.collectionView addGestureRecognizer:tapRecognizer];
@@ -75,7 +80,7 @@ static void *flabbyContext = &flabbyContext;
     [self.uperCollectionView reloadData];
     self.uperCollectionView.backgroundColor = [UIColor whiteColor];
     self.uperCollectionView.showsVerticalScrollIndicator = false;
-    self.uperCollectionView.contentOffset = CGPointMake(0, 600);
+    self.uperCollectionView.contentOffset = CGPointMake(0, 2000);
     mScrollview=[[UIScrollView alloc]init];
     mScrollview.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height-250);
     mScrollview.showsHorizontalScrollIndicator=NO;
@@ -89,12 +94,22 @@ static void *flabbyContext = &flabbyContext;
     [self.view addSubview:leftView];
 
     leftView.delegate=self;
-    NPBaseViewController *base=UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone?[[NPNewsListViewController alloc]init]:[[NPNewsListViewController_ipad alloc]init];
+    
+    NPBaseViewController *base=nil;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        base =[[NPNewsListViewController alloc]init];
+    else{
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+        NPNewsListViewController_ipad *viewController = [main instantiateInitialViewController];
+        base = viewController;
+    }
     navControllerl=[[NPNavigationViewController alloc]initWithRootViewController:base];
     navControllerl.view.backgroundColor=[UIColor whiteColor];
     navControllerl.navigationBar.hidden=NO;
     [navControllerl.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
+    float y = mScrollview.frame.origin.y;
+    float h = mScrollview.frame.size.height;
     navControllerl.view.frame=CGRectMake(0, mScrollview.frame.size.height+mScrollview.frame.origin.y, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
     [self.view addSubview:navControllerl.view];
     
@@ -179,27 +194,91 @@ static void *flabbyContext = &flabbyContext;
 }
 -(void)NPMainleftViewClickOne
 {
-    NPFollowersRobotsController *robots=[[NPFollowersRobotsController alloc]init];
-    self.navigationController.navigationBar.hidden=NO;
-    [self.navigationController pushViewController:robots animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        NPFollowersRobotsController *robots=[[NPFollowersRobotsController alloc]init];
+        self.navigationController.navigationBar.hidden=NO;
+        [self.navigationController pushViewController:robots animated:YES];
+    }else{
+        self.testViewController = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
+        NSLog(@"%@",NSStringFromCGRect(self.testViewController.view.frame));
+        UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75f];
+        UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
+        view.backgroundColor=color;
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame=view.frame;
+        view.alpha=0;
+        view.tag=999;
+        [btn addTarget:self action:@selector(closeSecView) forControlEvents:UIControlEventTouchDown];
+        [view addSubview:btn];
+        [view addSubview:self.testViewController.view];
+        [self.view addSubview:view];
+        [UIView animateWithDuration:0.25 animations:^{
+            view.alpha=1.0f;
+            self.testViewController.view.frame=CGRectMake(768-self.testViewController.view.frame.size.width, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+        }];
+    }
+    
+}
+-(void)closeSecView{
+    [UIView animateWithDuration:0.25 animations:^{
+        UIView *view = [self.view viewWithTag:999];
+        view.alpha=0.0f;
+        self.testViewController.view.frame=CGRectMake(768, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+    } completion:^(BOOL finished) {
+        UIView *view = [self.view viewWithTag:999];
+        [view removeFromSuperview];
+        self.testViewController=nil;
+    }];
 }
 -(void)NPMainleftViewClickTwo
 {
-    NPContentUrlViewController *url=[[NPContentUrlViewController alloc]init];
-    self.navigationController.navigationBar.hidden=NO;
-    [self.navigationController pushViewController:url animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
+        self.navigationController.navigationBar.hidden=NO;
+        [self.navigationController pushViewController:self.contentUrlViewController animated:YES];
+    }else{
+        self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
+        [self presentPopupViewController:self.contentUrlViewController animationType:MJPopupViewAnimationFade];
+
+    }
+    
 }
 -(void)NPMainleftViewClickThree
 {
-    NPSettingViewController *setingController=[[NPSettingViewController alloc]init];
-    self.navigationController.navigationBar.hidden=NO;
-    [self.navigationController pushViewController:setingController animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        NPSettingViewController *setingController=[[NPSettingViewController alloc]init];
+        self.navigationController.navigationBar.hidden=NO;
+        [self.navigationController pushViewController:setingController animated:YES];
+    }else{
+        self.settingViewController=[[NPSettingViewController alloc]init];
+        [self presentPopupViewController:self.settingViewController animationType:MJPopupViewAnimationFade];
+
+    }
+    
 }
+//- (void)cancelButtonClicked:(MJSecondDetailViewController *)aSecondDetailViewController
+//{
+//    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+//    self.secondDetailViewController = nil;
+//}
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
-        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+    NSIndexPath* index = [NSIndexPath indexPathForItem:(self.cellCount-1) inSection:0];
+    gtxCellView* cell = (gtxCellView*)[self.uperCollectionView cellForItemAtIndexPath:index];
+    float deltaH = self.uperCollectionView.collectionViewLayout.collectionViewContentSize.height - self.uperCollectionView.frame.size.height;
+    float deltaContenty = scrollView.contentOffset.y - deltaH;
+    CGRect frame = navControllerl.view.frame;
+
+    if(cell&&deltaContenty>0)
+    {
+        NSLog(@"cell frame = %@",NSStringFromCGRect(cell.frame));
+        frame.origin.y = cell.frame.origin.y - deltaH - deltaContenty;
+        navControllerl.view.frame = frame;
     }
+    //if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
+    
+//        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+//    }
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

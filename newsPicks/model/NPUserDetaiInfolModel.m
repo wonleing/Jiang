@@ -20,16 +20,19 @@
 @synthesize isPremium=_isPremium;
 - (NSDictionary*)attributeMapDictionary
 {
+    self.likeNum=@"0";
+    self.followers_num=@"0";
+    self.following_num=@"0";
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"userid",@"uid"
             ,@"loginname",@"name"
-            ,@"typeName",@"typeName"
+            ,@"type",@"typeName"
             ,@"description",@"description"
             ,@"likeNum",@"likeNum"
             ,@"followers_num",@"followers_num"
             ,@"following_num",@"following_num"
             ,@"is_following",@"is_following"
-            ,@"avatar",@"avatar"
+            ,@"userimage",@"avatar"
             ,@"isPremium",@"isPremium"
             ,nil];
 }

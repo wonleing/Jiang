@@ -20,20 +20,18 @@
 
 @implementation NPSettingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
+- (void)loadView{
+    [super loadView];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.view.frame=CGRectMake(0, 0, 320, 480);
+    }
+}
 - (void)viewDidLoad
 {
     self.title=@"Setting";
     mTableView=[[UITableView alloc]init];
-    mTableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44);
+    mTableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad?0:44));
     mTableView.backgroundColor=[UIColor colorWithRed:232.0f/255.0f green:234.0f/255.0f blue:239.0f/255.0f alpha:1];
     [self.view addSubview:mTableView];
     mTableView.delegate=self;

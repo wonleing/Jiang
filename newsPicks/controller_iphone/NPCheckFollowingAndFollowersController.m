@@ -17,6 +17,8 @@
     UITableView *mTableView;
     MJRefreshFooterView* refreshFoot;
     NSMutableArray *list;
+    
+    int currentPage;
 }
 @end
 
@@ -60,6 +62,7 @@
 }
 - (void)viewDidLoad
 {
+    currentPage=0;
     list=[[NSMutableArray alloc]init];
     tabBar=[[UITabBar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-49-44, self.view.frame.size.width, 49)];
     UITabBarItem *following=[[UITabBarItem alloc]init];
@@ -95,14 +98,15 @@
 }
 -(void)loadMore
 {
-//
-//    [NPHTTPRequest getUserInfoFollowing:nil usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
-//        if (isSuccess) {
-//            [list addObjectsFromArray:result];
-//            [mTableView reloadData];
-//            [self performSelector:@selector(endLoad) withObject:nil afterDelay:0.3];
-//        }
-//    }];
+
+    [NPHTTPRequest getUserInfoFollowing:self.type!=NPCheckFollow_followers uid:self.uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            currentPage++;
+            [list addObjectsFromArray:result];
+            [mTableView reloadData];
+            [self performSelector:@selector(endLoad) withObject:nil afterDelay:0.3];
+        }
+    }];
 }
 -(void)endLoad
 {

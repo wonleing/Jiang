@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%@",NSStringFromCGRect(self.view.frame));
     _uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
     currentPage=0;
     
@@ -66,8 +67,7 @@
 }
 -(void)loadMore
 {
-    
-    [NPHTTPRequest getUserInfoFollowing:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getUserInfoFollowing:YES uid:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
             currentPage++;
             [list addObjectsFromArray:result];

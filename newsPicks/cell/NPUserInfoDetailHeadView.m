@@ -52,7 +52,7 @@
     _multiPageView.columnCount = 1;
     _multiPageView.backgroundColor=[UIColor clearColor];
     [self addSubview:_multiPageView];
-     _detailView=[[NPUserDetailView alloc] init];
+//     _detailView=[[NPUserDetailView alloc] init];
     
     _followingNumBtn=[NPUserFollowNumButton buttonWithType:UIButtonTypeCustom];
     _followingNumBtn.backgroundColor=[UIColor colorWithRed:18.0f/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1];
@@ -98,10 +98,10 @@
     [_detailView restValue:infoModel];
     [self changeFollowStatus:infoModel.is_following.boolValue];
     _followingNumBtn.descriptionLabel.text=@"Following";
-    [_followingNumBtn setTitle:infoModel.following_num forState:UIControlStateNormal];
+    [_followingNumBtn setTitle:infoModel.following_num==nil?@"0":infoModel.following_num forState:UIControlStateNormal];
     
     _followersNumBtn.descriptionLabel.text=@"Followers";
-    [_followersNumBtn setTitle:infoModel.followers_num forState:UIControlStateNormal];
+    [_followersNumBtn setTitle:infoModel.followers_num==nil?@"0":infoModel.followers_num forState:UIControlStateNormal];
 }
 -(void)changeFollowStatus:(BOOL)follow
 {

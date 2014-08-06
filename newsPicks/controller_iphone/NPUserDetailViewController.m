@@ -153,12 +153,15 @@
 {
     NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
     check.type=NPCheckFollow_following;
+    check.uid=userInfoModel.uid;
+
     [self.navigationController pushViewController:check animated:YES];
 }
 -(void)NPUserInfoDetailHeadViewCheckFollowers
 {
     NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
     check.type=NPCheckFollow_followers;
+    check.uid=userInfoModel.uid;
     [self.navigationController pushViewController:check animated:YES];
 }
 -(void)change

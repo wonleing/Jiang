@@ -2,65 +2,90 @@
 //  NPContentUrlViewController.m
 //  newsPicks
 //
-//  Created by yunqi on 14-7-28.
-//  Copyright (c) 2014年 yunqi. All rights reserved.
+//  Created by ZhangCheng on 14-8-2.
+//  Copyright (c) 2014年 ZhangCheng. All rights reserved.
 //
 
 #import "NPContentUrlViewController.h"
-
-@interface NPContentUrlViewController ()<UITextFieldDelegate>
-{
-    UITextField *textField;
+#import "NPHTTPRequest.h"
+#import "SVProgressHUD.h"
+@interface NPContentUrlViewController (){
+    NSThread *th;
 }
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBtn;
+@property (weak, nonatomic) IBOutlet UITextField *urlTF;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *contentTV;
+
 @end
 
 @implementation NPContentUrlViewController
+- (IBAction)sendAction:(id)sender {
+    if ([self.titleLabel.text isEqualToString:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"URL无效或者没有有效的标题"];
+        return;
+    }
+    [NPHTTPRequest sendAddThread:[[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"] title:self.titleLabel.text type:@"0" content:self.contentTV.text link:self.urlTF.text usingSuccessBlock:^(BOOL isSuccess, NSDictionary *result) {
+        if (isSuccess) {
+            [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"发送失败"];
+        }
+    }];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-     
+        self.title=@"Share an TimeOnline";
     }
     return self;
+}
+- (IBAction)URLChangedAction:(UITextField*)sender {
+    if (th) {
+        [th cancel];
+        th=nil;
+    }
+    th = [[NSThread alloc]initWithTarget:self selector:@selector(dealWithURL:) object:sender.text];
+    [th start];
+}
+-(void)dealWithURL:(NSString*)URL{
+    NSString *str = nil;
+    if ([URL hasPrefix:@"http://"]) {
+        str=URL;
+    }else{
+        str = [NSString stringWithFormat:@"http://%@",URL];
+    }
+    NSError *error ;
+    
+    NSString *str2 = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:str] encoding:NSUTF8StringEncoding error:&error];
+    if (!error) {
+        
+        NSRange r1 =[str2 rangeOfString:@"<title>"];
+        NSRange r2 =[str2 rangeOfString:@"</title>"];
+        if (r1.location!=NSNotFound && r2.location!=NSNotFound) {
+            
+            
+            NSString *str3 =[[str2 substringToIndex:r2.location]substringFromIndex:r1.location+r1.length];
+            self.titleLabel.text=str3;
+        }else{
+            self.titleLabel.text=@"";
+
+        }
+
+    }else{
+        self.titleLabel.text=@"";
+    }
 }
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor=[UIColor whiteColor];
-    UILabel *label=[[UILabel alloc]init];
-    label.font=[UIFont systemFontOfSize:13.5];
-    label.frame=CGRectMake(0, 5, self.view.frame.size.width , 20);
-    label.textAlignment=NSTextAlignmentCenter ;
-    label.textColor=[UIColor blackColor];
-    label.text=@"Enter the URL of the countent you want to add";
-    UILabel *labelUrl=[[UILabel alloc]init];
-    labelUrl.frame=CGRectMake(9, label.frame.origin.y+label.frame.size.height+3, 45, 25);
-    labelUrl.backgroundColor=[UIColor colorWithRed:73.0f/255.0f green:100.0f/255.0f blue:198.0f/255.0f alpha:1];
-    labelUrl.font=[UIFont systemFontOfSize:14];
-    labelUrl.textColor=[UIColor whiteColor];
-    labelUrl.text=@"URL";
-    labelUrl.textAlignment=NSTextAlignmentCenter;
-    [self.view addSubview:labelUrl];
-    [self.view addSubview:label];
-    
-    textField=[[UITextField alloc]init];
-    textField.frame=CGRectMake(labelUrl.frame.size.width+labelUrl.frame.origin.x+3, labelUrl.frame.origin.y,self.view.frame.size.width-labelUrl.frame.origin.x-labelUrl.frame.size.width-3-9, labelUrl.frame.size.height);
-    textField.borderStyle=UITextBorderStyleNone;
-    textField.returnKeyType=UIReturnKeyDone;
-    textField.layer.masksToBounds=YES;
-    textField.layer.borderColor=[UIColor blackColor].CGColor;
-    textField.layer.borderWidth=0.7;
-    textField.delegate=self;
-    [textField addTarget:self action:@selector(chan:) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:textField];
-    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
--(void)chan:(UITextField*)te{
-    
+    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.rightBarButtonItem=self.rightBtn;
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,16 +93,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
