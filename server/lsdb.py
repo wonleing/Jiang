@@ -126,7 +126,7 @@ class DB:
         (select following from followship where userid=%d) limit 100" %(userid, userid))
 
     def getTopUser(self, type):
-        if eval(type):
+        if type != '0':
             return self.query_db("select u.*, count(*) from user as u, followship as f where f.following in (select userid from user \
             where type='%s') and u.userid=f.following group by f.following order by count(*) desc" %type)
         else:
