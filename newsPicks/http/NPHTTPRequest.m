@@ -13,6 +13,7 @@
 #import "NPlistReplyModel.h"
 #import "NPUserDetaiInfolModel.h"
 #import "SVProgressHUD.h"
+
 @implementation NPHTTPRequest
 //post上传
 +(void)postValue:(NSString *)strUrl dic:(NSDictionary *)dic fileDic:(NSDictionary *)fileDic usingSuccessBlock:(void (^)(NSDictionary *resultDictionary))successBlock andFailureBlock:(void (^)(NSError *resultError))failureBlock
@@ -48,8 +49,11 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         //if ([NSJSONSerialization isValidJSONObject:weakOperation.responseString]) {
         if (weakOperation.responseData) {
+            NSString *str = [weakOperation.responseString stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
             NSError *error;
-            NSDictionary *value=[NSJSONSerialization JSONObjectWithData:weakOperation.responseData options:NSJSONReadingMutableContainers error:&error];
+            NSDictionary *value=[NSJSONSerialization JSONObjectWithData:data  options:NSJSONReadingMutableContainers error:&error];
+            
             if (error) {
                 [SVProgressHUD showErrorWithStatus:@"返回数据格式有误"];
 
