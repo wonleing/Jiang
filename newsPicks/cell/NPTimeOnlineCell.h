@@ -26,6 +26,7 @@
 #define NPTimeOnlineCell_PopularUser_Higth 80
 @interface NPTimeOnlineCell : UITableViewCell
 @property(nonatomic,weak)id<NPTimeOnlineCellDelegate>delegate;
+@property(nonatomic,weak)NPListModel *model;
 -(void)restCell:(NPListModel *)model;
 -(void)restPopularUsers:(NPlistPopularUsers *)popularUsers;
 +(float)cellHigth:(NPListModel *)model;

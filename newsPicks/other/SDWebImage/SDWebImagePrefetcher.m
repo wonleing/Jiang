@@ -88,7 +88,7 @@
 
 - (void)reportStatus
 {
-    NSUInteger total = [self.prefetchURLs count];
+//    NSUInteger total = [self.prefetchURLs count];
     
 }
 

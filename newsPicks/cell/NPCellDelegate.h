@@ -9,7 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @class NPTimeOnlineCell;
+@class NPListModel;
 @protocol NPTimeOnlineCellDelegate<NSObject>
 @optional
 -(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell;
+@end
+
+@class NPTimeOnlineCell_iPad;
+@protocol NPTimeOnlineCellDelegate_iPad <NSObject>
+
+@optional
+-(void)NPTimeOnLineCellPickAction:(NPListModel *)model;
+-(void)NPTimeOnLineCellClickAction:(NPListModel *)model;
+
 @end

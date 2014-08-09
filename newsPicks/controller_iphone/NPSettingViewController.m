@@ -12,6 +12,9 @@
 #import "NPSettingPasswordController.h"
 #import "NPSettingInterestController.h"
 #import "NPAlertView.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "LoginViewController_iPad.h"
+#import "NPMainViewController.h"
 @interface NPSettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UITableView *mTableView;
@@ -188,7 +191,18 @@
     if (buttonIndex==1) {
         [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:0] forKey:@"com.zhangcheng.uid"];
         [[NSUserDefaults standardUserDefaults]synchronize];
-        [self.navigationController popViewControllerAnimated:NO];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            [self.navigationController popViewControllerAnimated:NO];
+
+        }else{
+            [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade completion:^{
+                LoginViewController_iPad *viewController = [[LoginViewController_iPad alloc]initWithNibName:@"LoginViewController_iPad" bundle:nil];
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+                [nav setNavigationBarHidden:YES];
+                nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
+                [((NPMainViewController*)((UINavigationController*)((UIWindow*)[UIApplication sharedApplication].windows.firstObject).rootViewController).viewControllers.firstObject) viewWillAppear:NO];
+            }];
+        }
     }
 }
 - (void)didReceiveMemoryWarning

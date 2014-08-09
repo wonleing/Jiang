@@ -15,7 +15,11 @@
 #import "NPAlertView.h"
 #import "NPNewListDetailViewController.h"
 #import "NPCheckFollowingAndFollowersController.h"
-@interface NPUserDetailViewController ()<UITableViewDataSource,UITableViewDelegate,MJRefreshBaseViewDelegate,NPUserInfoDetailHeadViewDelegate>
+#import "UIViewController+MJPopupViewController.h"
+#import "NPTextInputViewController.h"
+#import "SVProgressHUD.h"
+#import "NPListModel.h"
+@interface NPUserDetailViewController ()<UITableViewDataSource,UITableViewDelegate,MJRefreshBaseViewDelegate,NPUserInfoDetailHeadViewDelegate,NPTimeOnlineCellDelegate>
 {
     MJRefreshHeaderView* refreshHeadView;
     MJRefreshFooterView *refreshFootView;
@@ -26,6 +30,8 @@
     
     int currentPage;
 }
+@property (strong, nonatomic)NPTextInputViewController *textInputviewController;
+
 @end
 
 @implementation NPUserDetailViewController
@@ -139,9 +145,21 @@
         cell=[[NPTimeOnlineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.backgroundColor=NP_MAIN_BACKGROUND_COLOR;
+        cell.delegate=self;
     }
     [cell restCell:[list objectAtIndex:indexPath.row]];
     return cell;
+}
+-(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell
+{
+    //    [NPKeyBoardView share].delegate =self;
+    //    [[NPKeyBoardView share] show];
+    
+    self.textInputviewController= [[NPTextInputViewController alloc]initWithNibName:@"NPTextInputViewController" bundle:nil];
+    self.textInputviewController.tid=cell.model.listID;
+    self.textInputviewController.mTitle=cell.model.title;
+    [self presentPopupViewController:self.textInputviewController animationType:MJPopupViewAnimationSlideBottomTop];
+    
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

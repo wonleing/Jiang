@@ -13,7 +13,8 @@
 #import "NPlistPopularUsers.h"
 #import "NPNewListDetailViewController.h"
 #import "NPListModel.h"
-
+#import "UIViewController+MJPopupViewController.h"
+#import "NPTextInputViewController.h"
 @interface NPTopTableViewController ()<MJRefreshBaseViewDelegate,NPKeyBoardViewDelegate,NPTimeOnlineCellDelegate>
 
 {
@@ -24,6 +25,8 @@
     
     int currentPage;
 }
+@property (strong, nonatomic)NPTextInputViewController *textInputviewController;
+
 @end
 
 @implementation NPTopTableViewController
@@ -101,7 +104,17 @@
 }
 
 #pragma mark - Table view data source
-
+-(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell
+{
+    //    [NPKeyBoardView share].delegate =self;
+    //    [[NPKeyBoardView share] show];
+    
+    self.textInputviewController = [[NPTextInputViewController alloc]initWithNibName:@"NPTextInputViewController" bundle:nil];
+    self.textInputviewController.tid=cell.model.listID;
+    self.textInputviewController.mTitle=cell.model.title;
+    [self presentPopupViewController:self.textInputviewController animationType:MJPopupViewAnimationSlideBottomTop];
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return list.count+(popularUsers?1:0);

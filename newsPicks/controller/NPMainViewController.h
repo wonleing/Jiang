@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NPMainViewController : UIViewController<UIGestureRecognizerDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
-
+-(void)closeSecView;
 @end

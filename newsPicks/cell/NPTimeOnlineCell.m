@@ -21,6 +21,7 @@
 }
 -(void)restCell:(NPListModel *)model
 {
+    self.model=model;
     for (UIView *view in self.contentView.subviews) {
         [view removeFromSuperview];
     }

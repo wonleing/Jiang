@@ -19,6 +19,7 @@
 #import "NPUserDetailViewController.h"
 #import "TestViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "LoginViewController_iPad.h"
 static void *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate,UIPopoverControllerDelegate>
 {
@@ -152,7 +153,11 @@ static void *flabbyContext = &flabbyContext;
             nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
             [self presentViewController:nav animated:NO completion:nil];
         }else{
-#warning iPad登录
+            LoginViewController_iPad *viewController = [[LoginViewController_iPad alloc]initWithNibName:@"LoginViewController_iPad" bundle:nil];
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+            [nav setNavigationBarHidden:YES];
+            nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nav animated:NO completion:nil];
         }
     }
     [self.uperCollectionView deselectItemAtIndexPath:self.currentIndexPath animated:YES];
@@ -200,6 +205,7 @@ static void *flabbyContext = &flabbyContext;
         [self.navigationController pushViewController:robots animated:YES];
     }else{
         self.testViewController = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
+        [self addChildViewController:self.testViewController];
         NSLog(@"%@",NSStringFromCGRect(self.testViewController.view.frame));
         UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75f];
         UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
@@ -227,6 +233,7 @@ static void *flabbyContext = &flabbyContext;
     } completion:^(BOOL finished) {
         UIView *view = [self.view viewWithTag:999];
         [view removeFromSuperview];
+        [self.testViewController removeFromParentViewController];
         self.testViewController=nil;
     }];
 }

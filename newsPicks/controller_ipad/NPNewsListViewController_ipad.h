@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NPNewsListViewController_ipad : NPBaseViewController
-
+@property(strong,nonatomic)NSString  *uid;
+@property(assign,nonatomic)BOOL isNotSelf;
 @end

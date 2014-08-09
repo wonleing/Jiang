@@ -15,16 +15,20 @@
 #import "NPNewListDetailViewController.h"
 #import "SVProgressHUD.h"
 #import "NPListModel.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "NPTextInputViewController.h"
 
 @interface NPTimeOnlineTableViewController ()<MJRefreshBaseViewDelegate,NPTimeOnlineCellDelegate,NPKeyBoardViewDelegate>
 {
     MJRefreshHeaderView* refreshHeadView;
     MJRefreshFooterView *refreshFootView;
     NSMutableArray *list;
-  
+
     NSString *_uid;
     int currentPage;
 }
+@property (strong, nonatomic)NPTextInputViewController *textInputviewController;
+
 @end
 
 @implementation NPTimeOnlineTableViewController
@@ -105,10 +109,14 @@
 }
 -(void)NPTimeOnlineCellDelegateClickReply:(NPTimeOnlineCell *)cell
 {
-   
-    [NPKeyBoardView share].delegate =self;
-    [[NPKeyBoardView share] show];
+//    [NPKeyBoardView share].delegate =self;
+//    [[NPKeyBoardView share] show];
     
+    self.textInputviewController= [[NPTextInputViewController alloc]initWithNibName:@"NPTextInputViewController" bundle:nil];
+    self.textInputviewController.tid=cell.model.listID;
+    self.textInputviewController.mTitle=cell.model.title;
+    [self presentPopupViewController:self.textInputviewController animationType:MJPopupViewAnimationSlideBottomTop];
+
 }
 -(void)keyBoardViewHide:(NPKeyBoardView *)keyBoardView textView:(UITextView *)contentView{
     

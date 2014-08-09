@@ -21,7 +21,7 @@
     #import "NPCustomMethod.h"
 #import <QuartzCore/QuartzCore.h>
 #endif
-#define ItemNumPerPage @"5"
+#define ItemNumPerPage @"50"
 #define BaseUrl @"http://203.195.175.230:8080/newspicks/"
 #define LoginStingUrl @"loginUser"
 #define GetFeedStingUrl @"getFeed"
@@ -33,6 +33,6 @@
 #define GetUserProfile @"getUserProfile"
 #define GetRecommandUser @"getRecommandUser"
 #define AddThread @"addThread"
-
+#define FollowThread @"followThread"
 
 

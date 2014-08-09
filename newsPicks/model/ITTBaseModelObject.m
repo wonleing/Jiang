@@ -48,7 +48,7 @@
 			[invocation getReturnValue:&valueObj];
 			if (valueObj) {
 				[attrsDesc appendFormat:@" [%@=%@] ",attributeName,valueObj];		
-				//[valueObj release];			
+				//[valueObj release];
 			}else {
 				[attrsDesc appendFormat:@" [%@=nil] ",attributeName];		
 			}

@@ -168,6 +168,13 @@
 		373E8917198A2CC00080FBEF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373E8915198A2CC00080FBEF /* LoginViewController.xib */; };
 		3741F7911990C966006B8115 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3741F7901990C966006B8115 /* Main_iPad.storyboard */; };
 		3741F7941990CD65006B8115 /* NPNewsListViewController_ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741F7931990CD65006B8115 /* NPNewsListViewController_ipad.m */; };
+		374F12801994895B00B9731F /* NPTabBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 374F127F1994895B00B9731F /* NPTabBtn.m */; };
+		374F1284199496EA00B9731F /* LoginViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 374F1282199496EA00B9731F /* LoginViewController_iPad.m */; };
+		374F1285199496EA00B9731F /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374F1283199496EA00B9731F /* LoginViewController_iPad.xib */; };
+		3761A8821995BE7F00C8B4FB /* NPTextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3761A8801995BE7F00C8B4FB /* NPTextInputViewController.m */; };
+		3761A8831995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3761A8811995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib */; };
+		3761A8851995BEA400C8B4FB /* NPTextInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3761A8841995BEA400C8B4FB /* NPTextInputViewController.xib */; };
+		376E571D1992283A00086E55 /* NPTimeOnlineCell_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 376E571C1992283A00086E55 /* NPTimeOnlineCell_iPad.m */; };
 		378BFC1E198F875300DBD405 /* MJPopupBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378BFC1B198F875300DBD405 /* MJPopupBackgroundView.m */; };
 		378BFC1F198F875300DBD405 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 378BFC1D198F875300DBD405 /* UIViewController+MJPopupViewController.m */; };
 		37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37B016C6198A6B950069298D /* SVProgressHUD.bundle */; };
@@ -414,6 +421,17 @@
 		3741F7901990C966006B8115 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		3741F7921990CD65006B8115 /* NPNewsListViewController_ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPNewsListViewController_ipad.h; sourceTree = "<group>"; };
 		3741F7931990CD65006B8115 /* NPNewsListViewController_ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPNewsListViewController_ipad.m; sourceTree = "<group>"; };
+		374F127E1994895B00B9731F /* NPTabBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTabBtn.h; sourceTree = "<group>"; };
+		374F127F1994895B00B9731F /* NPTabBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTabBtn.m; sourceTree = "<group>"; };
+		374F1281199496EA00B9731F /* LoginViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController_iPad.h; sourceTree = "<group>"; };
+		374F1282199496EA00B9731F /* LoginViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController_iPad.m; sourceTree = "<group>"; };
+		374F1283199496EA00B9731F /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
+		3761A87F1995BE7F00C8B4FB /* NPTextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTextInputViewController.h; sourceTree = "<group>"; };
+		3761A8801995BE7F00C8B4FB /* NPTextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTextInputViewController.m; sourceTree = "<group>"; };
+		3761A8811995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPTextInputViewController_iPad.xib; sourceTree = "<group>"; };
+		3761A8841995BEA400C8B4FB /* NPTextInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPTextInputViewController.xib; sourceTree = "<group>"; };
+		376E571B1992283A00086E55 /* NPTimeOnlineCell_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTimeOnlineCell_iPad.h; sourceTree = "<group>"; };
+		376E571C1992283A00086E55 /* NPTimeOnlineCell_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTimeOnlineCell_iPad.m; sourceTree = "<group>"; };
 		378BFC1A198F875300DBD405 /* MJPopupBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPopupBackgroundView.h; sourceTree = "<group>"; };
 		378BFC1B198F875300DBD405 /* MJPopupBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPopupBackgroundView.m; sourceTree = "<group>"; };
 		378BFC1C198F875300DBD405 /* UIViewController+MJPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MJPopupViewController.h"; sourceTree = "<group>"; };
@@ -493,6 +511,9 @@
 				37193CA3198F39910065752D /* TestViewController.h */,
 				37193CA4198F39910065752D /* TestViewController.m */,
 				37193CA5198F39910065752D /* TestViewController.xib */,
+				374F1281199496EA00B9731F /* LoginViewController_iPad.h */,
+				374F1282199496EA00B9731F /* LoginViewController_iPad.m */,
+				374F1283199496EA00B9731F /* LoginViewController_iPad.xib */,
 			);
 			path = controller_ipad;
 			sourceTree = "<group>";
@@ -514,6 +535,10 @@
 				26542C8A197D241A000E0317 /* NPMainViewController.m */,
 				26542C8B197D241A000E0317 /* NPNavigationViewController.h */,
 				26542C8C197D241A000E0317 /* NPNavigationViewController.m */,
+				3761A87F1995BE7F00C8B4FB /* NPTextInputViewController.h */,
+				3761A8801995BE7F00C8B4FB /* NPTextInputViewController.m */,
+				3761A8811995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib */,
+				3761A8841995BEA400C8B4FB /* NPTextInputViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -790,6 +815,7 @@
 		2694227C197BFE9E00515F9E /* newsPicks */ = {
 			isa = PBXGroup;
 			children = (
+				374F127A1994892900B9731F /* view_iPad */,
 				185CD713198AAA470076F05B /* ext */,
 				26449FF71986848600EAD5DF /* controller_ipad */,
 				260B4997197D4A7700BEFF53 /* temImg */,
@@ -942,8 +968,19 @@
 				26BE2300198100EE007CDBBB /* NPUserInfoDetailHeadView.m */,
 				2666CF061982839A00D4B106 /* NPFollowCell.h */,
 				2666CF071982839A00D4B106 /* NPFollowCell.m */,
+				376E571B1992283A00086E55 /* NPTimeOnlineCell_iPad.h */,
+				376E571C1992283A00086E55 /* NPTimeOnlineCell_iPad.m */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		374F127A1994892900B9731F /* view_iPad */ = {
+			isa = PBXGroup;
+			children = (
+				374F127E1994895B00B9731F /* NPTabBtn.h */,
+				374F127F1994895B00B9731F /* NPTabBtn.m */,
+			);
+			name = view_iPad;
 			sourceTree = "<group>";
 		};
 		378BFC19198F873600DBD405 /* PopupView */ = {
@@ -1054,11 +1091,14 @@
 				371CDB51198C754E00D3C9B8 /* NPContentUrlViewController.xib in Resources */,
 				26542D23197D2C08000E0317 /* zbar-back.png in Resources */,
 				260B4999197D4A7D00BEFF53 /* registerPhoto_1.png in Resources */,
+				374F1285199496EA00B9731F /* LoginViewController_iPad.xib in Resources */,
 				37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */,
+				3761A8831995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib in Resources */,
 				373E8917198A2CC00080FBEF /* LoginViewController.xib in Resources */,
 				26942289197BFE9E00515F9E /* Images.xcassets in Resources */,
 				3741F7911990C966006B8115 /* Main_iPad.storyboard in Resources */,
 				26542CBF197D25AA000E0317 /* MJRefresh.bundle in Resources */,
+				3761A8851995BEA400C8B4FB /* NPTextInputViewController.xib in Resources */,
 				2666CF1019828F3C00D4B106 /* SVWebViewController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1142,11 +1182,13 @@
 				2666CF081982839A00D4B106 /* NPFollowCell.m in Sources */,
 				2649D9E4197EC08000377012 /* NPNewListDetailViewController.m in Sources */,
 				2649D9E7197EC29700377012 /* NPNewListDetailHeadView.m in Sources */,
+				376E571D1992283A00086E55 /* NPTimeOnlineCell_iPad.m in Sources */,
 				26542D1B197D2C08000E0317 /* AFXMLRequestOperation.m in Sources */,
 				26A43849197E3549009F225D /* NPKeyBoardView.m in Sources */,
 				26542D19197D2C08000E0317 /* AFURLConnectionOperation.m in Sources */,
 				3741F7941990CD65006B8115 /* NPNewsListViewController_ipad.m in Sources */,
 				26542C91197D241A000E0317 /* NPNavigationViewController.m in Sources */,
+				3761A8821995BE7F00C8B4FB /* NPTextInputViewController.m in Sources */,
 				373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */,
 				26791FCC197FB796003DAC20 /* NPCustomMethod.m in Sources */,
 				26542D11197D2C08000E0317 /* AFImageRequestOperation.m in Sources */,
@@ -1154,6 +1196,7 @@
 				26542D13197D2C08000E0317 /* AFJSONRequestOperation.m in Sources */,
 				26BE22FB1980E265007CDBBB /* AKOMultiPageTextView.m in Sources */,
 				2613BBED197FF80100628079 /* NPNewListDetailFootReplysView.m in Sources */,
+				374F1284199496EA00B9731F /* LoginViewController_iPad.m in Sources */,
 				26E8C793197D5DF10039EFB4 /* NSData+GIF.m in Sources */,
 				26542D17197D2C08000E0317 /* AFPropertyListRequestOperation.m in Sources */,
 				26791FC6197F6B70003DAC20 /* NPNewListDetailFootLoadView.m in Sources */,
@@ -1167,6 +1210,7 @@
 				268B16BE198120F700BF0487 /* NPUserFollowingButton.m in Sources */,
 				26BE22F41980E25F007CDBBB /* UIFont+CoreTextExtensions.m in Sources */,
 				2644A00619868FDF00EAD5DF /* NPSettingPasswordController.m in Sources */,
+				374F12801994895B00B9731F /* NPTabBtn.m in Sources */,
 				185CD719198AAA470076F05B /* gtxCollectionLayout.m in Sources */,
 				26542C63197CC10F000E0317 /* NPContentlayout.m in Sources */,
 				26791FC3197F5A90003DAC20 /* NPNewListDetailCell.m in Sources */,

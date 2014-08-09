@@ -324,6 +324,7 @@
 //    successBlock(YES,infoModel);
 //    return;
     NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@",BaseUrl,GetUserProfile,uid];
+    NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             NPUserDetaiInfolModel *model=[[NPUserDetaiInfolModel alloc]initWithDataDic:resultDictionary[@"data"]];
@@ -361,7 +362,7 @@
     
     
     
-    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,isFollowing?GetFollowing:GetFollower,uid,ItemNumPerPage,page];
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%d",BaseUrl,(!isFollowing)?GetFollowing:GetFollower,uid,ItemNumPerPage,page];
 //    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%d",BaseUrl,GetRecommandUser,ItemNumPerPage,page];
     NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
@@ -389,6 +390,23 @@
 
 +(void)getLoginUser:(NSString *)uname type:(NSString *)type usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
     NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,LoginStingUrl,uname,type];
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
+}
+
++(void)getFollowThread:(NSString *)uid thread:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,FollowThread,uid,tid];
+    NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
             

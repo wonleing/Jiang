@@ -34,7 +34,7 @@
     [self presentPopupView:popupViewController.view animationType:animationType];
 }
 
-- (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType
+- (void)dismissPopupViewControllerWithanimationType:(MJPopupViewAnimation)animationType completion:(void(^)())completions
 {
     UIView *sourceView = [self topView];
     UIView *popupView = [sourceView viewWithTag:kMJPopupViewTag];
@@ -43,7 +43,7 @@
     if(animationType == MJPopupViewAnimationSlideBottomTop || animationType == MJPopupViewAnimationSlideBottomBottom || animationType == MJPopupViewAnimationSlideRightLeft) {
         [self slideViewOut:popupView sourceView:sourceView overlayView:overlayView withAnimationType:animationType];
     } else {
-        [self fadeViewOut:popupView sourceView:sourceView overlayView:overlayView];
+        [self fadeViewOut:popupView sourceView:sourceView overlayView:overlayView completion:completions];
     }
 }
 
@@ -119,22 +119,22 @@
 // TODO: find a better way to do this, thats horrible
 - (void)dismissPopupViewControllerWithanimationTypeSlideBottomTop
 {
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop completion:nil];
 }
 
 - (void)dismissPopupViewControllerWithanimationTypeSlideBottomBottom
 {
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom completion:nil];
 }
 
 - (void)dismissPopupViewControllerWithanimationTypeSlideRightLeft
 {
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideRightLeft];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideRightLeft completion:nil];
 }
 
 - (void)dismissPopupViewControllerWithanimationTypeFade
 {
-    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade completion:nil];
 }
 
 
@@ -235,7 +235,7 @@
     }];
 }
 
-- (void)fadeViewOut:(UIView*)popupView sourceView:(UIView*)sourceView overlayView:(UIView*)overlayView
+- (void)fadeViewOut:(UIView*)popupView sourceView:(UIView*)sourceView overlayView:(UIView*)overlayView completion:(void(^)())completions
 {
     UIView *backgroundView = [overlayView viewWithTag:kMJBackgroundViewTag];
     [UIView animateWithDuration:kPopupModalAnimationDuration animations:^{
@@ -244,6 +244,9 @@
     } completion:^(BOOL finished) {
         [popupView removeFromSuperview];
         [overlayView removeFromSuperview];
+        if (completions) {
+            completions();
+        }
     }];
 }
 
