@@ -73,8 +73,8 @@ static void *flabbyContext = &flabbyContext;
     //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     //    [self.collectionView addGestureRecognizer:tapRecognizer];
     gtxCollectionLayout *layout = [[gtxCollectionLayout alloc] init];
-    self.uperCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 320, 400) collectionViewLayout:layout];
-    [self.uperCollectionView setFrame:CGRectMake(0, 0, 320, 400)];
+    self.uperCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 400) collectionViewLayout:layout];
+    [self.uperCollectionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, 400)];
     [self.uperCollectionView setDelegate:self];
     [self.uperCollectionView setDataSource:self];
     [self.uperCollectionView registerClass:[gtxCellView class] forCellWithReuseIdentifier:@"MY_CELL"];
@@ -109,9 +109,9 @@ static void *flabbyContext = &flabbyContext;
     navControllerl.navigationBar.hidden=NO;
     [navControllerl.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:18.00/255.0f green:26.0f/255.0f blue:80.0f/255.0f alpha:1] size:CGSizeMake(self.view.frame.size.width, 64)] forBarMetrics:UIBarMetricsDefault];
-    float y = mScrollview.frame.origin.y;
-    float h = mScrollview.frame.size.height;
-    navControllerl.view.frame=CGRectMake(0, mScrollview.frame.size.height+mScrollview.frame.origin.y, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+//    float y = mScrollview.frame.origin.y;
+//    float h = mScrollview.frame.size.height;
+    navControllerl.view.frame=CGRectMake(0, 0, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
     [self.view addSubview:navControllerl.view];
     
     
@@ -130,11 +130,11 @@ static void *flabbyContext = &flabbyContext;
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.35];
-    if (navControllerl.view.frame.origin.y==20) {
-        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, mScrollview.frame.origin.y+mScrollview.frame.size.height, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+    if (navControllerl.view.frame.origin.y==0) {
+        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.uperCollectionView.frame.size.height-70, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
     }else
     {
-         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,20, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,0, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
         [self.view bringSubviewToFront:navControllerl.view];
     }
     [UIView commitAnimations];

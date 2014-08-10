@@ -18,7 +18,10 @@
         self.contentView.layer.borderWidth = 1.0f;
         self.contentView.layer.borderColor = [UIColor redColor].CGColor;
         self.contentView.backgroundColor = [UIColor underPageBackgroundColor];
+        UIView *LineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 1)];
+        LineView.backgroundColor = [UIColor grayColor];
         
+        [self addSubview:LineView];
         self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         self.label.text = @"adad";
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
