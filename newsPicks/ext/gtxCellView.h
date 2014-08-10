@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface gtxCellView : UICollectionViewCell
-
+{
+    UIImageView * avatarImageView;
+}
 @property (strong, nonatomic) UILabel* label;
 @property (strong, nonatomic) UIImageView* image;
-
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *imageUrl;
 @end

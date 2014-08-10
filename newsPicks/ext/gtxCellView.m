@@ -22,11 +22,17 @@
         LineView.backgroundColor = [UIColor grayColor];
         
         [self addSubview:LineView];
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        
+        avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 20, 20)];
+        [self addSubview: avatarImageView];
+        
+        
+        
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(avatarImageView.frame.size.width + 3, 5, 40, 40)];
         self.label.text = @"adad";
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-        self.label.textColor = [UIColor redColor];
-        
+        self.label.textColor = [UIColor whiteColor];
+        [self addSubview:self.label];
         UIView *colorVIew = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 30)];
         colorVIew.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:colorVIew];
@@ -34,7 +40,22 @@
     }
     return self;
 }
+-(void)setTitle:(NSString *)title
+{
+    _label.text = title;
+}
+-(void)setImageUrl:(NSString *)imageUrl
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
+        NSURL *portraitUrl = [NSURL URLWithString:imageUrl];
+        UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            avatarImageView.image = protraitImg;
+        });
+    });
 
+
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
