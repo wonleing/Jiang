@@ -70,6 +70,7 @@ static char operationKey;
 - (void)setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state
 {
     [self setBackgroundImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
+    
 }
 
 - (void)setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder
@@ -97,7 +98,7 @@ static char operationKey;
     [self cancelCurrentImageLoad];
 
     [self setBackgroundImage:placeholder forState:state];
-
+    
     if (url)
     {
         __weak UIButton *wself = self;
