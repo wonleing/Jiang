@@ -1052,6 +1052,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
+					26942272197BFE9E00515F9E = {
+						DevelopmentTeam = K369M4RDKT;
+					};
 					2694228D197BFE9E00515F9E = {
 						TestTargetID = 26942272197BFE9E00515F9E;
 					};

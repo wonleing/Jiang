@@ -443,7 +443,7 @@
 
     }];
      */
-    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%@/%@/%@/%@",BaseUrl,AddThread,uid,title,type,content,@"",url];
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%@/%@/%@",BaseUrl,AddThread,uid,title,type,content,url];
     NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {

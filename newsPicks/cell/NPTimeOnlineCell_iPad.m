@@ -8,7 +8,7 @@
 
 #import "NPTimeOnlineCell_iPad.h"
 #import "NPListModel.h"
-
+#import "UIButton+WebCache.h"
 @implementation NPTimeOnlineCell_iPad
 
 - (id)initWithFrame:(CGRect)frame
@@ -60,6 +60,8 @@
         NPListModel *model = [array objectAtIndex:i];
         UILabel *label = [self valueForKey:[NSString stringWithFormat:@"titleLabel%d",i+1]];
         label.text=model.content;
+        UIButton *backBtn =[self valueForKey:[NSString stringWithFormat:@"backBtn%d",i+1]];
+        [backBtn setBackgroundImageWithURL:[NSURL URLWithString:model.contentImage] forState:UIControlStateNormal];
     }
 }
 
