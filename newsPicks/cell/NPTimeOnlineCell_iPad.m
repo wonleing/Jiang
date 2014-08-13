@@ -24,6 +24,7 @@
     [super awakeFromNib];
     for (int i=0; i<5; i++) {
         UIButton *backBtn = [self valueForKey:[NSString stringWithFormat:@"backBtn%d",i+1]];
+        backBtn.backgroundColor = [UIColor clearColor];
         [backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         UIButton *pickBtn = [self valueForKey:[NSString stringWithFormat:@"pickBtn%d",i+1]];
         [pickBtn addTarget:self action:@selector(pickBtnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,7 +62,15 @@
         UILabel *label = [self valueForKey:[NSString stringWithFormat:@"titleLabel%d",i+1]];
         label.text=model.content;
         UIButton *backBtn =[self valueForKey:[NSString stringWithFormat:@"backBtn%d",i+1]];
-        [backBtn setBackgroundImageWithURL:[NSURL URLWithString:model.contentImage] forState:UIControlStateNormal];
+//        [backBtn setBackgroundImageWithURL:[NSURL URLWithString:model.contentImage] forState:UIControlStateNormal];
+        UIImageView *imageview = [[UIImageView alloc] initWithFrame:backBtn.frame];
+        [imageview setImageWithURL:[NSURL URLWithString:model.contentImage]];
+        imageview.layer.masksToBounds =YES;
+        imageview.clipsToBounds = YES;
+        imageview.contentMode = UIViewContentModeScaleAspectFill;
+        [self addSubview:imageview];
+        imageview.userInteractionEnabled = NO;
+        [self sendSubviewToBack:imageview];
     }
 }
 
