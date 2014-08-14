@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *backBtn5;
 @property (weak, nonatomic) IBOutlet UIButton *pickBtn5;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel5;
+@property (weak, nonatomic) IBOutlet UIView *mContentView;
+
 @property (assign, nonatomic) IBOutlet id<NPTimeOnlineCellDelegate_iPad> delegate;
 @property (strong,nonatomic)NSArray *modelArray;
 -(void)restCell:(NSArray *)array;

@@ -63,14 +63,22 @@
         label.text=model.content;
         UIButton *backBtn =[self valueForKey:[NSString stringWithFormat:@"backBtn%d",i+1]];
 //        [backBtn setBackgroundImageWithURL:[NSURL URLWithString:model.contentImage] forState:UIControlStateNormal];
-        UIImageView *imageview = [[UIImageView alloc] initWithFrame:backBtn.frame];
-        [imageview setImageWithURL:[NSURL URLWithString:model.contentImage]];
-        imageview.layer.masksToBounds =YES;
-        imageview.clipsToBounds = YES;
-        imageview.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:imageview];
-        imageview.userInteractionEnabled = NO;
-        [self sendSubviewToBack:imageview];
+        UIImageView *iView = (UIImageView*)[self viewWithTag:1212+i];
+        if (!iView) {
+            UIImageView *imageview = [[UIImageView alloc] initWithFrame:backBtn.frame];
+            imageview.layer.masksToBounds =YES;
+            imageview.clipsToBounds = YES;
+            imageview.tag=1212+i;
+            imageview.contentMode = UIViewContentModeScaleAspectFill;
+            
+            [self.mContentView addSubview:imageview];
+            imageview.userInteractionEnabled = NO;
+            [self.mContentView sendSubviewToBack:imageview];
+            
+            iView=imageview;
+        }
+        [iView setImageWithURL:[NSURL URLWithString:model.contentImage]];
+        
     }
 }
 

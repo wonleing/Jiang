@@ -162,6 +162,7 @@
                                             <outlet property="backBtn4" destination="iEQ-nd-vQx" id="y9a-d0-Ast"/>
                                             <outlet property="backBtn5" destination="NM9-7I-L8E" id="Zv7-Cx-U67"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="yID-EG-ItO"/>
+                                            <outlet property="mContentView" destination="kOm-CC-JXr" id="LXt-h5-ybO"/>
                                             <outlet property="pickBtn1" destination="dMA-Hp-dgd" id="2hz-CF-VOY"/>
                                             <outlet property="pickBtn2" destination="d26-vg-3BD" id="aU5-ha-yMM"/>
                                             <outlet property="pickBtn3" destination="gww-tI-zI8" id="iZc-VZ-Gpj"/>
@@ -306,6 +307,7 @@
                                             <outlet property="backBtn4" destination="zDj-fX-efO" id="bet-dd-lcf"/>
                                             <outlet property="backBtn5" destination="5gI-DH-WYj" id="md3-Up-y4e"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="2fX-ON-bVr"/>
+                                            <outlet property="mContentView" destination="gJA-Qr-gpD" id="86W-yo-Ykc"/>
                                             <outlet property="pickBtn1" destination="V1v-Qh-cOS" id="DMd-GI-0qW"/>
                                             <outlet property="pickBtn2" destination="n0C-OL-y5L" id="jyb-MY-CCA"/>
                                             <outlet property="pickBtn3" destination="HYg-HK-ieS" id="91X-DT-EBC"/>
@@ -454,6 +456,7 @@
                                             <outlet property="backBtn4" destination="83v-bj-bdx" id="Swf-nl-T2V"/>
                                             <outlet property="backBtn5" destination="Msj-mB-bIh" id="6H7-Pd-31V"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="jxP-hK-ef2"/>
+                                            <outlet property="mContentView" destination="QoY-Fd-ols" id="J3t-vs-jKP"/>
                                             <outlet property="pickBtn1" destination="vJf-Z1-SRf" id="hx4-Bh-8N2"/>
                                             <outlet property="pickBtn2" destination="mRf-gh-Ybg" id="Doo-uu-zXx"/>
                                             <outlet property="pickBtn3" destination="8Ru-J0-wad" id="4lA-oW-crm"/>

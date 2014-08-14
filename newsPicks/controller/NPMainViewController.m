@@ -246,7 +246,6 @@ static void *flabbyContext = &flabbyContext;
     }else{
         self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
         [self presentPopupViewController:self.contentUrlViewController animationType:MJPopupViewAnimationFade];
-
     }
     
 }
