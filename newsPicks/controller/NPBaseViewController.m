@@ -33,6 +33,7 @@
 }
 -(void)loadView
 {
+    
     [super loadView];
     if (IOS7_OR_LATER) {
         self.view.frame=CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, [UIScreen mainScreen].bounds.size.width, self.view.frame.size.height-20);

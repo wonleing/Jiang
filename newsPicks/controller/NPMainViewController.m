@@ -31,6 +31,7 @@ static void *flabbyContext = &flabbyContext;
     
     
 }
+@property (strong,nonatomic)UINavigationController *commonNav;
 @property (strong,nonatomic)NPContentUrlViewController *contentUrlViewController;
 @property (strong,nonatomic)NPSettingViewController *settingViewController;
 @property (strong,nonatomic) TestViewController *testViewController;
@@ -244,8 +245,12 @@ static void *flabbyContext = &flabbyContext;
         self.navigationController.navigationBar.hidden=NO;
         [self.navigationController pushViewController:self.contentUrlViewController animated:YES];
     }else{
+        
         self.contentUrlViewController=[[NPContentUrlViewController alloc]initWithNibName:@"NPContentUrlViewController" bundle:nil];
-        [self presentPopupViewController:self.contentUrlViewController animationType:MJPopupViewAnimationFade];
+        self.commonNav = [[UINavigationController alloc]initWithRootViewController:self.contentUrlViewController];
+        self.commonNav.view.frame=self.contentUrlViewController.view.frame;
+        [self.commonNav setNavigationBarHidden:YES];
+        [self presentPopupViewController:self.commonNav animationType:MJPopupViewAnimationFade];
     }
     
 }
@@ -257,7 +262,10 @@ static void *flabbyContext = &flabbyContext;
         [self.navigationController pushViewController:setingController animated:YES];
     }else{
         self.settingViewController=[[NPSettingViewController alloc]init];
-        [self presentPopupViewController:self.settingViewController animationType:MJPopupViewAnimationFade];
+        self.commonNav = [[UINavigationController alloc]initWithRootViewController:self.settingViewController];
+        self.commonNav.view.frame=self.settingViewController.view.frame;
+//        [self.commonNav setNavigationBarHidden:YES];
+        [self presentPopupViewController:self.commonNav animationType:MJPopupViewAnimationFade];
 
     }
     

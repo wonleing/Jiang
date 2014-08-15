@@ -173,7 +173,7 @@
         }
     }
     if (indexPath.section==2) {
-        NPSettingInterestController *interestController=[[NPSettingInterestController alloc]init];
+        NPSettingInterestController *interestController=[[NPSettingInterestController alloc]initWithNibName:@"NPSettingInterestController" bundle:nil];
         [self.navigationController pushViewController:interestController animated:YES];
     }
     if (indexPath.section==3) {

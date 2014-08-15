@@ -35,7 +35,7 @@
             if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
                 [self.navigationController popViewControllerAnimated:YES];
             else
-                [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade completion:nil];
+                [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade completion:nil];
         }else{
             [SVProgressHUD showErrorWithStatus:@"发送失败"];
         }

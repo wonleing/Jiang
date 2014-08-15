@@ -171,6 +171,7 @@
 		374F12801994895B00B9731F /* NPTabBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 374F127F1994895B00B9731F /* NPTabBtn.m */; };
 		374F1284199496EA00B9731F /* LoginViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 374F1282199496EA00B9731F /* LoginViewController_iPad.m */; };
 		374F1285199496EA00B9731F /* LoginViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374F1283199496EA00B9731F /* LoginViewController_iPad.xib */; };
+		376117E1199DA50F00BADE7A /* NPSettingInterestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 376117E0199DA50F00BADE7A /* NPSettingInterestController.xib */; };
 		3761A8821995BE7F00C8B4FB /* NPTextInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3761A8801995BE7F00C8B4FB /* NPTextInputViewController.m */; };
 		3761A8831995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3761A8811995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib */; };
 		3761A8851995BEA400C8B4FB /* NPTextInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3761A8841995BEA400C8B4FB /* NPTextInputViewController.xib */; };
@@ -426,6 +427,7 @@
 		374F1281199496EA00B9731F /* LoginViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController_iPad.h; sourceTree = "<group>"; };
 		374F1282199496EA00B9731F /* LoginViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController_iPad.m; sourceTree = "<group>"; };
 		374F1283199496EA00B9731F /* LoginViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController_iPad.xib; sourceTree = "<group>"; };
+		376117E0199DA50F00BADE7A /* NPSettingInterestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPSettingInterestController.xib; sourceTree = "<group>"; };
 		3761A87F1995BE7F00C8B4FB /* NPTextInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPTextInputViewController.h; sourceTree = "<group>"; };
 		3761A8801995BE7F00C8B4FB /* NPTextInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPTextInputViewController.m; sourceTree = "<group>"; };
 		3761A8811995BE7F00C8B4FB /* NPTextInputViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NPTextInputViewController_iPad.xib; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				2644A00519868FDF00EAD5DF /* NPSettingPasswordController.m */,
 				2644A0071986904D00EAD5DF /* NPSettingInterestController.h */,
 				2644A0081986904D00EAD5DF /* NPSettingInterestController.m */,
+				376117E0199DA50F00BADE7A /* NPSettingInterestController.xib */,
 				373E8913198A2CC00080FBEF /* LoginViewController.h */,
 				373E8914198A2CC00080FBEF /* LoginViewController.m */,
 				373E8915198A2CC00080FBEF /* LoginViewController.xib */,
@@ -1086,6 +1089,7 @@
 			files = (
 				26942281197BFE9E00515F9E /* InfoPlist.strings in Resources */,
 				37193CA7198F39910065752D /* TestViewController.xib in Resources */,
+				376117E1199DA50F00BADE7A /* NPSettingInterestController.xib in Resources */,
 				26542D25197D2C08000E0317 /* zbar-help.html in Resources */,
 				26542D29197D2C08000E0317 /* zbar-samples.png in Resources */,
 				26542D27197D2C08000E0317 /* zbar-helpicons.png in Resources */,
