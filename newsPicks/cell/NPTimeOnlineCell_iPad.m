@@ -61,6 +61,16 @@
         NPListModel *model = [array objectAtIndex:i];
         UILabel *label = [self valueForKey:[NSString stringWithFormat:@"titleLabel%d",i+1]];
         label.text=model.content;
+        UILabel *timelabel = [self valueForKey:[NSString stringWithFormat:@"time%d",i]];
+        timelabel.text = model.time;
+        UILabel *titleLabel = [self valueForKey:[NSString stringWithFormat:@"title%d",i]];
+        titleLabel.text = model.title;
+        UIView *avatarView = [self valueForKey:[NSString stringWithFormat:@"avatarview%d",i]];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 46)];
+        [imageView setImageWithURL:[NSURL URLWithString:model.userimage]];
+        [avatarView addSubview:imageView];
+        
+        
         UIButton *backBtn =[self valueForKey:[NSString stringWithFormat:@"backBtn%d",i+1]];
 //        [backBtn setBackgroundImageWithURL:[NSURL URLWithString:model.contentImage] forState:UIControlStateNormal];
         UIImageView *iView = (UIImageView*)[self viewWithTag:1212+i];

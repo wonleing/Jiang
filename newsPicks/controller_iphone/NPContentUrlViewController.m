@@ -70,10 +70,9 @@
         str = [NSString stringWithFormat:@"http://%@",URL];
     }
     NSError *error ;
-    
     NSString *str2 = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:str] encoding:NSUTF8StringEncoding error:&error];
     if (!error) {
-        
+        NSLog(@"%@",str2);
         NSRange r1 =[str2 rangeOfString:@"<title>"];
         NSRange r2 =[str2 rangeOfString:@"</title>"];
         if (r1.location!=NSNotFound && r2.location!=NSNotFound) {
@@ -81,6 +80,8 @@
             
             NSString *str3 =[[str2 substringToIndex:r2.location]substringFromIndex:r1.location+r1.length];
             self.titleLabel.text=str3;
+        }else{
+            self.titleLabel.text=str2.length>20?[str2 substringToIndex:20]:str2;
         }
 
     }else{

@@ -29,7 +29,6 @@
         
         
         self.label = [[UILabel alloc] initWithFrame:CGRectMake(avatarImageView.frame.size.width + 3, 5, 40, 40)];
-        self.label.text = @"adad";
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         self.label.textColor = [UIColor whiteColor];
         [self addSubview:self.label];

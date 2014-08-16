@@ -49,7 +49,7 @@
 }
 -(void)loadMore
 {
-    [NPHTTPRequest getUserInfoFollowing:YES uid:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getRecommandUser:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
             currentPage++;
             [list addObjectsFromArray:result];

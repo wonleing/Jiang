@@ -26,4 +26,5 @@ typedef  enum
 @property(nonatomic,retain)NSString *subContent;
 @property(nonatomic,assign)NSInteger type;
 @property(nonatomic,retain)NSString *link;
+@property(nonatomic,retain)NSString *userimage;
 @end

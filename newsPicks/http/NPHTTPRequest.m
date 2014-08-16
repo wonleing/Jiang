@@ -390,7 +390,32 @@
     }];
 
 }
-
++ (void)getRecommandUser:(NSString *)uid page:(int)page usingSuccessBlock:(void (^)(BOOL isSuccess,NSArray *result))successBlock
+{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/0/%@/%d",BaseUrl,GetRecommandUser,uid,ItemNumPerPage,page];
+    //    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%d",BaseUrl,GetRecommandUser,ItemNumPerPage,page];
+    NSLog(@"%@",stringUrl);
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            NSMutableArray *list=[NSMutableArray array];
+            for (NSDictionary *dic in resultDictionary[@"data"]) {
+                NPUserDetaiInfolModel *model=[[NPUserDetaiInfolModel alloc]initWithDataDic:dic];
+                
+                [list addObject:model];
+            }
+            successBlock(YES,list);
+        }else{
+            
+            [SVProgressHUD showErrorWithStatus:resultDictionary[@"message"]];
+            
+            successBlock(NO,nil);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
+}
 
 +(void)getLoginUser:(NSString *)uname type:(NSString *)type usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
     NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,LoginStingUrl,uname,type];
@@ -443,7 +468,7 @@
 
     }];
      */
-    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%@/%@/%@",BaseUrl,AddThread,uid,title,type,content,url];
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@/%@/%@/%@/%@",BaseUrl,AddThread,uid,title,type,content,@"",[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {

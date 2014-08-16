@@ -26,6 +26,7 @@
 #define LoginStingUrl @"loginUser"
 #define GetFeedStingUrl @"getFeed"
 #define GetRecommandThread @"getRecommandThread"
+#define GetRecommandUser @"getRecommandUser"
 #define GetThreadInfo @"getThreadInfo"
 #define GetFollowing @"getFollowing"
 #define GetFollower @"getFollower"

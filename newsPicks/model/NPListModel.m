@@ -33,6 +33,7 @@
             ,@"replyCount",@"replyCount"
             ,@"title",@"title"
             ,@"link",@"link"
+            ,@"userimage",@"userimage"
             ,nil];
 }
 -(void)dealloc
