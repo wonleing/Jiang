@@ -28,7 +28,7 @@ static void *flabbyContext = &flabbyContext;
     NPMainleftView *leftView;
 //    UIView *topView;
 //    UIView *buttomView;
-    
+    NSMutableArray *list;
     
 }
 @property (strong,nonatomic)UINavigationController *commonNav;
@@ -58,7 +58,7 @@ static void *flabbyContext = &flabbyContext;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        list=[[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -70,7 +70,6 @@ static void *flabbyContext = &flabbyContext;
 - (void)viewDidLoad
 {
     self.modalInPopover=YES;
-    self.cellCount = 20;
     //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     //    [self.collectionView addGestureRecognizer:tapRecognizer];
     gtxCollectionLayout *layout = [[gtxCollectionLayout alloc] init];
@@ -116,12 +115,24 @@ static void *flabbyContext = &flabbyContext;
     [self.view addSubview:navControllerl.view];
     
     
-       self.view.backgroundColor=[UIColor clearColor];
+    self.view.backgroundColor=[UIColor clearColor];
     [super viewDidLoad];
+  
     
-    // Do any additional setup after loading the view.
+    [self loadMore];
 }
+-(void)loadMore
+{
+  NSString *_uid1 = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
+    [NPHTTPRequest getRecommandUser:_uid1 page:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+        if (isSuccess) {
+            [list addObjectsFromArray:result];
+            self.cellCount = list.count+2;
 
+            [self.uperCollectionView reloadData];
+        }
+    }];
+}
 -(void)viewDidAppear:(BOOL)animated
 {
     ((UIViewController *)[navControllerl.viewControllers objectAtIndex:0]).navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Tap" style:UIBarButtonItemStyleBordered target:self action:@selector(clickTap)];
@@ -289,15 +300,15 @@ static void *flabbyContext = &flabbyContext;
         frame.origin.y = cell.frame.origin.y - deltaH - deltaContenty;
         navControllerl.view.frame = frame;
     }
-    //if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
+    if (scrollView.contentOffset.y+mScrollview.frame.size.height>scrollView.contentSize.height) {
     
-//        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
-//    }
+        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.view.frame.size.height-250-(scrollView.contentOffset.y+mScrollview.frame.size.height-scrollView.contentSize.height), navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+    }
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.uperCollectionView) {
-        return 20;
+        return list.count + 2 ;
     }else{
     return 10;
     }
@@ -306,7 +317,12 @@ static void *flabbyContext = &flabbyContext;
 {
     if (collectionView == self.uperCollectionView) {
         gtxCellView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
-      
+        if (indexPath.row == list.count) {
+            cell.title = @"MY PICKS";
+        }
+        if (indexPath.row < list.count) {
+            cell.title = @"fsaaf";
+        }
         return cell;
     }else{
       UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];

@@ -42,6 +42,7 @@
 -(void)setTitle:(NSString *)title
 {
     _label.text = title;
+    
 }
 -(void)setImageUrl:(NSString *)imageUrl
 {
