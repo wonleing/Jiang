@@ -16,6 +16,7 @@
 }
 - (id)initWithAddress:(NSString*)urlString;
 - (id)initWithURL:(NSURL*)URL;
+@property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) NSString *elementId;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSString *subelementtitle;

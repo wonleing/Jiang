@@ -12,6 +12,7 @@
 @synthesize delegate=_delegate;
 +(NPMainleftView *)mainLeftView
 {
+    
     return [[NPMainleftView alloc]initWithFrame:CGRectMake(0, IOS7_OR_LATER?20:0, 40, 40*3)];
 }
 - (id)initWithFrame:(CGRect)frame
@@ -19,7 +20,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self restSubView];
-        // Initialization code
+        
     }
     return self;
 }

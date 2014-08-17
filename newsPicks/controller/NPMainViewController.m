@@ -20,6 +20,7 @@
 #import "TestViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "LoginViewController_iPad.h"
+#import "NPRecommandThreadModel.h"
 static void *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate,UIPopoverControllerDelegate>
 {
@@ -39,6 +40,7 @@ static void *flabbyContext = &flabbyContext;
 @property(copy,nonatomic)NSNumber *uid;
 @property (nonatomic, assign) NSInteger cellCount;
 @property (nonatomic,strong)UICollectionView *uperCollectionView;
+@property (nonatomic,strong)NSArray *upperArray;
 @end
 @implementation NPMainViewController
 + (UIColor *)randomColor {
@@ -58,11 +60,36 @@ static void *flabbyContext = &flabbyContext;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-    }
+        self.upperArray = [[NSArray alloc] init];    }
     return self;
 }
-
+-(void)configUperContent
+{
+  [NPHTTPRequest getRecommandThreadSuccessBlock:^(BOOL isSuccess, NSArray *array) {
+//      recomand.userimage = [dic objectForKey:@"userimage"];
+//      recomand.position = [dic objectForKey:@"position"];
+//      recomand.createdate = [dic objectForKey:@"createdate"];
+//      recomand.link = [dic objectForKey:@"link"];
+//      recomand.title = [dic objectForKey:@"title"];
+//      recomand.threadid = [dic objectForKey:@"threadid"];
+//      recomand.type = [dic objectForKey:@"type"];
+//      recomand.description = [dic objectForKey:@"description"];
+//      recomand.given = [dic objectForKey:@"given"];
+//      recomand.score = [dic objectForKey:@"score"];
+//      recomand.family = [dic objectForKey:@"family"];
+//      recomand.company = [dic objectForKey:@"company"];
+//      recomand.content = [dic objectForKey:@"content"];
+//      recomand.loginname = [dic objectForKey:@"loginname"];
+//      recomand.cateid = [dic objectForKey:@"cateid"];
+//      recomand.threadimage = [dic objectForKey:@"threadimage"];
+//      recomand.userid = [dic objectForKey:@"userid"];
+      self.upperArray = array;
+      self.cellCount = self.upperArray.count+1;
+      [self.uperCollectionView reloadData];
+      [self.view addSubview:self.uperCollectionView];
+      [self.view sendSubviewToBack:self.uperCollectionView];
+  }];
+}
 -(void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section
 {
     
@@ -70,7 +97,7 @@ static void *flabbyContext = &flabbyContext;
 - (void)viewDidLoad
 {
     self.modalInPopover=YES;
-    self.cellCount = 20;
+    
     //    UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
     //    [self.collectionView addGestureRecognizer:tapRecognizer];
     gtxCollectionLayout *layout = [[gtxCollectionLayout alloc] init];
@@ -79,20 +106,18 @@ static void *flabbyContext = &flabbyContext;
     [self.uperCollectionView setDelegate:self];
     [self.uperCollectionView setDataSource:self];
     [self.uperCollectionView registerClass:[gtxCellView class] forCellWithReuseIdentifier:@"MY_CELL"];
-    [self.uperCollectionView reloadData];
     self.uperCollectionView.backgroundColor = [UIColor whiteColor];
     self.uperCollectionView.showsVerticalScrollIndicator = false;
     self.uperCollectionView.contentOffset = CGPointMake(0, 2000);
+    //[self.view addSubview:self.uperCollectionView];
     mScrollview=[[UIScrollView alloc]init];
     mScrollview.frame=CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height-250);
     mScrollview.showsHorizontalScrollIndicator=NO;
     mScrollview.contentSize=CGSizeMake(mScrollview.frame.size.width, mScrollview.frame.size.height+2);
     mScrollview.delegate=self;
-    mScrollview.showsVerticalScrollIndicator=NO;
-    [self.view addSubview:mScrollview];
-    
+//    [self.view addSubview:mScrollview];
+//    mScrollview.backgroundColor = [UIColor redColor];
     leftView=[NPMainleftView mainLeftView];
-    [self.view addSubview:self.uperCollectionView];
     [self.view addSubview:leftView];
 
     leftView.delegate=self;
@@ -113,13 +138,14 @@ static void *flabbyContext = &flabbyContext;
 //    float y = mScrollview.frame.origin.y;
 //    float h = mScrollview.frame.size.height;
     navControllerl.view.frame=CGRectMake(0, 0, navControllerl.view.frame.size.width, navControllerl.view.frame.size.height);
+    
     [self.view addSubview:navControllerl.view];
     
     
        self.view.backgroundColor=[UIColor clearColor];
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
+    [self configUperContent];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -133,10 +159,13 @@ static void *flabbyContext = &flabbyContext;
     [UIView setAnimationDuration:0.35];
     if (navControllerl.view.frame.origin.y==0) {
         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.uperCollectionView.frame.size.height-70, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+        mScrollview.userInteractionEnabled = YES;
+
     }else
     {
          navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,0, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
         [self.view bringSubviewToFront:navControllerl.view];
+        mScrollview.userInteractionEnabled = NO;
     }
     [UIView commitAnimations];
     
@@ -193,8 +222,17 @@ static void *flabbyContext = &flabbyContext;
         frames.origin.x = 0;
         cell.frame = frames;
     }completion:^(BOOL finished) {
-//        NPUserDetailViewController *VC = [[NPUserDetailViewController alloc] init];
-//        [self.navigationController pushViewController:VC animated:YES];
+//        NPUserDetaiInfolModel *infoModel=[list objectAtIndex:indexPath.row];
+        NPUserDetailViewController *userController=[[NPUserDetailViewController alloc]init];
+        NPRecommandThreadModel *model = [[NPRecommandThreadModel alloc] init];
+        model = [self.upperArray objectAtIndex:indexPath.row];
+
+        userController.uid=model.userid;
+        userController.title=model.title;
+        self.navigationController.navigationBar.hidden=NO;
+
+        [self.navigationController pushViewController:userController animated:YES];
+        [self collectionView:self.uperCollectionView didDeselectItemAtIndexPath:indexPath];
     }];
     
 }
@@ -277,7 +315,7 @@ static void *flabbyContext = &flabbyContext;
 //}
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSIndexPath* index = [NSIndexPath indexPathForItem:(self.cellCount-1) inSection:0];
+   NSIndexPath* index = [NSIndexPath indexPathForItem:(self.cellCount-2) inSection:0];
     gtxCellView* cell = (gtxCellView*)[self.uperCollectionView cellForItemAtIndexPath:index];
     float deltaH = self.uperCollectionView.collectionViewLayout.collectionViewContentSize.height - self.uperCollectionView.frame.size.height;
     float deltaContenty = scrollView.contentOffset.y - deltaH;
@@ -297,7 +335,7 @@ static void *flabbyContext = &flabbyContext;
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.uperCollectionView) {
-        return 20;
+        return self.upperArray.count;
     }else{
     return 10;
     }
@@ -306,6 +344,25 @@ static void *flabbyContext = &flabbyContext;
 {
     if (collectionView == self.uperCollectionView) {
         gtxCellView *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MY_CELL" forIndexPath:indexPath];
+        NPRecommandThreadModel *model = [[NPRecommandThreadModel alloc] init];
+        model = [self.upperArray objectAtIndex:indexPath.row];
+        if (indexPath.row == self.upperArray.count) {
+            cell.title = @"MY CONTENT";
+        }else
+        {
+            cell.title = model.title;
+            if ([model.cateid intValue] == 1) {
+                cell.color = [UIColor redColor];
+            }
+            if ([model.cateid intValue] == 2) {
+                cell.color = [UIColor orangeColor];
+            }
+            if ([model.cateid intValue] == 3) {
+                cell.color = [UIColor cyanColor];
+            }
+            
+            
+        }
       
         return cell;
     }else{

@@ -33,7 +33,8 @@
 }
 -(void)clickHeadView:(UITapGestureRecognizer *)ges
 {
-    SVWebViewController *webController=[[SVWebViewController alloc]initWithURL:[NSURL URLWithString:self.listModel.link]];
+    SVWebViewController *webController=[[SVWebViewController alloc]init];
+    webController.URL = [NSURL URLWithString:self.listModel.link];
     webController.availableActions=0;
     [self.navigationController pushViewController:webController animated:YES];
     

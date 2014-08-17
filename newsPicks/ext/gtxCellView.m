@@ -16,7 +16,7 @@
     if (self) {
         self.contentView.layer.cornerRadius = 0.0;
         self.contentView.layer.borderWidth = 1.0f;
-        self.contentView.layer.borderColor = [UIColor redColor].CGColor;
+        //self.contentView.layer.borderColor = [UIColor redColor].CGColor;
         self.contentView.backgroundColor = [UIColor underPageBackgroundColor];
         UIView *LineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 1)];
         LineView.backgroundColor = [UIColor grayColor];
@@ -28,21 +28,26 @@
         
         
         
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(avatarImageView.frame.size.width + 3, 5, 40, 40)];
-        self.label.text = @"adad";
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(avatarImageView.frame.size.width + 3, 1, 200, 40)];
+       
         self.label.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
         self.label.textColor = [UIColor whiteColor];
         [self addSubview:self.label];
-        UIView *colorVIew = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 30)];
-        colorVIew.backgroundColor = [UIColor redColor];
-        [self.contentView addSubview:colorVIew];
-        [colorVIew addSubview:self.label];
+        _colorVIew = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, 30)];
+        _colorVIew.backgroundColor = [UIColor redColor];
+        [self.contentView addSubview:_colorVIew];
+        [_colorVIew addSubview:self.label];
     }
     return self;
+}
+-(void)setColor:(UIColor *)color
+{
+    [_colorVIew setBackgroundColor:color];
 }
 -(void)setTitle:(NSString *)title
 {
     _label.text = title;
+    [_label sizeToFit];
 }
 -(void)setImageUrl:(NSString *)imageUrl
 {

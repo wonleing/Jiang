@@ -28,7 +28,14 @@
         [SVProgressHUD showErrorWithStatus:@"URL无效或者没有有效的标题"];
         return;
     }
-    [NPHTTPRequest sendAddThread:[[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"] title:self.titleLabel.text type:@"0" content:self.contentTV.text link:self.urlTF.text usingSuccessBlock:^(BOOL isSuccess, NSDictionary *result) {
+    
+    NSString *str = nil;
+    if ([self.urlTF.text hasPrefix:@"http://"]) {
+        str=self.urlTF.text;
+    }else{
+        str = [NSString stringWithFormat:@"http://%@",self.urlTF.text];
+    }
+    [NPHTTPRequest sendAddThread:[[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"] title:self.titleLabel.text type:@"0" content:self.contentTV.text link:str usingSuccessBlock:^(BOOL isSuccess, NSDictionary *result) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
             
@@ -70,10 +77,9 @@
         str = [NSString stringWithFormat:@"http://%@",URL];
     }
     NSError *error ;
-    
     NSString *str2 = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:str] encoding:NSUTF8StringEncoding error:&error];
     if (!error) {
-        
+        NSLog(@"%@",str2);
         NSRange r1 =[str2 rangeOfString:@"<title>"];
         NSRange r2 =[str2 rangeOfString:@"</title>"];
         if (r1.location!=NSNotFound && r2.location!=NSNotFound) {
@@ -81,6 +87,8 @@
             
             NSString *str3 =[[str2 substringToIndex:r2.location]substringFromIndex:r1.location+r1.length];
             self.titleLabel.text=str3;
+        }else{
+            self.titleLabel.text=str2.length>20?[str2 substringToIndex:20]:str2;
         }
 
     }else{

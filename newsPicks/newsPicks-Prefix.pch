@@ -26,6 +26,7 @@
 #define LoginStingUrl @"loginUser"
 #define GetFeedStingUrl @"getFeed"
 #define GetRecommandThread @"getRecommandThread"
+#define GetRecommandUser @"getRecommandUser"
 #define GetThreadInfo @"getThreadInfo"
 #define GetFollowing @"getFollowing"
 #define GetFollower @"getFollower"
@@ -34,5 +35,5 @@
 #define GetRecommandUser @"getRecommandUser"
 #define AddThread @"addThread"
 #define FollowThread @"followThread"
-
+#define POSTURL @"http://203.195.175.230:8080/post/"
 

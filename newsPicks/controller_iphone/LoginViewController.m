@@ -45,6 +45,7 @@
             NSLog(@"Yes:%@",result);
             NSNumber *uid = result[@"data"];
             [[NSUserDefaults standardUserDefaults]setObject:uid forKey:@"com.zhangcheng.uid"];
+            [[NSUserDefaults standardUserDefaults]setObject:self.emailTF.text forKey:@"com.zhangcheng.username"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }else{

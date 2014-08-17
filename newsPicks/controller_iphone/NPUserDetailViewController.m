@@ -48,6 +48,8 @@
 {
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    self.navigationController.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
+//    self.view.frame = CGRectMake(0, 0, 320, self.view.frame.size.height);
 }
 
 - (void)viewDidLoad

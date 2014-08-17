@@ -7,6 +7,8 @@
 //
 
 #import "NPSetingProfileController.h"
+#import "SVProgressHUD.h"
+
 
 @interface NPSetingProfileController ()<UITextFieldDelegate,UITextViewDelegate>
 {
@@ -16,7 +18,9 @@
     UITextField *textFildFirstName;
      UITextField *textFildCompand;
     UITextField *textFildJob;
-    UITextView *textBio;;
+    UITextView *textBio;
+    
+    NSString *user_name;
 }
 @end
 
@@ -33,6 +37,20 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self creatNavBtn];
+    [self creatContentView];
+    [self requestUserMessage];
+}
+
+- (void)creatNavBtn
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"SAVE" style:UIBarButtonItemStylePlain target:self action:@selector(saveMessage)];
+}
+
+- (void)creatContentView
+{
     mScrollView.backgroundColor=[UIColor whiteColor];
     mScrollView=[[UIScrollView alloc]init];
     mScrollView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44);
@@ -48,18 +66,19 @@
     lableID.backgroundColor=[UIColor clearColor];
     lableID.textColor=[UIColor lightGrayColor];
     lableID.text=@"ID *";
-    [mScrollView addSubview:lableID];
-    
+//    [mScrollView addSubview:lableID];
+//
     textFieldID=[[UITextField alloc]init];
     textFieldID.frame=CGRectMake(lableID.frame.origin.x, lableID.frame.size.height+lableID.frame.origin.y,self.view.frame.size.width-leftPlace*2, 25);
     textFieldID.layer.borderWidth=0.5;
     textFieldID.delegate=self;
     textFieldID.layer.borderColor=[UIColor blackColor].CGColor;
     textFieldID.borderStyle=UITextBorderStyleNone;
-    [mScrollView addSubview:textFieldID];
+//    [mScrollView addSubview:textFieldID];
     
     UILabel *labeLastName=[[UILabel alloc]init];
-    labeLastName.frame=CGRectMake(lableID.frame.origin.x, textFieldID.frame.size.height+textFieldID.frame.size.height+place, (self.view.frame.size.width-leftPlace*2-30)/2, lableID.frame.size.height);
+//    labeLastName.frame=CGRectMake(lableID.frame.origin.x, textFieldID.frame.size.height+textFieldID.frame.size.height+place, (self.view.frame.size.width-leftPlace*2-30)/2, lableID.frame.size.height);
+    labeLastName.frame=CGRectMake(lableID.frame.origin.x, 3, (self.view.frame.size.width-leftPlace*2-30)/2, lableID.frame.size.height);
     labeLastName.font=lableID.font;
     labeLastName.textColor=lableID.textColor;
     labeLastName.backgroundColor=[UIColor clearColor];
@@ -75,13 +94,14 @@
     [mScrollView addSubview:textFildLastName];
     
     UILabel *labelFirstName=[[UILabel alloc]init];
-    labelFirstName.frame=CGRectMake(labeLastName.frame.size.width+labeLastName.frame.origin.x+30, labeLastName.frame.origin.y, labeLastName.frame.size.width, labeLastName.frame.size.height);
+//    labelFirstName.frame=CGRectMake(labeLastName.frame.size.width+labeLastName.frame.origin.x+30, labeLastName.frame.origin.y, labeLastName.frame.size.width, labeLastName.frame.size.height);
+    labelFirstName.frame=CGRectMake(labeLastName.frame.size.width+labeLastName.frame.origin.x+30, 3, labeLastName.frame.size.width, labeLastName.frame.size.height);
     labelFirstName.backgroundColor=[UIColor clearColor];
     labelFirstName.font=labeLastName.font;
     labelFirstName.textColor=labeLastName.textColor;
     labelFirstName.text=@"First Name";
     [mScrollView addSubview:labelFirstName];
-
+    
     textFildFirstName=[[UITextField alloc]init];
     textFildFirstName.frame=CGRectMake(labelFirstName.frame.origin.x, labelFirstName.frame.size.height+labelFirstName.frame.origin.y, labelFirstName.frame.size.width, textFieldID.frame.size.height);
     textFildFirstName.backgroundColor=[UIColor clearColor];
@@ -143,8 +163,6 @@
     mScrollView.contentSize=CGSizeMake(mScrollView.frame.size.width, textBio.frame.size.height+textBio.frame.origin.y+130);
     
     [mScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapContent)]];
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 -(void)tapContent
 {
@@ -171,15 +189,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)saveMessage
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+     [NPHTTPRequest sendProfile:user_name  family:textFildFirstName.text given:textFildLastName.text company:textFildCompand.text position:textFildJob.text description:textBio.text userimage:nil usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+         if (isSuccess) {
+             [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
+             
+             if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+                 [self.navigationController popViewControllerAnimated:YES];
+             else
+                 [self.navigationController popViewControllerAnimated:YES];
+         }else{
+             [SVProgressHUD showErrorWithStatus:@"发送失败"];
+         }
+     }];
 }
-*/
+
+- (void)requestUserMessage
+{
+    
+    [NPHTTPRequest getUserInfo:[[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"] successBlock:^(BOOL isSuccess, NPUserInfoModel *result) {
+        if (isSuccess) {
+            user_name = result.name;
+            textBio.text = result.description;
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:@"加载失败"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
+
 
 @end

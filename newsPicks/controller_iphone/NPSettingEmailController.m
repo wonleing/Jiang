@@ -29,6 +29,36 @@
 - (void)viewDidLoad
 {
     self.title=@"Email";
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self creatContent];
+}
+-(void)tapContent
+{
+    [textEmailTwo resignFirstResponder];
+    [textEmail resignFirstResponder];
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (void)creatContent
+{
+    UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithTitle:@"SAVE" style:UIBarButtonItemStylePlain target:self action:@selector(saveEmail)];
+    self.navigationItem.rightBarButtonItem = barBtn;
     UILabel *labelCurrent=[[UILabel alloc]init];
     labelCurrent.font=[UIFont systemFontOfSize:15];
     labelCurrent.textColor=[UIColor lightGrayColor];
@@ -76,29 +106,14 @@
     waring.text=@"*Re-enter for confirmation purpose";
     [self.view addSubview:waring];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapContent)]];
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
--(void)tapContent
-{
-    [textEmailTwo resignFirstResponder];
-    [textEmail resignFirstResponder];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)saveEmail
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([textEmail.text isEqualToString:textEmailTwo.text]) {
+        
+    }
 }
-*/
 
 @end

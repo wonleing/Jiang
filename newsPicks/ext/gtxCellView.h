@@ -16,4 +16,6 @@
 @property (strong, nonatomic) UIImageView* image;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *imageUrl;
+@property (strong,nonatomic) UIView *colorVIew;
+@property (strong,nonatomic)UIColor *color;
 @end

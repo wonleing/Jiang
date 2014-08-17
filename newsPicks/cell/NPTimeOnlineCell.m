@@ -44,7 +44,7 @@
         
         
         UILabel *contentLable=[[UILabel alloc]init];
-        contentLable.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, contLableTop, contentView.frame.size.width-contentImageView.frame.size.width-NPTimeOnlineCell_content_LeftPlace*2, NPTimeOnlineCell_content_imagHight-2*contLableTop);
+        contentLable.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, contLableTop, contentView.frame.size.width-contentImageView.frame.size.width-NPTimeOnlineCell_content_LeftPlace*2, NPTimeOnlineCell_content_imagHight);
         contentLable.numberOfLines=3;
         contentLable.textAlignment=NSTextAlignmentLeft;
         contentLable.font=[UIFont boldSystemFontOfSize:13];
@@ -56,7 +56,7 @@
     }else
     {
         UILabel *contentLable=[[UILabel alloc]init];
-        contentLable.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, contLableTop, contentView.frame.size.width-NPTimeOnlineCell_content_LeftPlace*2, NPTimeOnlineCell_content_imagHight-2*contLableTop);
+        contentLable.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, contLableTop, contentView.frame.size.width-NPTimeOnlineCell_content_LeftPlace*2, NPTimeOnlineCell_content_imagHight);
         contentLable.numberOfLines=3;
         contentLable.textAlignment=NSTextAlignmentLeft;
         contentLable.font=[UIFont boldSystemFontOfSize:13];
@@ -64,7 +64,18 @@
         contentLable.textColor=[UIColor blackColor];
         contentLable.text=model.title;
         [contentView addSubview:contentLable];
+        
     }
+    
+    UILabel *userNameLabel = [[UILabel alloc] init];
+    userNameLabel.frame = CGRectMake(NPTimeOnlineCell_content_LeftPlace, NPTimeOnlineCell_content_imagHight-2, contentView.frame.size.width-NPTimeOnlineCell_content_LeftPlace*2, 10);
+    userNameLabel.font = [UIFont systemFontOfSize:10];
+    userNameLabel.backgroundColor = [UIColor clearColor];
+    userNameLabel.textColor = [UIColor lightGrayColor];
+    userNameLabel.textAlignment = NSTextAlignmentLeft;
+    userNameLabel.text = model.loginname;
+    [contentView addSubview:userNameLabel];
+    
     UILabel *contLableSubTitle=[[UILabel alloc]init];
     contLableSubTitle.font=[UIFont systemFontOfSize:10];
     contLableSubTitle.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, NPTimeOnlineCell_content_imagHight, contentView.frame.size.width-NPTimeOnlineCell_content_imagWidth-NPTimeOnlineCell_content_LeftPlace*2, NPTimeOnlineCell_content_timeHigth);

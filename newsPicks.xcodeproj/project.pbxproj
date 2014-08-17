@@ -180,6 +180,10 @@
 		378BFC1F198F875300DBD405 /* UIViewController+MJPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 378BFC1D198F875300DBD405 /* UIViewController+MJPopupViewController.m */; };
 		37B016C9198A6B950069298D /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37B016C6198A6B950069298D /* SVProgressHUD.bundle */; };
 		37B016CA198A6B950069298D /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B016C8198A6B950069298D /* SVProgressHUD.m */; };
+		66F148BA199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F148B9199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m */; };
+		66F148BC199F182600720697 /* success-black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F148BB199F182600720697 /* success-black@2x.png */; };
+		66F148BF199F565100720697 /* NPUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F148BE199F565100720697 /* NPUserInfoModel.m */; };
+		66F148C219A0D66500720697 /* NPRecommandThreadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F148C119A0D66500720697 /* NPRecommandThreadModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -442,6 +446,13 @@
 		37B016C6198A6B950069298D /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		37B016C7198A6B950069298D /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		37B016C8198A6B950069298D /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		66F148B8199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPThemeOfInterestCellTableViewCell.h; sourceTree = "<group>"; };
+		66F148B9199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPThemeOfInterestCellTableViewCell.m; sourceTree = "<group>"; };
+		66F148BB199F182600720697 /* success-black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "success-black@2x.png"; path = "newsPicks/other/SVProgressHUD/SVProgressHUD.bundle/success-black@2x.png"; sourceTree = "<group>"; };
+		66F148BD199F565100720697 /* NPUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPUserInfoModel.h; sourceTree = "<group>"; };
+		66F148BE199F565100720697 /* NPUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPUserInfoModel.m; sourceTree = "<group>"; };
+		66F148C019A0D66500720697 /* NPRecommandThreadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPRecommandThreadModel.h; sourceTree = "<group>"; };
+		66F148C119A0D66500720697 /* NPRecommandThreadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPRecommandThreadModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -648,6 +659,10 @@
 				2649D9E0197EBCAF00377012 /* NPlistReplyModel.m */,
 				26BE23021981036A007CDBBB /* NPUserDetaiInfolModel.h */,
 				26BE23031981036A007CDBBB /* NPUserDetaiInfolModel.m */,
+				66F148BD199F565100720697 /* NPUserInfoModel.h */,
+				66F148BE199F565100720697 /* NPUserInfoModel.m */,
+				66F148C019A0D66500720697 /* NPRecommandThreadModel.h */,
+				66F148C119A0D66500720697 /* NPRecommandThreadModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -783,6 +798,7 @@
 		2694226A197BFE9E00515F9E = {
 			isa = PBXGroup;
 			children = (
+				66F148BB199F182600720697 /* success-black@2x.png */,
 				2694227C197BFE9E00515F9E /* newsPicks */,
 				26942295197BFE9E00515F9E /* newsPicksTests */,
 				26942275197BFE9E00515F9E /* Frameworks */,
@@ -973,6 +989,8 @@
 				2666CF071982839A00D4B106 /* NPFollowCell.m */,
 				376E571B1992283A00086E55 /* NPTimeOnlineCell_iPad.h */,
 				376E571C1992283A00086E55 /* NPTimeOnlineCell_iPad.m */,
+				66F148B8199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.h */,
+				66F148B9199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -1056,7 +1074,7 @@
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					26942272197BFE9E00515F9E = {
-						DevelopmentTeam = K369M4RDKT;
+						DevelopmentTeam = EH2EB3K3R9;
 					};
 					2694228D197BFE9E00515F9E = {
 						TestTargetID = 26942272197BFE9E00515F9E;
@@ -1092,6 +1110,7 @@
 				376117E1199DA50F00BADE7A /* NPSettingInterestController.xib in Resources */,
 				26542D25197D2C08000E0317 /* zbar-help.html in Resources */,
 				26542D29197D2C08000E0317 /* zbar-samples.png in Resources */,
+				66F148BC199F182600720697 /* success-black@2x.png in Resources */,
 				26542D27197D2C08000E0317 /* zbar-helpicons.png in Resources */,
 				26E8C7B2197D73020039EFB4 /* NP_IMG_default.jpg in Resources */,
 				26A43841197E053C009F225D /* Localizable.strings in Resources */,
@@ -1183,6 +1202,7 @@
 				2649D9DB197EAFBA00377012 /* NPlistPopularUsers.m in Sources */,
 				26542D1F197D2C08000E0317 /* UIImageView+AFNetworking.m in Sources */,
 				26942283197BFE9E00515F9E /* main.m in Sources */,
+				66F148C219A0D66500720697 /* NPRecommandThreadModel.m in Sources */,
 				26E8C791197D5DF10039EFB4 /* MKAnnotationView+WebCache.m in Sources */,
 				2649D9E1197EBCAF00377012 /* NPlistReplyModel.m in Sources */,
 				185CD718198AAA470076F05B /* gtxCellView.m in Sources */,
@@ -1195,6 +1215,7 @@
 				26542D19197D2C08000E0317 /* AFURLConnectionOperation.m in Sources */,
 				3741F7941990CD65006B8115 /* NPNewsListViewController_ipad.m in Sources */,
 				26542C91197D241A000E0317 /* NPNavigationViewController.m in Sources */,
+				66F148BF199F565100720697 /* NPUserInfoModel.m in Sources */,
 				3761A8821995BE7F00C8B4FB /* NPTextInputViewController.m in Sources */,
 				373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */,
 				26791FCC197FB796003DAC20 /* NPCustomMethod.m in Sources */,
@@ -1206,6 +1227,7 @@
 				374F1284199496EA00B9731F /* LoginViewController_iPad.m in Sources */,
 				26E8C793197D5DF10039EFB4 /* NSData+GIF.m in Sources */,
 				26542D17197D2C08000E0317 /* AFPropertyListRequestOperation.m in Sources */,
+				66F148BA199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m in Sources */,
 				26791FC6197F6B70003DAC20 /* NPNewListDetailFootLoadView.m in Sources */,
 				2613BBF01980109F00628079 /* NPUserDetailViewController.m in Sources */,
 				26542C8D197D241A000E0317 /* NPBaseViewController.m in Sources */,
@@ -1388,6 +1410,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1397,7 +1420,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fd7353de-859e-4ee7-9ead-d4671693b150";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1409,6 +1432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1418,7 +1442,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fd7353de-859e-4ee7-9ead-d4671693b150";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};

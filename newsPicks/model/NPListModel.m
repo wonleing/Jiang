@@ -20,6 +20,7 @@
 @synthesize replyCount=_replyCount;
 @synthesize replyModel=_replyModel;
 @synthesize title=_title;
+@synthesize loginname=_loginname;
 - (NSDictionary*)attributeMapDictionary
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -33,6 +34,8 @@
             ,@"replyCount",@"replyCount"
             ,@"title",@"title"
             ,@"link",@"link"
+            ,@"userimage",@"userimage"
+            ,@"loginname",@"loginname"
             ,nil];
 }
 -(void)dealloc
@@ -46,6 +49,7 @@
     RELEASE_SAFELY(_replyCount);
     RELEASE_SAFELY(_replyModel);
     RELEASE_SAFELY(_title);
+    RELEASE_SAFELY(_loginname);
     [super dealloc];
 }
 @end
