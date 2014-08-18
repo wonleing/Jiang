@@ -17,7 +17,7 @@
 @implementation NPTextInputViewController
 
 -(void)sendAction:(id)sender{
-    [NPHTTPRequest getFollowThread:[NSString stringWithFormat:@"%d",self.uid.integerValue] thread:self.tid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+    [NPHTTPRequest getLikeThread:[NSString stringWithFormat:@"%d",self.uid.integerValue] thread:self.tid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
 //        NSLog(@"%@",dic);
 //        if (isSuccess) {
 //        }

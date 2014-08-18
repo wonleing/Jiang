@@ -35,5 +35,6 @@
 #define GetRecommandUser @"getRecommandUser"
 #define AddThread @"addThread"
 #define FollowThread @"followThread"
+#define LikeThread @"likeThread"
 #define POSTURL @"http://203.195.175.230:8080/post/"
 
