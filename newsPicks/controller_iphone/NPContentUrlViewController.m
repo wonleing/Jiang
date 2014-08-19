@@ -11,11 +11,13 @@
 #import "SVProgressHUD.h"
 #import "UIViewController+MJPopupViewController.h"
 
-@interface NPContentUrlViewController (){
+@interface NPContentUrlViewController ()<UIWebViewDelegate>{
     NSThread *th;
 }
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBtn;
 @property (weak, nonatomic) IBOutlet UITextField *urlTF;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTV;
 @property (weak, nonatomic) IBOutlet UIButton *btn;
@@ -61,13 +63,41 @@
     return self;
 }
 - (IBAction)URLChangedAction:(UITextField*)sender {
-    if (th) {
-        [th cancel];
-        th=nil;
-    }
+//    if (th) {
+//        [th cancel];
+//        th=nil;
+//    }
+//    
+//    th = [[NSThread alloc]initWithTarget:self selector:@selector(dealWithURL:) object:sender.text];
+//    [th start];
     
-    th = [[NSThread alloc]initWithTarget:self selector:@selector(dealWithURL:) object:sender.text];
-    [th start];
+    NSString *str = nil;
+    if ([sender.text hasPrefix:@"http://"]) {
+        str=sender.text;
+    }else{
+        str = [NSString stringWithFormat:@"http://%@",sender.text];
+    }
+    [self.webView stopLoading];
+    NSURL *url =[NSURL URLWithString:str];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =NO;
+
+    self.titleLabel.text=@"";
+}
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =YES;
+
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =NO;
+
+    NSString *title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if (![self.titleLabel.text isEqualToString:title]) {
+        self.titleLabel.text=title;
+    }
 }
 -(void)dealWithURL:(NSString*)URL{
     NSString *str = nil;
