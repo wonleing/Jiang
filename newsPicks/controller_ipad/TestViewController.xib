@@ -16,19 +16,26 @@
             <rect key="frame" x="0.0" y="0.0" width="270" height="400"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Njn-me-gU9">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Njn-me-gU9">
                     <rect key="frame" x="0.0" y="36" width="270" height="364"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="270" id="lOJ-Wy-JFR"/>
+                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bNR-JV-id2"/>
                         <outlet property="delegate" destination="-1" id="ZOm-BF-9MJ"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPN-rD-D8v">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPN-rD-D8v">
                     <rect key="frame" x="0.0" y="0.0" width="270" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <inset key="titleEdgeInsets" minX="211" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="270" id="4AT-D9-IQm"/>
+                        <constraint firstAttribute="height" constant="36" id="e1h-4A-xN6"/>
+                    </constraints>
+                    <inset key="titleEdgeInsets" minX="193" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" title="Back >">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -38,6 +45,16 @@
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Njn-me-gU9" secondAttribute="bottom" id="5NH-Ia-Em2"/>
+                <constraint firstAttribute="trailing" secondItem="Njn-me-gU9" secondAttribute="trailing" id="B5g-Kp-w2f"/>
+                <constraint firstItem="hPN-rD-D8v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BUE-2H-W8Y"/>
+                <constraint firstItem="Njn-me-gU9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I4b-u1-d7H"/>
+                <constraint firstItem="hPN-rD-D8v" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="a0B-FU-O6y"/>
+                <constraint firstItem="Njn-me-gU9" firstAttribute="top" secondItem="hPN-rD-D8v" secondAttribute="bottom" id="o3i-e7-z7E"/>
+                <constraint firstItem="Njn-me-gU9" firstAttribute="top" secondItem="hPN-rD-D8v" secondAttribute="bottom" id="u2O-23-j4h"/>
+                <constraint firstAttribute="trailing" secondItem="hPN-rD-D8v" secondAttribute="trailing" id="wB2-jp-W32"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
