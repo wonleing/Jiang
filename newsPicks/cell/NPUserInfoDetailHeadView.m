@@ -96,7 +96,7 @@
 {
     _multiPageView.text=infoModel.description;
     [_detailView restValue:infoModel];
-    [self changeFollowStatus:infoModel.is_following.boolValue];
+    [self changeFollowStatus:[infoModel.is_following isEqualToString:@"1"]];
     _followingNumBtn.descriptionLabel.text=@"Following";
     [_followingNumBtn setTitle:infoModel.following_num==nil?@"0":infoModel.following_num forState:UIControlStateNormal];
     

@@ -28,7 +28,7 @@
 +(void)sendProfile:(NSString*)username family:(NSString*)family given:(NSString*)given company:(NSString*)company position:(NSString*)position description:(NSString*)description userimage:(NSString*)userimage usingSuccessBlock:(void (^)(BOOL isSuccess,NSDictionary *dic))successBlock;
 
 + (void)getUserInfo:(NSString *)uid successBlock:(void (^)(BOOL isSuccess,NPUserInfoModel *result))successBlock;
-
++(void)getRelation:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock;
 + (void)getRecommandThreadSuccessBlock:(void (^)(BOOL isSuccess, NSArray *array))successBlock;
 +(void)getUnfollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock;
 +(void)getFollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock;

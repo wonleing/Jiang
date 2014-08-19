@@ -32,7 +32,7 @@
 #define GetFollower @"getFollower"
 #define FollowUser @"followUser"
 #define UnfollowUser @"unfollowUser"
-
+#define GetRelation @"getRelation"
 #define GetUserProfile @"getUserProfile"
 #define GetRecommandUser @"getRecommandUser"
 #define AddThread @"addThread"

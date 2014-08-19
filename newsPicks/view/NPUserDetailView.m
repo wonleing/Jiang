@@ -94,7 +94,7 @@
     }else
     {
         
-        loackImageView.hidden=YES;
+//        loackImageView.hidden=YES;
         btnPremium.hidden=YES;
         likeLabel.hidden=NO;
         typeLabel.hidden=NO;

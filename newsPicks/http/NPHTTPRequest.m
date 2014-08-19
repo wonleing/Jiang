@@ -333,8 +333,8 @@
     NSLog(@"%@",stringUrl);
     [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
         if (1 == [resultDictionary [@"status"] integerValue]) {
-            NPUserDetaiInfolModel *model=[[NPUserDetaiInfolModel alloc]initWithDataDic:resultDictionary[@"data"]];
-            
+            NPUserDetaiInfolModel *model=[[NPUserDetaiInfolModel alloc]initWithDataDic:((NSArray*)resultDictionary[@"data"]).lastObject];
+//            NSLog(@"%@",((NSArray*)resultDictionary[@"data"]).lastObject);
             successBlock(YES,model);
         }else{
             successBlock(NO,nil);
@@ -483,8 +483,24 @@
     } andFailureBlock:^(NSError *resultError) {
         successBlock(NO,nil);
     }];
-    
 }
+
++(void)getRelation:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,GetRelation,uid,tid];
+    NSLog(@"%@",stringUrl);
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,[resultDictionary objectForKey:@"data"]);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+}
+
 +(void)getUnfollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
     NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,UnfollowUser,uid,tid];
     NSLog(@"%@",stringUrl);

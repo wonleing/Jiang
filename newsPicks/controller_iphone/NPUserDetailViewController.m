@@ -24,13 +24,14 @@
     MJRefreshHeaderView* refreshHeadView;
     MJRefreshFooterView *refreshFootView;
     NPUserInfoDetailHeadView *infoDetailHeadView;
-    NPUserDetaiInfolModel *userInfoModel;
     NSMutableArray *list;
     UITableView *mTableView;
-    
+    NSString *m_uid;
+
     int currentPage;
 }
 @property (strong, nonatomic)NPTextInputViewController *textInputviewController;
+@property (strong, nonatomic)NPUserDetaiInfolModel *userInfoModel;
 
 @end
 
@@ -55,6 +56,8 @@
 - (void)viewDidLoad
 {
     currentPage=1;
+    m_uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
+
     list=[[NSMutableArray array]init];
     mTableView=[[UITableView alloc]init];
     mTableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44);
@@ -82,15 +85,28 @@
     mTableView.tableHeaderView=infoDetailHeadView;
     mTableView.tableHeaderView.frame=CGRectMake(0, 0, infoDetailHeadView.frame.size.width, infoDetailHeadView.frame.size.height);
     [super viewDidLoad];
-    [self performSelector:@selector(loadInfoData) withObject:nil afterDelay:0.8];
+    [self performSelector:@selector(loadInfoData) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(loadGetRalation) withObject:nil afterDelay:0.9];
+
     [self performSelector:@selector(reloadDataForFirst) withObject:nil afterDelay:1];
     // Do any additional setup after loading the view.
 }
 -(void)loadInfoData
 {
     [NPHTTPRequest getUserInfo:self.uid usingSuccessBlock:^(BOOL isSuccess, NPUserDetaiInfolModel *result) {
-        userInfoModel=result;
-        [infoDetailHeadView restValue:userInfoModel];
+        self.userInfoModel=result;
+        NSLog(@"%@",self.userInfoModel.uid);
+        [infoDetailHeadView restValue:self.userInfoModel];
+    }];
+}
+-(void)loadGetRalation{
+    [NPHTTPRequest getRelation:m_uid targetUser:self.uid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+        if (isSuccess) {
+            self.userInfoModel.is_following=[NSString stringWithFormat:@"%d",((NSNumber*)dic[@"isfollower"]).intValue];
+            self.userInfoModel.followers_num=[NSString stringWithFormat:@"%d",((NSNumber*)dic[@"follower"]).intValue];
+            self.userInfoModel.following_num=[NSString stringWithFormat:@"%d",((NSNumber*)dic[@"following"]).intValue];
+            [infoDetailHeadView restValue:self.userInfoModel];
+        }
     }];
 }
 -(void)reloadDataForFirst
@@ -173,7 +189,7 @@
 {
     NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
     check.type=NPCheckFollow_following;
-    check.uid=userInfoModel.uid;
+    check.uid=self.userInfoModel.uid;
 
     [self.navigationController pushViewController:check animated:YES];
 }
@@ -181,27 +197,43 @@
 {
     NPCheckFollowingAndFollowersController *check=[[NPCheckFollowingAndFollowersController alloc]init];
     check.type=NPCheckFollow_followers;
-    check.uid=userInfoModel.uid;
+    check.uid=self.userInfoModel.uid;
     [self.navigationController pushViewController:check animated:YES];
 }
 -(void)change
 {
-    [infoDetailHeadView changeFollowStatus:userInfoModel.is_following.boolValue];
+    [infoDetailHeadView changeFollowStatus:[self.userInfoModel.is_following isEqualToString:@"1"]];
 }
 -(void)NPUserInfoDetailHeadViewClickFollow
 {
-    if (userInfoModel.is_following.boolValue) {
-        userInfoModel.is_following=@"0";
-        infoDetailHeadView.followingBtn.highlighted=YES;
-        [infoDetailHeadView.followingBtn performSelector:@selector(setHighlighted:) withObject:NO afterDelay:1.0];
-        [self performSelector:@selector(change) withObject:nil afterDelay:1.0];
+    if ([self.userInfoModel.is_following isEqualToString:@"0"]) {
+        [NPHTTPRequest getFollowUser:m_uid targetUser:self.uid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+            if(isSuccess){
+                self.userInfoModel.is_following=@"1";
+//                infoDetailHeadView.followingBtn.highlighted=YES;
+//                [infoDetailHeadView.followingBtn performSelector:@selector(setHighlighted:) withObject:NO afterDelay:1.0];
+                //[self performSelector:@selector(change) withObject:nil afterDelay:1.0];
+                [self change];
+            }else{
+                [SVProgressHUD showErrorWithStatus:dic[@"message"]];
+            }
+        }];
+        
     }else
     {
         if ([NPAlertView showAlert:@"Confirm" message:@"Do you want to unfollow this user/robot?" cancle:@"Cancel" other:@"OK"]==1) {
-            userInfoModel.is_following=@"1";
-            infoDetailHeadView.followingBtn.highlighted=YES;
-            [infoDetailHeadView.followingBtn performSelector:@selector(setHighlighted:) withObject:NO afterDelay:1.0];
-            [self performSelector:@selector(change) withObject:nil afterDelay:1.0];
+            [NPHTTPRequest getUnfollowUser:m_uid targetUser:self.uid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+                if(isSuccess){
+                    self.userInfoModel.is_following=@"0";
+//                    infoDetailHeadView.followingBtn.highlighted=YES;
+//                    [infoDetailHeadView.followingBtn performSelector:@selector(setHighlighted:) withObject:NO afterDelay:1.0];
+//                    [self performSelector:@selector(change) withObject:nil afterDelay:1.0];
+                    [self change];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:dic[@"message"]];
+                }
+            }];
+            
 
         }
     }

@@ -61,16 +61,21 @@
     mTableView.dataSource=self;
     [self.view addSubview:mTableView];
 
-    [self loadMore];
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadMore];
+
+}
 -(void)loadMore
 {
-    [NPHTTPRequest getRecommandUser:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getRecommandUser:_uid page:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
-            currentPage++;
+//            currentPage++;
+            [list removeAllObjects];
             [list addObjectsFromArray:result];
             [mTableView reloadData];
         }
