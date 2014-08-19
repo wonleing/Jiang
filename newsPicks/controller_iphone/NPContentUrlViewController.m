@@ -77,6 +77,10 @@
         str = [NSString stringWithFormat:@"http://%@",URL];
     }
     NSError *error ;
+//    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:str]];
+//    NSData *received = [NSURLConnection sendSynchronousRequest:req returningResponse:nil error:nil];
+//    NSString *str2 = [[NSString alloc]initWithData:received encoding:NSUTF8StringEncoding];
+    
     NSString *str2 = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:str] encoding:NSUTF8StringEncoding error:&error];
     if (!error) {
         NSLog(@"%@",str2);

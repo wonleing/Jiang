@@ -30,6 +30,8 @@
 #define GetThreadInfo @"getThreadInfo"
 #define GetFollowing @"getFollowing"
 #define GetFollower @"getFollower"
+#define FollowUser @"followUser"
+#define UnfollowUser @"unfollowUser"
 
 #define GetUserProfile @"getUserProfile"
 #define GetRecommandUser @"getRecommandUser"

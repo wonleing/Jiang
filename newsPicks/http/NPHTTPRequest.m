@@ -469,6 +469,38 @@
     
 }
 
++(void)getFollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,FollowUser,uid,tid];
+    NSLog(@"%@",stringUrl);
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
+}
++(void)getUnfollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock{
+    NSString *stringUrl=[NSString stringWithFormat:@"%@%@/%@/%@",BaseUrl,UnfollowUser,uid,tid];
+    NSLog(@"%@",stringUrl);
+    [NPHTTPRequest getDictionaryWithStringURL:stringUrl usingSuccessBlock:^(NSDictionary *resultDictionary) {
+        if (1 == [resultDictionary [@"status"] integerValue]) {
+            
+            successBlock(YES,resultDictionary);
+        }else{
+            successBlock(NO,resultDictionary);
+        }
+        
+    } andFailureBlock:^(NSError *resultError) {
+        successBlock(NO,nil);
+    }];
+    
+}
 
 
 
@@ -489,7 +521,7 @@
     
     [params setObject:type forKey:@"cateid"];
     [params setObject:content forKey:@"content"];
-    [params setObject:url forKey:@"link"];
+    [params setObject:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"link"];
     
     
     

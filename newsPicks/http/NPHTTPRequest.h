@@ -30,5 +30,6 @@
 + (void)getUserInfo:(NSString *)uid successBlock:(void (^)(BOOL isSuccess,NPUserInfoModel *result))successBlock;
 
 + (void)getRecommandThreadSuccessBlock:(void (^)(BOOL isSuccess, NSArray *array))successBlock;
-
++(void)getUnfollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock;
++(void)getFollowUser:(NSString *)uid targetUser:(NSString *)tid usingSuccessBlock:(void (^)(BOOL, NSDictionary *))successBlock;
 @end
