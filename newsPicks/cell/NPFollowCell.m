@@ -32,19 +32,20 @@
 }
 -(void)initSub
 {
+    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
     headView=[[UIImageView alloc]init];
     headView.frame=CGRectMake(5, 5, 60, 60);
     [self.contentView addSubview:headView];
     
     name=[[UILabel alloc] init];
-    name.frame=CGRectMake(headView.frame.size.width+headView.frame.origin.x+5, headView.frame.origin.y, [UIScreen mainScreen].bounds.size.width-headView.frame.origin.x-headView.frame.origin.y-10, 20);
+    name.frame=CGRectMake(headView.frame.size.width+headView.frame.origin.x+5, headView.frame.origin.y, (isIPhone?320:270)-headView.frame.origin.x-headView.frame.origin.y-10, 20);
     name.font=[UIFont boldSystemFontOfSize:17];
     name.textColor=[UIColor blackColor];
     name.backgroundColor=[UIColor clearColor];
     [self.contentView addSubview:name];
     followBtn=[NPUserFollowingButton buttonWithType:UIButtonTypeCustom];
     followBtn.titleLabel.font=[UIFont systemFontOfSize:13];
-    followBtn.frame=CGRectMake([UIScreen mainScreen].bounds.size.width-75, 0, 70, 30);
+    followBtn.frame=CGRectMake((isIPhone?320:270)-75, 0, 70, 30);
     [followBtn addTarget:self action:@selector(clickFollow:) forControlEvents:UIControlEventTouchUpInside];
     followBtn.center=CGPointMake(followBtn.center.x, headView.center.y);
     [self.contentView addSubview:followBtn];

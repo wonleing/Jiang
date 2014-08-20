@@ -12,6 +12,7 @@
 #import "NPUserDetaiInfolModel.h"
 #import "NPUserDetailViewController.h"
 #import "NPNewsListViewController_ipad.h"
+#import "SVProgressHUD.h"
 @interface TestViewController ()<UITableViewDataSource,UITableViewDelegate,NPFollowCellDelegate>{
     IBOutlet UITableView *mTableView;
     NSMutableArray *list;
@@ -49,9 +50,10 @@
 }
 -(void)loadMore
 {
-    [NPHTTPRequest getRecommandUser:_uid page:currentPage+1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
+    [NPHTTPRequest getRecommandUser:_uid page:1 usingSuccessBlock:^(BOOL isSuccess, NSArray *result) {
         if (isSuccess) {
-            currentPage++;
+//            currentPage++;
+            [list removeAllObjects];
             [list addObjectsFromArray:result];
             [mTableView reloadData];
         }
@@ -82,12 +84,27 @@
     NPUserDetaiInfolModel *infoModel=[list objectAtIndex:[mTableView indexPathForCell:cell].row];
     if (infoModel.is_following.boolValue) {
         infoModel.is_following=@"0";
+        [NPHTTPRequest getUnfollowUser:_uid targetUser:infoModel.uid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+            if(isSuccess){
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:dic[@"message"]];
+            }
+        }];
     }else
     {
         infoModel.is_following=@"1";
+        [NPHTTPRequest getFollowUser:_uid targetUser:infoModel.uid usingSuccessBlock:^(BOOL isSuccess, NSDictionary *dic) {
+            if(isSuccess){
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:dic[@"message"]];
+            }
+        }];
     }
     [mTableView reloadData];
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NPUserDetaiInfolModel *infoModel=[list objectAtIndex:indexPath.row];
