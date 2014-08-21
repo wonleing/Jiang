@@ -34,6 +34,10 @@
     [textField resignFirstResponder];
     return NO;
 }
+-(IBAction)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)loginAction:(id)sender{
     if ([self.emailTF.text isEqualToString:@""]) {
         return;
@@ -45,6 +49,27 @@
             [[NSUserDefaults standardUserDefaults]setObject:uid forKey:@"com.zhangcheng.uid"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            if (result==nil) {
+                [SVProgressHUD showErrorWithStatus:@"网络请求失败"];
+            }else{
+                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+            }
+            NSLog(@"no:%@",result);
+        }
+    }];
+}
+-(IBAction)regAction:(id)sender{
+    if ([self.emailTF.text isEqualToString:@""]) {
+        return;
+    }
+    [NPHTTPRequest getLoginUser:self.emailTF.text type:@"facebook" usingSuccessBlock:^(BOOL isSuccess, NSDictionary *result) {
+        if (isSuccess) {
+            NSLog(@"Yes:%@",result);
+            NSNumber *uid = result[@"data"];
+            [[NSUserDefaults standardUserDefaults]setObject:uid forKey:@"com.zhangcheng.uid"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+            [self performSegueWithIdentifier:@"next" sender:nil];
         }else{
             if (result==nil) {
                 [SVProgressHUD showErrorWithStatus:@"网络请求失败"];

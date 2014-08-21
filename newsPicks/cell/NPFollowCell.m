@@ -30,6 +30,15 @@
     }
     return self;
 }
+- (id)initWithStyle2:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initSub2];
+        // Initialization code
+    }
+    return self;
+}
 -(void)initSub
 {
     BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
@@ -46,6 +55,40 @@
     followBtn=[NPUserFollowingButton buttonWithType:UIButtonTypeCustom];
     followBtn.titleLabel.font=[UIFont systemFontOfSize:13];
     followBtn.frame=CGRectMake((isIPhone?320:270)-75, 0, 70, 30);
+    [followBtn addTarget:self action:@selector(clickFollow:) forControlEvents:UIControlEventTouchUpInside];
+    followBtn.center=CGPointMake(followBtn.center.x, headView.center.y);
+    [self.contentView addSubview:followBtn];
+    
+    typeContent=[[UILabel alloc] init];
+    typeContent.frame=CGRectMake(name.frame.origin.x, 0, followBtn.frame.origin.x-name.frame.origin.x-5, 15);
+    typeContent.font=[UIFont systemFontOfSize:14];
+    typeContent.textColor=[UIColor blackColor];
+    typeContent.backgroundColor=[UIColor clearColor];
+    typeContent.center=CGPointMake(typeContent.center.x, headView.center.y+4);
+    [self.contentView addSubview:typeContent];
+    
+    likeNum=[[UILabel alloc]init];
+    likeNum.frame=CGRectMake(typeContent.frame.origin.x, headView.frame.origin.y+headView.frame.size.height-typeContent.frame.size.height, name.frame.size.width, typeContent.frame.size.height);
+    likeNum.backgroundColor=[UIColor clearColor];
+    likeNum.font=typeContent.font;
+    likeNum.textColor=typeContent.textColor;
+    [self.contentView addSubview:likeNum];
+}
+-(void)initSub2
+{
+    headView=[[UIImageView alloc]init];
+    headView.frame=CGRectMake(5, 5, 60, 60);
+    [self.contentView addSubview:headView];
+    
+    name=[[UILabel alloc] init];
+    name.frame=CGRectMake(headView.frame.size.width+headView.frame.origin.x+5, headView.frame.origin.y, 500-headView.frame.origin.x-headView.frame.origin.y-10, 20);
+    name.font=[UIFont boldSystemFontOfSize:17];
+    name.textColor=[UIColor blackColor];
+    name.backgroundColor=[UIColor clearColor];
+    [self.contentView addSubview:name];
+    followBtn=[NPUserFollowingButton buttonWithType:UIButtonTypeCustom];
+    followBtn.titleLabel.font=[UIFont systemFontOfSize:13];
+    followBtn.frame=CGRectMake(500-75, 0, 70, 30);
     [followBtn addTarget:self action:@selector(clickFollow:) forControlEvents:UIControlEventTouchUpInside];
     followBtn.center=CGPointMake(followBtn.center.x, headView.center.y);
     [self.contentView addSubview:followBtn];

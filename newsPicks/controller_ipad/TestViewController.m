@@ -19,6 +19,7 @@
     
     NSString *_uid;
     int currentPage;
+    BOOL isNib;
 }
 
 @end
@@ -31,11 +32,15 @@
     if (self) {
         // Custom initialization
         self.view.frame=CGRectMake(768, 40, self.view.frame.size.width, self.view.frame.size.height);
+        isNib=YES;
     }
     return self;
 }
 -(IBAction)backAction:(id)sender{
     [((NPMainViewController*)self.parentViewController) closeSecView];
+}
+-(IBAction)backAction2{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad
 {
@@ -47,6 +52,9 @@
     list=[[NSMutableArray alloc]init];
     [self loadMore];
 
+}
+-(IBAction)nextAction{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)loadMore
 {
@@ -72,7 +80,13 @@
     static NSString *cellID=@"checkID";
     NPFollowCell *cell=[tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell=[[NPFollowCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        if (isNib) {
+            cell=[[NPFollowCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+
+        }else{
+            cell=[[NPFollowCell alloc]initWithStyle2:UITableViewCellStyleDefault reuseIdentifier:cellID];
+
+        }
         cell.selectionStyle=UITableViewCellSelectionStyleGray;
         cell.delegate=self;
     }

@@ -183,9 +183,9 @@ static void *flabbyContext = &flabbyContext;
             nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
             [self presentViewController:nav animated:NO completion:nil];
         }else{
-            LoginViewController_iPad *viewController = [[LoginViewController_iPad alloc]initWithNibName:@"LoginViewController_iPad" bundle:nil];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
-            [nav setNavigationBarHidden:YES];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+            UINavigationController *nav = [sb instantiateViewControllerWithIdentifier:@"LoginNavViewController"];
+            
             nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
             [self presentViewController:nav animated:NO completion:nil];
         }

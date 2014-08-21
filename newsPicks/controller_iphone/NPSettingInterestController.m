@@ -16,7 +16,9 @@
 @end
 
 @implementation NPSettingInterestController
-
+-(IBAction)backAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

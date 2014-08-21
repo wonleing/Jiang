@@ -17,4 +17,6 @@
 @property(nonatomic,assign)id<NPFollowCellDelegate>delegate;
 -(void)restSubView:(NPUserDetaiInfolModel *)infoModel;
 +(float)cellHight;
+- (id)initWithStyle2:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
 @end

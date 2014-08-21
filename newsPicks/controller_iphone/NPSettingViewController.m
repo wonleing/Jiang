@@ -196,9 +196,8 @@
 
         }else{
             [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade completion:^{
-                LoginViewController_iPad *viewController = [[LoginViewController_iPad alloc]initWithNibName:@"LoginViewController_iPad" bundle:nil];
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
-                [nav setNavigationBarHidden:YES];
+                UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+                UINavigationController *nav = [sb instantiateViewControllerWithIdentifier:@"LoginNavViewController"];
                 nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
                 [((NPMainViewController*)((UINavigationController*)((UIWindow*)[UIApplication sharedApplication].windows.firstObject).rootViewController).viewControllers.firstObject) viewWillAppear:NO];
             }];
