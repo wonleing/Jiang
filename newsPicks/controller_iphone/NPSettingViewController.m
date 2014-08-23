@@ -15,10 +15,13 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "LoginViewController_iPad.h"
 #import "NPMainViewController.h"
-@interface NPSettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface NPSettingViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     UITableView *mTableView;
+    UIImagePickerController     *_imagePickerController;
+
 }
+@property(strong,nonatomic)NSData *imageData;
 @end
 
 @implementation NPSettingViewController
@@ -44,6 +47,14 @@
     mTableView.tableFooterView=foot;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _imagePickerController = [[UIImagePickerController alloc]init];
+    _imagePickerController.delegate = self;
+    _imagePickerController.videoQuality = UIImagePickerControllerQualityTypeLow;
+    [self performSelectorInBackground:@selector(getImageDataInBackground) withObject:nil];
+}
+-(void)getImageDataInBackground{
+    self.imageData = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.userImage"];
+    [mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -110,7 +121,7 @@
     if (indexPath.section==0) {
         UIImageView *imageView=[[UIImageView alloc]init];
         imageView.frame=CGRectMake(9, 0, 40, 40);
-        imageView.image=[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT];
+        imageView.image=self.imageData==nil?[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]:[UIImage imageWithData:self.imageData];
         imageView.tag=100;
         [cell.contentView addSubview:imageView];
         cell.textLabel.textAlignment=NSTextAlignmentCenter;
@@ -155,7 +166,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section==0) {
-        UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"Select Photo" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"From Photo Library",@"Take Photo", nil];
+        UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"Select Photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo",@"From Photo Library", nil];
+        
         [sheet showInView:self.view];
     }
     if (indexPath.section==1) {
@@ -204,12 +216,53 @@
         }
     }
 }
+- (void)_getMediaFromSource:(UIImagePickerControllerSourceType)sourceType {
+    if ([UIImagePickerController isSourceTypeAvailable:
+         sourceType]) {
+        _imagePickerController.sourceType = sourceType;
+        _imagePickerController.allowsEditing = NO;
+        [self presentViewController:_imagePickerController animated:YES completion:^(void){}];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"访问摄像头失败" message:@"未监测到摄像头" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:
+            [self _getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+            break;
+            
+        case 1:
+            [self _getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+            break;
+            
+        default:
+            break;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - ImagePickerControllerDelegate
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^(void){
+    }];
+}
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        NSData *data = UIImagePNGRepresentation(originalImage);
+        self.imageData=data;
+        [mTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"com.zhangcheng.userImage"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }];
+}
 /*
 #pragma mark - Navigation
 
