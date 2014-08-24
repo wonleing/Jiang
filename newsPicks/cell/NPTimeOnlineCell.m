@@ -150,7 +150,7 @@
         UIImageView *contentFollowView=[[UIImageView alloc]init];
         contentFollowView.frame=CGRectMake(NPTimeOnlineCell_content_LeftPlace, contentTime.frame.size.height+contentTime.frame.origin.y+NPTimeOnlineCell_content_time_replayImg, NPTimeOnlineCell_content_replyImg_higth-15, NPTimeOnlineCell_content_replyImg_higth-15);
         contentFollowView.contentMode=UIViewContentModeScaleAspectFill;
-        [contentFollowView setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
+        [contentFollowView setImageWithURL:[NSURL URLWithString:model.userimage] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
         [contentView addSubview:contentFollowView];
         contentView.frame=CGRectMake(contentView.frame.origin.x, contentView.frame.origin.y, contentView.frame.size.width, contentFollowView.frame.size.height+contentFollowView.frame.origin.y+NPTimeOnlineCell_buttomPlace);
     }
@@ -172,7 +172,7 @@
         NPPopularUserView *popularView=[[NPPopularUserView alloc]init];
         popularView.frame=CGRectMake(x, NPTimeOnlineCell_leftPlace, NPTimeOnlineCell_PopularUser_Higth-2*NPTimeOnlineCell_leftPlace, NPTimeOnlineCell_PopularUser_Higth-2*NPTimeOnlineCell_leftPlace);
         [popularView setImageWithURL:[NSURL URLWithString:user.headImageUrl] placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
-        popularView.leveImageView.image=[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT];
+//        popularView.leveImageView.image=[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT];
         [contentView addSubview:popularView];
         x=popularView.frame.size.width+popularView.frame.origin.x+NPTimeOnlineCell_leftPlace;
         

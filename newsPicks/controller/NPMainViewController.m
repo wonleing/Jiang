@@ -155,19 +155,19 @@ static void *flabbyContext = &flabbyContext;
 }
 -(void)clickTap
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.35];
-    if (navControllerl.view.frame.origin.y==0) {
-        navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.uperCollectionView.frame.size.height-70, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
-        mScrollview.userInteractionEnabled = YES;
-
-    }else
-    {
-         navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,0, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
-        [self.view bringSubviewToFront:navControllerl.view];
-        mScrollview.userInteractionEnabled = NO;
-    }
-    [UIView commitAnimations];
+//    [UIView setAnimationDuration:0.35];
+    [UIView animateWithDuration:0.35f animations:^{
+        if (navControllerl.view.frame.origin.y==0) {
+            navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x, self.uperCollectionView.frame.size.height-70, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+            mScrollview.userInteractionEnabled = YES;
+        }else
+        {
+            navControllerl.view.frame=CGRectMake(navControllerl.view.frame.origin.x,0, navControllerl.view.frame.size.width,navControllerl.view.frame.size.height);
+            [self.view bringSubviewToFront:navControllerl.view];
+            mScrollview.userInteractionEnabled = NO;
+        }
+    }];
+    
     
 }
 -(void)viewWillAppear:(BOOL)animated

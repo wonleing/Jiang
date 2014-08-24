@@ -212,6 +212,10 @@
         if (isSuccess) {
             user_name = result.name;
             textBio.text = result.description;
+            textFildFirstName.text=result.family;
+            textFildCompand.text = result.company;
+            textFildJob.text = result.position;
+            textFildLastName.text = result.given;
         }else
         {
             [SVProgressHUD showErrorWithStatus:@"加载失败"];

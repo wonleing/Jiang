@@ -607,6 +607,11 @@
                 model.name = [dic objectForKey:@"loginname"];
                 model.description = [dic objectForKey:@"description"];
                 model.typeName = [dic objectForKeyedSubscript:@"type"];
+                model.company =[dic objectForKey:@"company"];
+                model.family=[dic objectForKey:@"family"];
+                model.given = [dic objectForKey:@"given"];
+                model.position = [dic objectForKey:@"position"];
+                model.userimage = [dic objectForKey:@"userimage"];
                 successBlock(YES,model);
             }
 

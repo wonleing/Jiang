@@ -129,7 +129,7 @@
     {
         followBtn.layer.borderColor=[[UIColor clearColor]CGColor];
         followBtn.layer.borderWidth=0;
-        [followBtn setTitle:@"following" forState:UIControlStateNormal];
+        [followBtn setTitle:@"unfollow" forState:UIControlStateNormal];
         [followBtn setBackgroundImage:[NPCustomMethod createImageWithColor:[UIColor colorWithRed:62.0f/255.0f green:69.0f/255.0f blue:113.0f/255.0f alpha:1] size:followBtn.frame.size] forState:UIControlStateNormal];
         
     }
