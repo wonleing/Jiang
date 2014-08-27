@@ -39,6 +39,10 @@
     [self.navigationController pushViewController:webController animated:YES];
     
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
 - (void)viewDidLoad
 {
     mDicData=[[NSMutableDictionary alloc]initWithCapacity:0];
