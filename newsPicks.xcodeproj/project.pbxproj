@@ -1409,8 +1409,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhang Cheng (23BJJA5MXK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhang Cheng (23BJJA5MXK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1420,7 +1420,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1c6a7f2d-ceab-4368-b043-3502d2f098d5";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1431,8 +1431,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhang Cheng (23BJJA5MXK)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhang Cheng (23BJJA5MXK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1442,7 +1442,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1c6a7f2d-ceab-4368-b043-3502d2f098d5";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
