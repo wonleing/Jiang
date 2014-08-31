@@ -34,7 +34,10 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

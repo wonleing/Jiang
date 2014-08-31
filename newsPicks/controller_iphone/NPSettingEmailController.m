@@ -25,7 +25,10 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+}
 - (void)viewDidLoad
 {
     self.title=@"Email";
