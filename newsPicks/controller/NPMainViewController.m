@@ -365,7 +365,7 @@ static void *flabbyContext = &flabbyContext;
             
             
         }
-      
+        cell.imageUrl = model.threadimage;
         return cell;
     }else{
       UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];

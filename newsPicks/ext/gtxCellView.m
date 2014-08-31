@@ -24,6 +24,7 @@
         [self addSubview:LineView];
         
         avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 20, 20)];
+//        [avatarImageView setImageWithURL:[NSURL URLWithString:self.imageUrl]];
         [self addSubview: avatarImageView];
         
         
@@ -52,7 +53,7 @@
 -(void)setImageUrl:(NSString *)imageUrl
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
-        NSURL *portraitUrl = [NSURL URLWithString:imageUrl];
+        NSURL *portraitUrl = [NSURL URLWithString:@"http://fmn.rrimg.com/fmn065/20140831/1515/p/m3w235h176q85lt_large_kLuU_789f000074ac118f.jpg"];
         UIImage *protraitImg = [UIImage imageWithData:[NSData dataWithContentsOfURL:portraitUrl]];
         dispatch_sync(dispatch_get_main_queue(), ^{
             avatarImageView.image = protraitImg;
