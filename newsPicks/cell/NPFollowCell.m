@@ -90,7 +90,7 @@
     [self.contentView addSubview:name];
     followBtn=[NPUserFollowingButton buttonWithType:UIButtonTypeCustom];
     followBtn.titleLabel.font=[UIFont systemFontOfSize:13];
-    followBtn.frame=CGRectMake(500-75, 0, 70, 30);
+    followBtn.frame=CGRectMake(450-75, 0, 70, 30);
     [followBtn addTarget:self action:@selector(clickFollow:) forControlEvents:UIControlEventTouchUpInside];
     followBtn.center=CGPointMake(followBtn.center.x, headView.center.y);
     [self.contentView addSubview:followBtn];

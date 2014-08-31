@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		185CD718198AAA470076F05B /* gtxCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CD715198AAA470076F05B /* gtxCellView.m */; };
 		185CD719198AAA470076F05B /* gtxCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 185CD717198AAA470076F05B /* gtxCollectionLayout.m */; };
+		186B05FB19B3831A00B8446B /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186B05F519B3831A00B8446B /* RightViewController.m */; };
+		186B05FC19B3831A00B8446B /* RightCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 186B05F619B3831A00B8446B /* RightCollectionViewLayout.m */; };
+		186B05FD19B3831A00B8446B /* RightViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186B05F719B3831A00B8446B /* RightViewCell.m */; };
 		260B4999197D4A7D00BEFF53 /* registerPhoto_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 260B4998197D4A7D00BEFF53 /* registerPhoto_1.png */; };
 		260B4A2F197D5BC800BEFF53 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260B4A2E197D5BC800BEFF53 /* AudioToolbox.framework */; };
 		2613BBED197FF80100628079 /* NPNewListDetailFootReplysView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2613BBEC197FF80100628079 /* NPNewListDetailFootReplysView.m */; };
@@ -203,6 +206,12 @@
 		185CD715198AAA470076F05B /* gtxCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gtxCellView.m; sourceTree = "<group>"; };
 		185CD716198AAA470076F05B /* gtxCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gtxCollectionLayout.h; sourceTree = "<group>"; };
 		185CD717198AAA470076F05B /* gtxCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gtxCollectionLayout.m; sourceTree = "<group>"; };
+		186B05F519B3831A00B8446B /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
+		186B05F619B3831A00B8446B /* RightCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCollectionViewLayout.m; sourceTree = "<group>"; };
+		186B05F719B3831A00B8446B /* RightViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewCell.m; sourceTree = "<group>"; };
+		186B05F819B3831A00B8446B /* RightCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCollectionViewLayout.h; sourceTree = "<group>"; };
+		186B05F919B3831A00B8446B /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		186B05FA19B3831A00B8446B /* RightViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewCell.h; sourceTree = "<group>"; };
 		260B4998197D4A7D00BEFF53 /* registerPhoto_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerPhoto_1.png; sourceTree = "<group>"; };
 		260B499D197D4BC000BEFF53 /* NPDefaultSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPDefaultSetting.h; sourceTree = "<group>"; };
 		260B4A2E197D5BC800BEFF53 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -522,6 +531,12 @@
 		26449FF71986848600EAD5DF /* controller_ipad */ = {
 			isa = PBXGroup;
 			children = (
+				186B05F519B3831A00B8446B /* RightViewController.m */,
+				186B05F619B3831A00B8446B /* RightCollectionViewLayout.m */,
+				186B05F719B3831A00B8446B /* RightViewCell.m */,
+				186B05F819B3831A00B8446B /* RightCollectionViewLayout.h */,
+				186B05F919B3831A00B8446B /* RightViewController.h */,
+				186B05FA19B3831A00B8446B /* RightViewCell.h */,
 				378BFC19198F873600DBD405 /* PopupView */,
 				3741F7901990C966006B8115 /* Main_iPad.storyboard */,
 				37819D2519B33D3900DADC77 /* LoginRootViewController.h */,
@@ -1177,6 +1192,7 @@
 				2666CF0F19828F3C00D4B106 /* SVModalWebViewController.m in Sources */,
 				2649D9DE197EB3FC00377012 /* NPPopularUserView.m in Sources */,
 				26542CAC197D250C000E0317 /* NPNewListTopScrollView.m in Sources */,
+				186B05FB19B3831A00B8446B /* RightViewController.m in Sources */,
 				26E8C795197D5DF10039EFB4 /* SDImageCache.m in Sources */,
 				262F33EB197D44D200060112 /* NPTimeOnlineCell.m in Sources */,
 				26E8C797197D5DF10039EFB4 /* SDWebImageCompat.m in Sources */,
@@ -1211,6 +1227,7 @@
 				2649D9DB197EAFBA00377012 /* NPlistPopularUsers.m in Sources */,
 				26542D1F197D2C08000E0317 /* UIImageView+AFNetworking.m in Sources */,
 				26942283197BFE9E00515F9E /* main.m in Sources */,
+				186B05FD19B3831A00B8446B /* RightViewCell.m in Sources */,
 				66F148C219A0D66500720697 /* NPRecommandThreadModel.m in Sources */,
 				26E8C791197D5DF10039EFB4 /* MKAnnotationView+WebCache.m in Sources */,
 				2649D9E1197EBCAF00377012 /* NPlistReplyModel.m in Sources */,
@@ -1237,6 +1254,7 @@
 				26E8C793197D5DF10039EFB4 /* NSData+GIF.m in Sources */,
 				26542D17197D2C08000E0317 /* AFPropertyListRequestOperation.m in Sources */,
 				66F148BA199F0C9400720697 /* NPThemeOfInterestCellTableViewCell.m in Sources */,
+				186B05FC19B3831A00B8446B /* RightCollectionViewLayout.m in Sources */,
 				26791FC6197F6B70003DAC20 /* NPNewListDetailFootLoadView.m in Sources */,
 				2613BBF01980109F00628079 /* NPUserDetailViewController.m in Sources */,
 				37819D2719B33D3900DADC77 /* LoginRootViewController.m in Sources */,

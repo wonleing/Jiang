@@ -21,6 +21,8 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "LoginViewController_iPad.h"
 #import "NPRecommandThreadModel.h"
+#import "RightViewController.h"
+#import "RightCollectionViewLayout.h"
 static void *flabbyContext = &flabbyContext;
 @interface NPMainViewController ()<UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,NPMainleftViewDelegate,UIPopoverControllerDelegate>
 {
@@ -36,6 +38,7 @@ static void *flabbyContext = &flabbyContext;
 @property (strong,nonatomic)NPContentUrlViewController *contentUrlViewController;
 @property (strong,nonatomic)NPSettingViewController *settingViewController;
 @property (strong,nonatomic) TestViewController *testViewController;
+@property (strong,nonatomic) RightViewController *rightViewController;
 @property (nonatomic,strong) NSIndexPath *currentIndexPath;
 @property(copy,nonatomic)NSNumber *uid;
 @property (nonatomic, assign) NSInteger cellCount;
@@ -245,37 +248,71 @@ static void *flabbyContext = &flabbyContext;
         self.navigationController.navigationBar.hidden=NO;
         [self.navigationController pushViewController:robots animated:YES];
     }else{
-        self.testViewController = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
-        [self addChildViewController:self.testViewController];
-        NSLog(@"%@",NSStringFromCGRect(self.testViewController.view.frame));
+//        self.testViewController = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
+//        [self addChildViewController:self.testViewController];
+//        NSLog(@"test view frame = %@",NSStringFromCGRect(self.testViewController.view.frame));
+//        UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75f];
+//        UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
+//        view.backgroundColor=color;
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame=view.frame;
+//        view.alpha=0;
+//        view.tag=999;
+//        [btn addTarget:self action:@selector(closeSecView) forControlEvents:UIControlEventTouchDown];
+//        [view addSubview:btn];
+//        [view addSubview:self.testViewController.view];
+//        [self.view addSubview:view];
+//        [UIView animateWithDuration:0.25 animations:^{
+//            view.alpha=1.0f;
+//            self.testViewController.view.frame=CGRectMake(768-self.testViewController.view.frame.size.width, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+//        }];
+        self.rightViewController = [[RightViewController alloc]initWithCollectionViewLayout:[[RightCollectionViewLayout alloc] init]];
+        
+        self.rightViewController.parentViewController =self;
+        [self addChildViewController:self.rightViewController];
+        NSLog(@"test view frame = %@",NSStringFromCGRect(self.rightViewController.view.frame));
         UIColor *color = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75f];
         UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
-        view.backgroundColor=color;
+//        view.backgroundColor=color;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame=view.frame;
         view.alpha=0;
         view.tag=999;
         [btn addTarget:self action:@selector(closeSecView) forControlEvents:UIControlEventTouchDown];
         [view addSubview:btn];
-        [view addSubview:self.testViewController.view];
+        [view addSubview:self.rightViewController.collectionView];
         [self.view addSubview:view];
         [UIView animateWithDuration:0.25 animations:^{
             view.alpha=1.0f;
-            self.testViewController.view.frame=CGRectMake(768-self.testViewController.view.frame.size.width, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+            CGRect frame = self.rightViewController.collectionView.frame;
+            frame.origin.x = 768 - self.rightViewController.collectionView.frame.size.width;
+            self.rightViewController.collectionView.frame = frame;
+            NSLog(@"rightViewController frame = %@",NSStringFromCGRect(self.rightViewController.view.frame));
         }];
+
     }
     
 }
 -(void)closeSecView{
+//    [UIView animateWithDuration:0.25 animations:^{
+//        UIView *view = [self.view viewWithTag:999];
+//        view.alpha=0.0f;
+//        self.testViewController.view.frame=CGRectMake(768, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+//    } completion:^(BOOL finished) {
+//        UIView *view = [self.view viewWithTag:999];
+//        [view removeFromSuperview];
+//        [self.testViewController removeFromParentViewController];
+//        self.testViewController=nil;
+//    }];
     [UIView animateWithDuration:0.25 animations:^{
         UIView *view = [self.view viewWithTag:999];
         view.alpha=0.0f;
-        self.testViewController.view.frame=CGRectMake(768, 40, self.testViewController.view.frame.size.width, self.testViewController.view.frame.size.height);
+        self.rightViewController.collectionView.frame=CGRectMake(768, 0, self.rightViewController.collectionView.frame.size.width, self.rightViewController.collectionView.frame.size.height);
     } completion:^(BOOL finished) {
         UIView *view = [self.view viewWithTag:999];
         [view removeFromSuperview];
-        [self.testViewController removeFromParentViewController];
-        self.testViewController=nil;
+        [self.rightViewController removeFromParentViewController];
+        self.rightViewController=nil;
     }];
 }
 -(void)NPMainleftViewClickTwo
@@ -365,7 +402,7 @@ static void *flabbyContext = &flabbyContext;
             
             
         }
-        cell.imageUrl = model.threadimage;
+       cell.imageUrl = @"";
         return cell;
     }else{
       UICollectionViewCell*cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
