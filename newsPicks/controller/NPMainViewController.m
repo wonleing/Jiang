@@ -177,9 +177,11 @@ static void *flabbyContext = &flabbyContext;
     self.uid = [[NSUserDefaults standardUserDefaults]objectForKey:@"com.zhangcheng.uid"];
     if (self.uid.intValue==0) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            LoginViewController *viewController = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
-            [nav setNavigationBarHidden:YES];
+//            LoginViewController *viewController = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+//            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+//            [nav setNavigationBarHidden:YES];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            UINavigationController *nav = [sb instantiateViewControllerWithIdentifier:@"LoginNavViewController"];
             nav.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
             [self presentViewController:nav animated:NO completion:nil];
         }else{

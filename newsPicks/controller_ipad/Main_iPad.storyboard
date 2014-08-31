@@ -9,7 +9,7 @@
         <scene sceneID="mA3-Cq-uKE">
             <objects>
                 <navigationController storyboardIdentifier="LoginNavViewController" definesPresentationContext="YES" navigationBarHidden="YES" id="9LD-p7-qC9" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jfL-z4-Xcm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="jfL-z4-Xcm">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-911" y="-1013"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Root View Controller-->
         <scene sceneID="1em-z8-oVf">
             <objects>
-                <viewController id="kKj-fr-xpy" sceneMemberID="viewController">
+                <viewController id="kKj-fr-xpy" customClass="LoginRootViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bsa-6v-r9H"/>
                         <viewControllerLayoutGuide type="bottom" id="hpk-Nm-fHm"/>
@@ -87,7 +87,7 @@
                                 <rect key="frame" x="238" y="429" width="292" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cq-yr-OS1">
                                 <rect key="frame" x="362" y="550" width="45" height="34"/>
@@ -144,7 +144,7 @@
                                 <rect key="frame" x="238" y="429" width="292" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0J-Iv-8du">
                                 <rect key="frame" x="339" y="550" width="90" height="34"/>

@@ -45,7 +45,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 10;
 }
-
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 -(NPThemeOfInterestCellTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NPThemeOfInterestCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell==nil) {

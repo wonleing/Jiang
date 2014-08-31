@@ -53,6 +53,9 @@
     [self loadMore];
 
 }
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 -(IBAction)nextAction{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

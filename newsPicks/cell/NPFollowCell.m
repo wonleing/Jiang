@@ -76,6 +76,8 @@
 }
 -(void)initSub2
 {
+    BOOL isIPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+
     headView=[[UIImageView alloc]init];
     headView.frame=CGRectMake(5, 5, 60, 60);
     [self.contentView addSubview:headView];
