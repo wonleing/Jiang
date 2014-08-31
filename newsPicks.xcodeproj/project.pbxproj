@@ -186,6 +186,9 @@
 		66F148BC199F182600720697 /* success-black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F148BB199F182600720697 /* success-black@2x.png */; };
 		66F148BF199F565100720697 /* NPUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F148BE199F565100720697 /* NPUserInfoModel.m */; };
 		66F148C219A0D66500720697 /* NPRecommandThreadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F148C119A0D66500720697 /* NPRecommandThreadModel.m */; };
+		9929547F19B369F600A59D18 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9929547E19B369F600A59D18 /* RightViewController.m */; };
+		9929548219B36AB700A59D18 /* RightViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9929548119B36AB700A59D18 /* RightViewCell.m */; };
+		9929548519B36D1A00A59D18 /* RightCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9929548419B36D1A00A59D18 /* RightCollectionViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -458,6 +461,12 @@
 		66F148BE199F565100720697 /* NPUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPUserInfoModel.m; sourceTree = "<group>"; };
 		66F148C019A0D66500720697 /* NPRecommandThreadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPRecommandThreadModel.h; sourceTree = "<group>"; };
 		66F148C119A0D66500720697 /* NPRecommandThreadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPRecommandThreadModel.m; sourceTree = "<group>"; };
+		9929547D19B369F600A59D18 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		9929547E19B369F600A59D18 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
+		9929548019B36AB700A59D18 /* RightViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewCell.h; sourceTree = "<group>"; };
+		9929548119B36AB700A59D18 /* RightViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewCell.m; sourceTree = "<group>"; };
+		9929548319B36D1A00A59D18 /* RightCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCollectionViewLayout.h; sourceTree = "<group>"; };
+		9929548419B36D1A00A59D18 /* RightCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCollectionViewLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,6 +543,12 @@
 				374F1281199496EA00B9731F /* LoginViewController_iPad.h */,
 				374F1282199496EA00B9731F /* LoginViewController_iPad.m */,
 				374F1283199496EA00B9731F /* LoginViewController_iPad.xib */,
+				9929547D19B369F600A59D18 /* RightViewController.h */,
+				9929547E19B369F600A59D18 /* RightViewController.m */,
+				9929548019B36AB700A59D18 /* RightViewCell.h */,
+				9929548119B36AB700A59D18 /* RightViewCell.m */,
+				9929548319B36D1A00A59D18 /* RightCollectionViewLayout.h */,
+				9929548419B36D1A00A59D18 /* RightCollectionViewLayout.m */,
 			);
 			path = controller_ipad;
 			sourceTree = "<group>";
@@ -1177,6 +1192,8 @@
 				2666CF0F19828F3C00D4B106 /* SVModalWebViewController.m in Sources */,
 				2649D9DE197EB3FC00377012 /* NPPopularUserView.m in Sources */,
 				26542CAC197D250C000E0317 /* NPNewListTopScrollView.m in Sources */,
+				9929548519B36D1A00A59D18 /* RightCollectionViewLayout.m in Sources */,
+				9929547F19B369F600A59D18 /* RightViewController.m in Sources */,
 				26E8C795197D5DF10039EFB4 /* SDImageCache.m in Sources */,
 				262F33EB197D44D200060112 /* NPTimeOnlineCell.m in Sources */,
 				26E8C797197D5DF10039EFB4 /* SDWebImageCompat.m in Sources */,
@@ -1225,6 +1242,7 @@
 				3741F7941990CD65006B8115 /* NPNewsListViewController_ipad.m in Sources */,
 				26542C91197D241A000E0317 /* NPNavigationViewController.m in Sources */,
 				66F148BF199F565100720697 /* NPUserInfoModel.m in Sources */,
+				9929548219B36AB700A59D18 /* RightViewCell.m in Sources */,
 				3761A8821995BE7F00C8B4FB /* NPTextInputViewController.m in Sources */,
 				373E8916198A2CC00080FBEF /* LoginViewController.m in Sources */,
 				26791FCC197FB796003DAC20 /* NPCustomMethod.m in Sources */,
