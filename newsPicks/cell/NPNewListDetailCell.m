@@ -26,7 +26,7 @@
     for (UIView *view in self.contentView.subviews) {
         [view removeFromSuperview];
     }
-    if (reply.content.length) {
+//    if (reply.content.length) {
         UIImageView *headImageView=[[UIImageView alloc]init];
         headImageView.frame=CGRectMake(NPNewListDetailCell_topPlace, NPNewListDetailCell_topPlace, NPNewListDetailCell_Content_headImageHight, NPNewListDetailCell_Content_headImageHight);
         headImageView.contentMode=UIViewContentModeScaleAspectFill;
@@ -34,11 +34,12 @@
         [self.contentView addSubview:headImageView];
         
         UILabel *nameLabel=[[UILabel alloc] init];
-        nameLabel.frame=CGRectMake(NPNewListDetailCell_topPlace+headImageView.frame.size.width+headImageView.frame.origin.x, headImageView.frame.origin.y, [UIScreen mainScreen].bounds.size.width-NPNewListDetailCell_RightPlace-headImageView.frame.size.width-headImageView.frame.origin.x-NPNewListDetailCell_topPlace, headImageView.frame.size.height/3);
+        nameLabel.frame=CGRectMake(NPNewListDetailCell_topPlace+headImageView.frame.size.width+headImageView.frame.origin.x+10, headImageView.frame.origin.y, [UIScreen mainScreen].bounds.size.width-NPNewListDetailCell_RightPlace-headImageView.frame.size.width-headImageView.frame.origin.x-NPNewListDetailCell_topPlace, headImageView.frame.size.height/3);
         nameLabel.backgroundColor=[UIColor clearColor];
         nameLabel.textColor=[UIColor lightGrayColor];
         nameLabel.font=[UIFont systemFontOfSize:10];
-        nameLabel.text=reply.name;
+        nameLabel.text = @"Leon";
+//        nameLabel.text=reply.name;
         [self.contentView addSubview:nameLabel];
         
         UILabel *postionLabel=[[UILabel alloc]init];
@@ -46,7 +47,8 @@
         postionLabel.textColor=nameLabel.textColor;
         postionLabel.backgroundColor=[UIColor clearColor];
         postionLabel.frame=CGRectMake(nameLabel.frame.origin.x, nameLabel.frame.size.height+nameLabel.frame.origin.y, nameLabel.frame.size.width, nameLabel.frame.size.height);
-        postionLabel.text=reply.position;
+//        postionLabel.text=reply.position;
+        postionLabel.text = @"nice newsPicked!";
         [self.contentView addSubview:postionLabel];
         
         UILabel *timeLabel=[[UILabel alloc]init];
@@ -54,7 +56,8 @@
         timeLabel.font=postionLabel.font;
         timeLabel.textColor=postionLabel.textColor;
         timeLabel.backgroundColor=[UIColor clearColor];
-        timeLabel.text=reply.time;
+        timeLabel.text = @"2014-08-31 22:33";
+//        timeLabel.text=reply.time;
         [self.contentView addSubview:timeLabel];
         
         
@@ -76,7 +79,8 @@
         NSMutableDictionary *mutableLinkAttributes=[NSMutableDictionary dictionary];
         [mutableLinkAttributes setObject:[UIColor blueColor] forKey:(NSString *)kCTForegroundColorAttributeName];
         contentLabel.linkAttributes=mutableLinkAttributes;
-        contentLabel.attributedText=[NSMutableAttributedString attributedStringWith:contentLabel.font lineSpace:NPNewListDetailCell_lineSpace textColor:contentLabel.textColor content:reply.content];
+//        contentLabel.attributedText=[NSMutableAttributedString attributedStringWith:contentLabel.font lineSpace:NPNewListDetailCell_lineSpace textColor:contentLabel.textColor content:reply.content];
+       contentLabel.attributedText=[NSMutableAttributedString attributedStringWith:contentLabel.font lineSpace:NPNewListDetailCell_lineSpace textColor:contentLabel.textColor content:@"it is a good newspicked"];
         CGSize size=[NSMutableAttributedString  adjustSizeWithAttributedString:contentLabel.attributedText MaxWidth:contentLabel.frame.size.width];
         contentLabel.frame=CGRectMake(contentLabel.frame.origin.x, contentLabel.frame.origin.y, size.width, size.height);
         [NPCustomMethod matchesInStringUrl:contentLabel];
@@ -92,21 +96,21 @@
         line.backgroundColor=[UIColor lightGrayColor];
         [self.contentView addSubview:line];
 
-    }else
-    {
-        UIButton *headImage=[UIButton buttonWithType:UIButtonTypeCustom];
-        [headImage addTarget:self action:@selector(clickHead:) forControlEvents:UIControlEventTouchUpInside];
-        headImage.frame=CGRectMake(NPNewListDetailCell_topPlace, NPNewListDetailCell_topPlace, NPNewListDetailCell_noContent_headImageHight, NPNewListDetailCell_noContent_headImageHight);
-        headImage.contentMode=UIViewContentModeScaleAspectFill;
-        [headImage  setImageWithURL:[NSURL URLWithString:reply.headImageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
-        [self.contentView addSubview:headImage];
-        UIView *line=[[UIView alloc]init];
-        line.frame=CGRectMake(0, headImage.frame.size.height+headImage.frame.origin.y+NPNewListDetailCell_topPlace-0.5, [UIScreen mainScreen].bounds.size.width, 0.5);
-        line.backgroundColor=[UIColor lightGrayColor];
-        [self.contentView addSubview:line];
-        
-
-    }
+//    }else
+//    {
+//        UIButton *headImage=[UIButton buttonWithType:UIButtonTypeCustom];
+//        [headImage addTarget:self action:@selector(clickHead:) forControlEvents:UIControlEventTouchUpInside];
+//        headImage.frame=CGRectMake(NPNewListDetailCell_topPlace, NPNewListDetailCell_topPlace, NPNewListDetailCell_noContent_headImageHight, NPNewListDetailCell_noContent_headImageHight);
+//        headImage.contentMode=UIViewContentModeScaleAspectFill;
+//        [headImage  setImageWithURL:[NSURL URLWithString:reply.headImageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:NP_IMG_TIME_ONLINE_DEFAULT]];
+//        [self.contentView addSubview:headImage];
+//        UIView *line=[[UIView alloc]init];
+//        line.frame=CGRectMake(0, headImage.frame.size.height+headImage.frame.origin.y+NPNewListDetailCell_topPlace-0.5, [UIScreen mainScreen].bounds.size.width, 0.5);
+//        line.backgroundColor=[UIColor lightGrayColor];
+//        [self.contentView addSubview:line];
+//        
+//
+//    }
 }
 
 -(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url

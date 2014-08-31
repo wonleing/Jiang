@@ -1373,7 +1373,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "fd7353de-859e-4ee7-9ead-d4671693b150";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1407,7 +1407,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PROVISIONING_PROFILE = "fd7353de-859e-4ee7-9ead-d4671693b150";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1419,8 +1419,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1430,7 +1430,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1441,8 +1441,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ZHONGRUI YIN (9S72XJC9KA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "newsPicks/newsPicks-Prefix.pch";
 				INFOPLIST_FILE = "newsPicks/newsPicks-Info.plist";
@@ -1452,7 +1452,7 @@
 					"$(PROJECT_DIR)/newsPicks/other/AFNetworking/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ed4b5fca-8fde-47bc-b82e-09aab12f6686";
 				SDKROOT = iphoneos6.1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -14,11 +14,14 @@
 #import "NPNewListDetailFootReplysView.h"
 #import "NPUserDetailViewController.h"
 #import "SVWebViewController.h"
+#import "NPTextInputViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 @interface NPNewListDetailViewController ()<UITableViewDataSource,UITableViewDelegate,NPNewListDetailCellDelegate,NPNewListDetailFootReplysViewDelegate,UIActionSheetDelegate>
 {
     UITableView *mTableView;
     NSMutableDictionary *mDicData;
 }
+@property(nonatomic,strong)NPTextInputViewController *textInputviewController;
 @end
 
 @implementation NPNewListDetailViewController
@@ -42,6 +45,18 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    UIButton *picButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, [UIImage imageNamed:@"img_pick_navy"].size.width/2, [UIImage imageNamed:@"img_pick_navy"] .size.height/2)];
+    [picButton addTarget:self action:@selector(pickThisNews) forControlEvents:UIControlEventTouchUpInside];
+    [picButton setBackgroundImage:[UIImage imageNamed:@"img_pick_navy"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:picButton];
+}
+-(void)pickThisNews
+{
+    self.textInputviewController= [[NPTextInputViewController alloc]initWithNibName:@"NPTextInputViewController" bundle:nil];
+    self.textInputviewController.tid=self.listModel.listID;
+    self.textInputviewController.mTitle=self.listModel.title;
+    [self presentPopupViewController:self.textInputviewController animationType:MJPopupViewAnimationSlideBottomTop];
+
 }
 - (void)viewDidLoad
 {
@@ -81,7 +96,6 @@
     }
     [self performSelector:@selector(loadData) withObject:nil afterDelay:1.5];
    
-    // Do any additional setup after loading the view.
 }
 -(void)loadData
 {
@@ -151,21 +165,23 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];
-    NSString *key = [allKeys objectAtIndex:section];
-    NSArray *value = [mDicData valueForKey:key];
-    return [value count];
+//    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];
+//    NSString *key = [allKeys objectAtIndex:section];
+//    NSArray *value = [mDicData valueForKey:key];
+    return 10;
+//    return [value count];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return mDicData.allKeys.count;
+    return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];
-    NSString *key = [allKeys objectAtIndex:indexPath.section];
-    NSArray *value = [mDicData valueForKey:key];
-    return [NPNewListDetailCell cellHigth:[value objectAtIndex:indexPath.row]];
+//    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];
+//    NSString *key = [allKeys objectAtIndex:indexPath.section];
+//    NSArray *value = [mDicData valueForKey:key];
+//    return [NPNewListDetailCell cellHigth:[value objectAtIndex:indexPath.row]];
+    return 100;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -174,8 +190,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
-    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];;
-    NSString *key = [allKeys objectAtIndex:section];
+//    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];;
+//    NSString *key = [allKeys objectAtIndex:section];
     
     UIView *view=[[UIView alloc] init];
     view.frame=CGRectMake(0, 0, self.view.frame.size.width, 25);
@@ -188,7 +204,8 @@
     title.frame=CGRectMake(5, 0, view.frame.size.width-5, view.frame.size.height);
     title.font=[UIFont boldSystemFontOfSize:15];
     title.textColor=[UIColor grayColor];
-    title.text=key;;
+//    title.text=key;
+    title.text = @"comments";
     title.backgroundColor=[UIColor clearColor];
     [view addSubview:title];
     return view;
@@ -203,10 +220,11 @@
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
          
     }
-    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];;
-    NSString *key = [allKeys objectAtIndex:indexPath.section];
-    NSArray *value = [mDicData valueForKey:key];
-    [cell restCell:[value objectAtIndex:indexPath.row]];
+//    NSArray *allKeys = [NPCustomMethod sortNewsListKey:mDicData];;
+//    NSString *key = [allKeys objectAtIndex:indexPath.section];
+//    NSArray *value = [mDicData valueForKey:key];
+//    [cell restCell:[value objectAtIndex:indexPath.row]];
+    [cell restCell:nil];
     return cell;
 }
 //click userHeader
