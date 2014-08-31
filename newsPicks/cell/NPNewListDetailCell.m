@@ -88,8 +88,9 @@
     
         
         UIButton *btnPraise=[UIButton buttonWithType:UIButtonTypeCustom];
-        btnPraise.frame=CGRectMake([UIScreen mainScreen].bounds.size.width-NPNewListDetailCell_RightPlace+10, postionLabel.frame.origin.y-5, 25, 35);
-        btnPraise.backgroundColor=[UIColor orangeColor];
+        btnPraise.frame=CGRectMake([UIScreen mainScreen].bounds.size.width-NPNewListDetailCell_RightPlace, postionLabel.frame.origin.y-5, 36, 35);
+//        btnPraise.backgroundColor=[UIColor orangeColor];
+    [btnPraise setBackgroundImage:[UIImage imageNamed:@"img_pick_navy"] forState:UIControlStateNormal];
         [self.contentView addSubview:btnPraise];
         UIView *line=[[UIView alloc]init];
         line.frame=CGRectMake(0, contentLabel.frame.size.height+contentLabel.frame.origin.y+NPNewListDetailCell_buttomPlace-0.5, [UIScreen mainScreen].bounds.size.width, 0.5);

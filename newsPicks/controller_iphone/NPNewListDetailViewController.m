@@ -49,6 +49,10 @@
     [picButton addTarget:self action:@selector(pickThisNews) forControlEvents:UIControlEventTouchUpInside];
     [picButton setBackgroundImage:[UIImage imageNamed:@"img_pick_navy"] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:picButton];
+    
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone){
+        self.title = self.listModel.title;
+    }
 }
 -(void)pickThisNews
 {
